@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.fiap</groupId>
-	<artifactId>techchallenge</artifactId>
+	<artifactId>techchallenge2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>techchallenge</name>
-	<description>Desafio Pós-Graduação Java FIAP</description>
+	<name>techchallenge2</name>
+	<description>Desafio 2 Pós-Graduação Java FIAP</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -62,10 +62,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
