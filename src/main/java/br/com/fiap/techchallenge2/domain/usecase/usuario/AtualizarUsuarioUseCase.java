@@ -12,15 +12,15 @@ public class AtualizarUsuarioUseCase
 
     private final UsuarioInterface usuarioInterface;
 
-    public UsuarioOutput execute( AtualizarUsuarioInput atualizarUsuarioInput ) {
+    public UsuarioOutput execute( AtualizarUsuarioInput usuarioInput ) {
 
-        Usuario usuarioExistente = this.usuarioInterface.buscarUsuarioPorUuid( atualizarUsuarioInput.uuid( ) );
+        Usuario usuarioExistente = this.usuarioInterface.buscarUsuarioPorUuid( usuarioInput.uuid( ) );
         if (usuarioExistente == null) {
-            throw new IllegalArgumentException("Usuário com UUID " + atualizarUsuarioInput.uuid() + " não existe.");
+            throw new IllegalArgumentException("Usuário com UUID " + usuarioInput.uuid() + " não existe.");
         }
 
-        usuarioExistente.setTelefone( atualizarUsuarioInput.telefone( ) );
-        usuarioExistente.setEndereco( atualizarUsuarioInput.endereco( ) );
+        usuarioExistente.setTelefone( usuarioInput.telefone( ) );
+        usuarioExistente.setEndereco( usuarioInput.endereco( ) );
         Usuario usuarioAtualizado = this.usuarioInterface.atualizarUsuario( usuarioExistente );
 
         return new UsuarioOutput(

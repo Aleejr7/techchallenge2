@@ -76,54 +76,54 @@ public class Usuario
     private void validaNome( String nome )
     {
         if( nome.isEmpty() ){
-            throw new DadoVazioException("Nome do usuário não pode ser vazio");
+            throw new DadoVazioException("Nome do usuário não pode ser vazio.");
         }
     }
 
     private void validaCpf( String cpf )
     {
         if( cpf.isEmpty() ){
-            throw new DadoVazioException("CPF do usuário não pode ser vazio");
+            throw new DadoVazioException("CPF do usuário não pode ser vazio.");
         }
         if (!cpf.matches("\\d{11}")) {
-            throw new DadoInvalidoException("CPF deve conter 11 dígitos numéricos");
+            throw new DadoInvalidoException("CPF deve conter 11 dígitos numéricos.");
         }
     }
 
     private void validaEmail( String email )
     {
         if( email.isEmpty() ){
-            throw new DadoVazioException("Email do usuário não pode ser vazio");
+            throw new DadoVazioException("Email do usuário não pode ser vazio.");
         }
         if ( !email.contains("@") || !email.contains(".") ) {
-            throw new DadoInvalidoException("Email deve conter '@' e '.'");
+            throw new DadoInvalidoException("Email deve conter '@' e '.'.");
         }
     }
 
     private void validaSenha( String senha )
     {
         if( senha.isEmpty() ){
-            throw new DadoVazioException("Senha do usuário não pode ser vazia");
+            throw new DadoVazioException("Senha do usuário não pode ser vazia.");
         }
         if ( senha.length() < 6 ) {
-            throw new DadoInvalidoException("Senha deve ter pelo menos 6 caracteres");
+            throw new DadoInvalidoException("Senha deve ter pelo menos 6 caracteres.");
         }
     }
 
     private void validaTelefone( String telefone )
     {
         if( telefone.isEmpty() ){
-            throw new DadoVazioException("Telefone do usuário não pode ser vazio");
+            throw new DadoVazioException("Telefone do usuário não pode ser vazio.");
         }
         if (!telefone.matches("\\d{9,11}")) {
-            throw new DadoInvalidoException("Número de telefone deve conter entre 9 à 11 dígitos numéricos");
+            throw new DadoInvalidoException("Número de telefone deve conter entre 9 à 11 dígitos numéricos.");
         }
     }
 
     private void validaEndereco( String endereco )
     {
         if( endereco.isEmpty() ){
-            throw new DadoVazioException("Endereço do usuário não pode ser vazio");
+            throw new DadoVazioException("Endereço do usuário não pode ser vazio.");
         }
     }
 }

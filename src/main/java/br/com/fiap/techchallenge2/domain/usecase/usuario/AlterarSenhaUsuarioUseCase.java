@@ -16,21 +16,21 @@ public class AlterarSenhaUsuarioUseCase
 
     private final UsuarioInterface usuarioInterface;
 
-    public void execute( AlterarSenhaUsuarioInput alterarSenhaUsuarioInput ) {
+    public void execute( AlterarSenhaUsuarioInput senhaUsuarioInput ) {
 
-        Usuario usuario = this.usuarioInterface.buscarUsuarioPorEmail( alterarSenhaUsuarioInput.email( ) );
+        Usuario usuario = this.usuarioInterface.buscarUsuarioPorEmail( senhaUsuarioInput.email( ) );
         if( usuario == null ) {
-            throw new UsuarioInexistenteException( "O usuário com email " + alterarSenhaUsuarioInput.email( ) + " não existe" );
+            throw new UsuarioInexistenteException( "O usuário com email " + senhaUsuarioInput.email( ) + " não existe" );
         }
 
-        if( !EncriptadorSenha.verificarSenha( alterarSenhaUsuarioInput.senhaAntiga( ), usuario.getSenha( ) ) ) {
+        if( !EncriptadorSenha.verificarSenha( senhaUsuarioInput.senhaAntiga( ), usuario.getSenha( ) ) ) {
             throw new SenhaErradaException( "A senha está incorreta" );
         }
 
-        if( !Objects.equals( alterarSenhaUsuarioInput.senhaNova( ), alterarSenhaUsuarioInput.confirmarSenhaNova( ) ) ){
+        if( !Objects.equals( senhaUsuarioInput.senhaNova( ), senhaUsuarioInput.confirmarSenhaNova( ) ) ){
             throw new SenhaErradaException( "A nova senha e a confirmação de nova senha não coincidem" );
         } else {
-            String senhaEncriptada = EncriptadorSenha.encriptar( alterarSenhaUsuarioInput.senhaNova() );
+            String senhaEncriptada = EncriptadorSenha.encriptar( senhaUsuarioInput.senhaNova() );
             usuario.setSenha( senhaEncriptada );
             this.usuarioInterface.atualizarUsuario( usuario );
         }

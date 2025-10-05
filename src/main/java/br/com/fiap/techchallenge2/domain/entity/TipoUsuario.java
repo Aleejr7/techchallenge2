@@ -27,7 +27,7 @@ public class TipoUsuario
     private void validaNome( String nome ) throws DadoVazioException
     {
         if( nome.isEmpty() ){
-            throw new DadoVazioException("Nome do tipo do usuário não pode ser vazio");
+            throw new DadoVazioException("Nome do tipo do usuário não pode ser vazio.");
         }
     }
 

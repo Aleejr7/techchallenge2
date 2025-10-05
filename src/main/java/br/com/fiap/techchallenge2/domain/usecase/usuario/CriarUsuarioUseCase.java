@@ -17,26 +17,26 @@ public class CriarUsuarioUseCase
     private final UsuarioInterface usuarioInterface;
     private final TipoUsuarioInterface tipoUsuarioInterface;
 
-    public UsuarioOutput execute( CriarUsuarioInput criarUsuarioInput ) {
+    public UsuarioOutput execute( CriarUsuarioInput usuarioInput ) {
 
-        Usuario usuarioExistente = this.usuarioInterface.buscarUsuarioPorEmail( criarUsuarioInput.email( ) );
+        Usuario usuarioExistente = this.usuarioInterface.buscarUsuarioPorEmail( usuarioInput.email( ) );
         if( usuarioExistente != null ){
-            throw new UsuarioJaExisteException( "Já existe um usuário cadastrado com o email: " + criarUsuarioInput.email( ) );
+            throw new UsuarioJaExisteException( "Já existe um usuário cadastrado com o email: " + usuarioInput.email( ) );
         }
 
-        TipoUsuario tipoUsuarioExistente = this.tipoUsuarioInterface.buscarTipoUsuarioPorNome( criarUsuarioInput.tipoUsuario( ).nome( ) );
+        TipoUsuario tipoUsuarioExistente = this.tipoUsuarioInterface.buscarTipoUsuarioPorNome( usuarioInput.tipoUsuario( ).nome( ) );
         if(tipoUsuarioExistente == null){
             throw new TipoUsuarioInexistenteException(
-                    "Tipo do usuário " + criarUsuarioInput.tipoUsuario( ).nome( ) + " não existe, verifique a lista de Tipos de Usuário existentes" );
+                    "Tipo do usuário " + usuarioInput.tipoUsuario( ).nome( ) + " não existe, verifique a lista de Tipos de Usuário existentes" );
         }
 
         Usuario usuario = new Usuario(
-                criarUsuarioInput.nome( ),
-                criarUsuarioInput.cpf( ),
-                criarUsuarioInput.email( ),
-                criarUsuarioInput.senha( ),
-                criarUsuarioInput.telefone( ),
-                criarUsuarioInput.endereco( ),
+                usuarioInput.nome( ),
+                usuarioInput.cpf( ),
+                usuarioInput.email( ),
+                usuarioInput.senha( ),
+                usuarioInput.telefone( ),
+                usuarioInput.endereco( ),
                 tipoUsuarioExistente
         );
 
