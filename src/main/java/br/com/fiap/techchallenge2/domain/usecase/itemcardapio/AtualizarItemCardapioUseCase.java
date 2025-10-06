@@ -1,6 +1,7 @@
 package br.com.fiap.techchallenge2.domain.usecase.itemcardapio;
 
 import br.com.fiap.techchallenge2.domain.entity.ItemCardapio;
+import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.AtualizarItemCardapioInput;
@@ -15,7 +16,11 @@ public class AtualizarItemCardapioUseCase
 
     private final ItemCardapioInterface itemCardapioInterface;
 
-    public AtualizarItemCardapioOutput execute ( AtualizarItemCardapioInput itemCardapioInput ){
+    public AtualizarItemCardapioOutput execute ( AtualizarItemCardapioInput itemCardapioInput, String tipoUsuarioLogado ){
+
+        if ( !tipoUsuarioLogado.equals( "DonoRestaurante" ) ) {
+            throw new AcessoNegadoException( "Apenas usuários do tipo DonoRestaurante podem atualizar itens do cardápio" );
+        }
 
         ItemCardapio itemCardapio = this.itemCardapioInterface.buscarItemCardapioPorUuid( itemCardapioInput.uuid() );
         if ( itemCardapio == null ) {

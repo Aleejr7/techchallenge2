@@ -75,38 +75,38 @@ public class Usuario
 
     private void validaNome( String nome )
     {
-        if( nome.isEmpty() ){
-            throw new DadoVazioException("Nome do usuário não pode ser vazio.");
+        if( nome.isEmpty( ) ){
+            throw new DadoVazioException( "Nome do usuário não pode ser vazio." );
         }
     }
 
     private void validaCpf( String cpf )
     {
-        if( cpf.isEmpty() ){
-            throw new DadoVazioException("CPF do usuário não pode ser vazio.");
+        if( cpf.isEmpty( ) ){
+            throw new DadoVazioException( "CPF do usuário não pode ser vazio." );
         }
-        if (!cpf.matches("\\d{11}")) {
-            throw new DadoInvalidoException("CPF deve conter 11 dígitos numéricos.");
+        if ( !cpf.matches( "\\d{11}" ) ) {
+            throw new DadoInvalidoException( "CPF deve conter 11 dígitos numéricos." );
         }
     }
 
     private void validaEmail( String email )
     {
-        if( email.isEmpty() ){
-            throw new DadoVazioException("Email do usuário não pode ser vazio.");
+        if( email.isEmpty( ) ){
+            throw new DadoVazioException( "Email do usuário não pode ser vazio." );
         }
         if ( !email.contains("@") || !email.contains(".") ) {
-            throw new DadoInvalidoException("Email deve conter '@' e '.'.");
+            throw new DadoInvalidoException( "Email deve conter '@' e '.'.");
         }
     }
 
     private void validaSenha( String senha )
     {
-        if( senha.isEmpty() ){
-            throw new DadoVazioException("Senha do usuário não pode ser vazia.");
+        if( senha.isEmpty( ) ){
+            throw new DadoVazioException( "Senha do usuário não pode ser vazia." );
         }
-        if ( senha.length() < 6 ) {
-            throw new DadoInvalidoException("Senha deve ter pelo menos 6 caracteres.");
+        if ( senha.length( ) < 6 ) {
+            throw new DadoInvalidoException("Senha deve ter pelo menos 6 caracteres." );
         }
     }
 

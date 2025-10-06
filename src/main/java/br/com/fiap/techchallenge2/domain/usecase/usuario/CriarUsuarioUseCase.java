@@ -27,7 +27,7 @@ public class CriarUsuarioUseCase
         TipoUsuario tipoUsuarioExistente = this.tipoUsuarioInterface.buscarTipoUsuarioPorNome( usuarioInput.tipoUsuario( ).nome( ) );
         if(tipoUsuarioExistente == null){
             throw new TipoUsuarioInexistenteException(
-                    "Tipo do usuário " + usuarioInput.tipoUsuario( ).nome( ) + " não existe, verifique a lista de Tipos de Usuário existentes" );
+                    "O tipo do usuário " + usuarioInput.tipoUsuario( ).nome( ) + " não existe, precisa cria-lo ou use um existente." );
         }
 
         Usuario usuario = new Usuario(

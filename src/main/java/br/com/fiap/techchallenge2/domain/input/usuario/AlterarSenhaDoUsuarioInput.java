@@ -1,6 +1,6 @@
 package br.com.fiap.techchallenge2.domain.input.usuario;
 
-public record AlterarSenhaUsuarioInput(
+public record AlterarSenhaDoUsuarioInput(
         String email,
         String senhaAntiga,
         String senhaNova,

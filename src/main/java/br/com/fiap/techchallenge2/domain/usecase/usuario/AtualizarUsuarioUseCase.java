@@ -1,6 +1,8 @@
 package br.com.fiap.techchallenge2.domain.usecase.usuario;
 
 import br.com.fiap.techchallenge2.domain.entity.Usuario;
+
+import br.com.fiap.techchallenge2.domain.exception.usuario.UsuarioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
 import br.com.fiap.techchallenge2.domain.input.usuario.AtualizarUsuarioInput;
 import br.com.fiap.techchallenge2.domain.output.UsuarioOutput;
@@ -16,7 +18,7 @@ public class AtualizarUsuarioUseCase
 
         Usuario usuarioExistente = this.usuarioInterface.buscarUsuarioPorUuid( usuarioInput.uuid( ) );
         if (usuarioExistente == null) {
-            throw new IllegalArgumentException("Usuário com UUID " + usuarioInput.uuid() + " não existe.");
+            throw new UsuarioInexistenteException("Usuário com UUID " + usuarioInput.uuid() + " não existe.");
         }
 
         usuarioExistente.setTelefone( usuarioInput.telefone( ) );

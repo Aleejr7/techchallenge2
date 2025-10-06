@@ -4,7 +4,7 @@ import br.com.fiap.techchallenge2.domain.entity.Usuario;
 import br.com.fiap.techchallenge2.domain.exception.usuario.SenhaErradaException;
 import br.com.fiap.techchallenge2.domain.exception.usuario.UsuarioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
-import br.com.fiap.techchallenge2.domain.input.usuario.AlterarSenhaUsuarioInput;
+import br.com.fiap.techchallenge2.domain.input.usuario.AlterarSenhaDoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.utils.EncriptadorSenha;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +16,7 @@ public class AlterarSenhaUsuarioUseCase
 
     private final UsuarioInterface usuarioInterface;
 
-    public void execute( AlterarSenhaUsuarioInput senhaUsuarioInput ) {
+    public void execute( AlterarSenhaDoUsuarioInput senhaUsuarioInput ) {
 
         Usuario usuario = this.usuarioInterface.buscarUsuarioPorEmail( senhaUsuarioInput.email( ) );
         if( usuario == null ) {

@@ -12,4 +12,6 @@ public interface CardapioInterface
     Cardapio adicionarItemAoCardapio( UUID uuidCardapio, UUID uuidItem );
 
     void removerItemDoCardapio( UUID uuidCardapio, UUID uuidItem );
+
+    Cardapio atualizarCardapio( Cardapio cardapio );
 }

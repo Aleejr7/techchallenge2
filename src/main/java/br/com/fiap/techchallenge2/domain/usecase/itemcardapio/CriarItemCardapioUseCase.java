@@ -3,6 +3,7 @@ package br.com.fiap.techchallenge2.domain.usecase.itemcardapio;
 import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.entity.ItemCardapio;
 import br.com.fiap.techchallenge2.domain.enums.DisponibilidadePedido;
+import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.cardapio.CardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioJaExisteException;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
@@ -19,7 +20,11 @@ public class CriarItemCardapioUseCase
     private final ItemCardapioInterface itemCardapioInterface;
     private final CardapioInterface cardapioInterface;
 
-    public ItemCardapioOutput execute ( CriarItemCardapioInput itemCardapioInput ){
+    public ItemCardapioOutput execute ( CriarItemCardapioInput itemCardapioInput, String tipoUsuarioLogado ){
+
+        if ( !tipoUsuarioLogado.equals( "DonoRestaurante" ) ) {
+            throw new AcessoNegadoException( "Apenas usuários do tipo 'DonoRestaurante' podem criar itens do cardápio" );
+        }
 
         Cardapio cardapio = this.cardapioInterface.buscarCardapioPorUuid( itemCardapioInput.cardapioUuid( ) );
         if( cardapio == null ){
