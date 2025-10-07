@@ -3,15 +3,15 @@ package br.com.fiap.techchallenge2.infra.adapter;
 import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;
 import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
 import br.com.fiap.techchallenge2.infra.model.TipoUsuarioModel;
-import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioModelRepository;
+import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class TipoUsuarioEntityRepository implements TipoUsuarioInterface {
+public class TipoUsuarioAdapterRepository implements TipoUsuarioInterface {
 
-    private final TipoUsuarioModelRepository repository;
+    private final TipoUsuarioRepository repository;
 
     @Override
     public TipoUsuario buscarTipoUsuarioPorNome(String nome) {
