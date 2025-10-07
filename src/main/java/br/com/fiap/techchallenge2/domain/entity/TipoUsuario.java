@@ -18,7 +18,12 @@ public class TipoUsuario
         validaNome( nome );
         this.nome = nome;
     }
-
+    public TipoUsuario(UUID id, String nome) throws DadoVazioException
+    {
+        validaNome( nome );
+        this.id = id;
+        this.nome = nome;
+    }
     public void setNome( String nome ){
         validaNome( nome );
         this.nome = nome;
