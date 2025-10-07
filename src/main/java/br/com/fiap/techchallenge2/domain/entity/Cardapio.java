@@ -16,11 +16,13 @@ public class Cardapio
     private String nome;
     @Setter
     private List<ItemCardapio> itensCardapio;
+    private UUID uuidRestaurante;
 
-    public Cardapio( String nome )
+    public Cardapio( String nome, UUID uuidRestaurante )
     {
         validaNome( nome );
         this.nome = nome;
+        this.uuidRestaurante = uuidRestaurante;
     }
 
     public void setNome( String nome )

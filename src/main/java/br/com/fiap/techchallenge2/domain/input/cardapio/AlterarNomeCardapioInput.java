@@ -4,7 +4,8 @@ import java.util.UUID;
 
 public record AlterarNomeCardapioInput(
         UUID uuid,
-        String nome
+        String nome,
+        String tipoUsuarioLogado
 )
 {
 }

@@ -7,7 +7,6 @@ import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.AtualizarItemCardapioInput;
 import br.com.fiap.techchallenge2.domain.output.AtualizarItemCardapioOutput;
 import br.com.fiap.techchallenge2.domain.output.DisponibilidadePedidoOutput;
-import br.com.fiap.techchallenge2.domain.output.ItemCardapioOutput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -16,9 +15,9 @@ public class AtualizarItemCardapioUseCase
 
     private final ItemCardapioInterface itemCardapioInterface;
 
-    public AtualizarItemCardapioOutput execute ( AtualizarItemCardapioInput itemCardapioInput, String tipoUsuarioLogado ){
+    public AtualizarItemCardapioOutput execute ( AtualizarItemCardapioInput itemCardapioInput ){
 
-        if ( !tipoUsuarioLogado.equals( "DonoRestaurante" ) ) {
+        if ( !itemCardapioInput.tipoUsuarioLogado().equals( "DonoRestaurante" ) ) {
             throw new AcessoNegadoException( "Apenas usuários do tipo DonoRestaurante podem atualizar itens do cardápio" );
         }
 

@@ -16,9 +16,9 @@ public class AlterarNomeCardapioUseCase
 
     private final CardapioInterface cardapioInterface;
 
-    public CardapioOutput execute ( AlterarNomeCardapioInput cardapioInput, String tipoUsuarioLogado ) {
+    public CardapioOutput execute ( AlterarNomeCardapioInput cardapioInput ) {
 
-        if ( !tipoUsuarioLogado.equals( "DonoRestaurante" ) ) {
+        if ( !cardapioInput.tipoUsuarioLogado().equals( "DonoRestaurante" ) ) {
             throw new AcessoNegadoException( "Apenas usuários do tipo DonoRestaurante podem alterar o nome do cardápio" );
         }
 

@@ -20,8 +20,9 @@ public class ItemCardapio
     private Double preco;
     private DisponibilidadePedido disponibilidadePedido;
     private String imagemUrl;
+    private UUID uuidCardapio;
 
-    public ItemCardapio( String nome, String descricao, Double preco, DisponibilidadePedido disponibilidadePedido, String imagemUrl ) {
+    public ItemCardapio( String nome, String descricao, Double preco, DisponibilidadePedido disponibilidadePedido, String imagemUrl, UUID uuidCardapio ) {
         validaNome( nome );
         validaDescricao( descricao );
         validaPreco( preco );
@@ -33,6 +34,7 @@ public class ItemCardapio
         this.preco = preco;
         this.disponibilidadePedido = disponibilidadePedido;
         this.imagemUrl = imagemUrl;
+        this.uuidCardapio = uuidCardapio;
     }
 
     public void setNome( String nome )

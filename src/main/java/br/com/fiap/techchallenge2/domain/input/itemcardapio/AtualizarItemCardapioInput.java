@@ -7,7 +7,8 @@ public record AtualizarItemCardapioInput(
         String nome,
         String descricao,
         double preco,
-        String imagemUrl
+        String imagemUrl,
+        String tipoUsuarioLogado
 )
 {
 }

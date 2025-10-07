@@ -41,23 +41,23 @@ public class Restaurante
     }
 
 
-    private void validaHorarioFuncionamento(String horarioAbertura, String horarioFechamento) {
-        if (horarioAbertura == null || horarioAbertura.isEmpty()) {
-            throw new DadoVazioException("Horário de abertura do restaurante não pode ser vazio.");
+    private void validaHorarioFuncionamento( String horarioAbertura, String horarioFechamento ) {
+        if ( horarioAbertura == null || horarioAbertura.isEmpty( ) ) {
+            throw new DadoVazioException( "Horário de abertura do restaurante não pode ser vazio." );
         }
 
-        if (horarioFechamento == null || horarioFechamento.isEmpty()) {
-            throw new DadoVazioException("Horário de fechamento do restaurante não pode ser vazio.");
+        if ( horarioFechamento == null || horarioFechamento.isEmpty( ) ) {
+            throw new DadoVazioException( "Horário de fechamento do restaurante não pode ser vazio." );
         }
 
-        Pattern horarioPattern = Pattern.compile("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
+        Pattern horarioPattern = Pattern.compile( "^([01]?[0-9]|2[0-3]):[0-5][0-9]$" );
 
-        if (!horarioPattern.matcher(horarioAbertura).matches()) {
+        if ( !horarioPattern.matcher(horarioAbertura ).matches( ) ) {
             throw new DadoInvalidoException("Horário de abertura deve estar no formato HH:mm (exemplo: 08:30).");
         }
 
-        if (!horarioPattern.matcher(horarioFechamento).matches()) {
-            throw new DadoInvalidoException("Horário de fechamento deve estar no formato HH:mm (exemplo: 22:30).");
+        if ( !horarioPattern.matcher(horarioFechamento ).matches( ) ) {
+            throw new DadoInvalidoException( "Horário de fechamento deve estar no formato HH:mm (exemplo: 22:30)." );
         }
     }
 

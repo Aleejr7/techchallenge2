@@ -17,9 +17,9 @@ public class AlterarTipoDoUsuarioUseCase
     private final TipoUsuarioInterface tipoUsuarioInterface;
     private final UsuarioInterface usuarioInterface;
 
-    public UsuarioOutput execute ( AlterarTipoDoUsuarioInput alterarTipoDoUsuarioInput, String tipoUsuarioLogado ) {
+    public UsuarioOutput execute ( AlterarTipoDoUsuarioInput alterarTipoDoUsuarioInput ) {
 
-        if ( !tipoUsuarioLogado.equals( "Admin" ) ) {
+        if ( !alterarTipoDoUsuarioInput.tipoUsuarioLogado().equals( "Admin" ) ) {
             throw new AcessoNegadoException( "Apenas usuários 'Admin' podem alterar o tipo de um usuário." );
         }
 

@@ -6,11 +6,9 @@ import br.com.fiap.techchallenge2.domain.exception.cardapio.CardapioInexistenteE
 import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioJaExisteException;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
 import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
-import lombok.Data;
-import lombok.Getter;
+import br.com.fiap.techchallenge2.domain.input.itemcardapio.DeletarItemCardapioInput;
 import lombok.RequiredArgsConstructor;
 
-import java.util.UUID;
 
 @RequiredArgsConstructor
 public class DeletarItemCardapioUseCase
@@ -20,25 +18,24 @@ public class DeletarItemCardapioUseCase
     private final CardapioInterface cardapioInterface;
 
 
-    public void execute ( UUID uuidItemCardapio, UUID uuidCardapio, String tipoUsuarioLogado ) {
+    public void execute ( DeletarItemCardapioInput itemCardapioInput ) {
 
-        if ( !tipoUsuarioLogado.equals( "DonoRestaurante" ) ) {
+        if ( !itemCardapioInput.tipoUsuarioLogado().equals( "DonoRestaurante" ) ) {
             throw new AcessoNegadoException( "Apenas usuários do tipo 'DonoRestaurante' podem deletar itens do cardápio" );
         }
 
-        Cardapio cardapio = this.cardapioInterface.buscarCardapioPorUuid( uuidCardapio );
+        Cardapio cardapio = this.cardapioInterface.buscarCardapioPorUuid( itemCardapioInput.uuidCardapio() );
         if ( cardapio == null ) {
-            throw new CardapioInexistenteException( "O cardápio com o uuid " + uuidCardapio + " a ser removido o item não existe" );
+            throw new CardapioInexistenteException( "O cardápio com o uuid " + itemCardapioInput.uuidCardapio() + " a ser removido o item não existe" );
         }
 
         boolean itemExisteNoCardapio = cardapio.getItensCardapio().stream()
-                .anyMatch(item -> item.getUuid( ).equals( uuidItemCardapio ) );
+                .anyMatch(item -> item.getUuid( ).equals( itemCardapioInput.uuidCardapio() ) );
         if ( !itemExisteNoCardapio ) {
-            throw new ItemCardapioJaExisteException( "O item com uuid " + uuidItemCardapio + " não existe no cardápio " + cardapio.getNome( ) );
+            throw new ItemCardapioJaExisteException( "O item com uuid " + itemCardapioInput.uuidItemCardapio() + " não existe no cardápio " + cardapio.getNome( ) );
         }
 
-        this.cardapioInterface.removerItemDoCardapio( uuidCardapio, uuidItemCardapio );
-        this.itemCardapioInterface.deletarItemCardapioPorUuid( uuidItemCardapio );
+        this.cardapioInterface.removerItemDoCardapio( itemCardapioInput.uuidCardapio(), itemCardapioInput.uuidItemCardapio() );
+        this.itemCardapioInterface.deletarItemCardapioPorUuid( itemCardapioInput.uuidItemCardapio() );
     }
-
 }

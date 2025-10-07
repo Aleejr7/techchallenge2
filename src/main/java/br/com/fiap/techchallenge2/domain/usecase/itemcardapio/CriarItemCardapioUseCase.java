@@ -20,9 +20,9 @@ public class CriarItemCardapioUseCase
     private final ItemCardapioInterface itemCardapioInterface;
     private final CardapioInterface cardapioInterface;
 
-    public ItemCardapioOutput execute ( CriarItemCardapioInput itemCardapioInput, String tipoUsuarioLogado ){
+    public ItemCardapioOutput execute ( CriarItemCardapioInput itemCardapioInput ){
 
-        if ( !tipoUsuarioLogado.equals( "DonoRestaurante" ) ) {
+        if ( !itemCardapioInput.tipoUsuarioLogado().equals( "DonoRestaurante" ) ) {
             throw new AcessoNegadoException( "Apenas usuários do tipo 'DonoRestaurante' podem criar itens do cardápio" );
         }
 
@@ -39,7 +39,8 @@ public class CriarItemCardapioUseCase
                 itemCardapioInput.nome( ),
                 itemCardapioInput.descricao( ),
                 itemCardapioInput.preco( ),
-                DisponibilidadePedido.RESTAURANTE, itemCardapioInput.imagemUrl( )
+                DisponibilidadePedido.RESTAURANTE, itemCardapioInput.imagemUrl( ),
+                cardapio.getUuid()
         );
 
         itemCardapio = this.itemCardapioInterface.criarItemCardapio( itemCardapio );

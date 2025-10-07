@@ -7,7 +7,8 @@ public record CriarItemCardapioInput(
         String descricao,
         double preco,
         String imagemUrl,
-        UUID cardapioUuid
+        UUID cardapioUuid,
+        String tipoUsuarioLogado
 )
 {
 }

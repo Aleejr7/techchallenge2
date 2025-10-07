@@ -14,4 +14,8 @@ public interface CardapioInterface
     void removerItemDoCardapio( UUID uuidCardapio, UUID uuidItem );
 
     Cardapio atualizarCardapio( Cardapio cardapio );
+
+    Cardapio buscarCardapioPorUUidRestaurante( UUID uuidRestaurante );
+
+    void deletarCardapioPorUuid( UUID uuid );
 }

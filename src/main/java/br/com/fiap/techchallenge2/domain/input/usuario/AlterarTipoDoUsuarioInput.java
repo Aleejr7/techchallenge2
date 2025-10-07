@@ -6,7 +6,8 @@ import java.util.UUID;
 
 public record AlterarTipoDoUsuarioInput(
         UUID uuidUsuario,
-        TipoUsuarioInput tipoUsuarioInput
+        TipoUsuarioInput tipoUsuarioInput,
+        String tipoUsuarioLogado
 )
 {
 }

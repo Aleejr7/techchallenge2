@@ -8,10 +8,11 @@ public interface ItemCardapioInterface
 {
     ItemCardapio criarItemCardapio( ItemCardapio itemCardapio );
 
-    void deletarItemCardapioPorUuid( UUID uuid );
-
     ItemCardapio buscarItemCardapioPorUuid( UUID uuid );
 
     ItemCardapio atualizarItemCardapio( ItemCardapio itemCardapio );
 
+    void deletarItemCardapioPorUuid( UUID uuid );
+
+    void deletarTodosItensPorUuidCardapio( UUID uuidCardapio);
 }
