@@ -13,10 +13,9 @@ public class DeletarTipoUsuarioUseCase
 
     private final TipoUsuarioInterface tipoUsuarioInterface;
 
+    public void execute( TipoUsuarioInput tipoUsuarioInput ){
 
-    public void execute( TipoUsuarioInput tipoUsuarioInput, String tipoUsuarioLogado ){
-
-        if ( !tipoUsuarioLogado.equals( "Admin" ) ) {
+        if ( !tipoUsuarioInput.tipoUsuarioLogado( ).equals( "Admin" ) ) {
             throw new AcessoNegadoException( "Apenas usuários do tipo 'Admin' podem deletar um tipo de usuário" );
         }
 

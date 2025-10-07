@@ -14,9 +14,9 @@ public class AtualizarTipoUsuarioUseCase
 
     private final TipoUsuarioInterface tipoUsuarioInterface;
 
-    public TipoUsuarioOutput execute( TipoUsuarioInput tipoUsuarioInput, String tipoUsuarioLogado ) {
+    public TipoUsuarioOutput execute( TipoUsuarioInput tipoUsuarioInput ) {
 
-        if ( !tipoUsuarioLogado.equals( "Admin" ) ) {
+        if ( !tipoUsuarioInput.tipoUsuarioLogado( ).equals( "Admin" ) ) {
             throw new AcessoNegadoException( "Apenas usuários do tipo 'Admin' podem atualizar um tipo de usuário" );
         }
 
