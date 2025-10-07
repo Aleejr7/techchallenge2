@@ -9,8 +9,8 @@ import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioJaEx
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
 import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.CriarItemCardapioInput;
-import br.com.fiap.techchallenge2.domain.output.DisponibilidadePedidoOutput;
-import br.com.fiap.techchallenge2.domain.output.ItemCardapioOutput;
+import br.com.fiap.techchallenge2.domain.output.itemcardapio.DisponibilidadePedidoOutput;
+import br.com.fiap.techchallenge2.domain.output.itemcardapio.ItemCardapioOutput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

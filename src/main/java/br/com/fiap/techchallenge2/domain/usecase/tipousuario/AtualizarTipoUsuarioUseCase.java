@@ -5,7 +5,7 @@ import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
-import br.com.fiap.techchallenge2.domain.output.TipoUsuarioOutput;
+import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

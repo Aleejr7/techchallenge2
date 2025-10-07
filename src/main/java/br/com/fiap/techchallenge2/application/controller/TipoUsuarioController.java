@@ -1,7 +1,7 @@
 package br.com.fiap.techchallenge2.application.controller;
 
 import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
-import br.com.fiap.techchallenge2.domain.output.TipoUsuarioOutput;
+import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.tipousuario.CriarTipoUsuarioUseCase;
 import br.com.fiap.techchallenge2.infra.adapter.TipoUsuarioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;

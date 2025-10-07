@@ -1,4 +1,4 @@
-package br.com.fiap.techchallenge2.domain.output;
+package br.com.fiap.techchallenge2.domain.output.usuario;
 
 import java.util.UUID;
 

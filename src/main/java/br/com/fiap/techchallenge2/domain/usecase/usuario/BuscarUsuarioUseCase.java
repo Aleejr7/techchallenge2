@@ -3,7 +3,7 @@ package br.com.fiap.techchallenge2.domain.usecase.usuario;
 import br.com.fiap.techchallenge2.domain.entity.Usuario;
 import br.com.fiap.techchallenge2.domain.exception.usuario.UsuarioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
-import br.com.fiap.techchallenge2.domain.output.UsuarioOutput;
+import br.com.fiap.techchallenge2.domain.output.usuario.UsuarioOutput;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

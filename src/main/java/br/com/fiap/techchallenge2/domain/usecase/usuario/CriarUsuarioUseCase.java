@@ -7,7 +7,7 @@ import br.com.fiap.techchallenge2.domain.exception.usuario.UsuarioJaExisteExcept
 import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
 import br.com.fiap.techchallenge2.domain.input.usuario.CriarUsuarioInput;
-import br.com.fiap.techchallenge2.domain.output.UsuarioOutput;
+import br.com.fiap.techchallenge2.domain.output.usuario.UsuarioOutput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

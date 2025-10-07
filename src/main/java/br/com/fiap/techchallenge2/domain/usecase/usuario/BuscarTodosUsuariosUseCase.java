@@ -2,7 +2,7 @@ package br.com.fiap.techchallenge2.domain.usecase.usuario;
 
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
-import br.com.fiap.techchallenge2.domain.output.UsuarioOutput;
+import br.com.fiap.techchallenge2.domain.output.usuario.UsuarioOutput;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

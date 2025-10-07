@@ -8,8 +8,8 @@ import br.com.fiap.techchallenge2.domain.exception.usuario.UsuarioInexistenteExc
 import br.com.fiap.techchallenge2.domain.gateway.RestauranteInterface;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
 import br.com.fiap.techchallenge2.domain.input.restaurante.CriarRestauranteInput;
-import br.com.fiap.techchallenge2.domain.output.RestauranteOutput;
-import br.com.fiap.techchallenge2.domain.output.UsuarioOutput;
+import br.com.fiap.techchallenge2.domain.output.restaurante.CriarRestauranteOutput;
+import br.com.fiap.techchallenge2.domain.output.usuario.UsuarioOutput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ public class CriarRestauranteUseCase
     private final RestauranteInterface restauranteInterface;
     private final UsuarioInterface usuarioInterface;
 
-    public RestauranteOutput execute ( CriarRestauranteInput restauranteInput ) {
+    public CriarRestauranteOutput execute ( CriarRestauranteInput restauranteInput ) {
 
         Restaurante restauranteExistente = this.restauranteInterface.buscarRestaurantePorNome( restauranteInput.nome( ) );
         Usuario usuarioExistente = this.usuarioInterface.buscarUsuarioPorUuid( restauranteInput.uuidDonoRestaurante( ) );
@@ -45,7 +45,7 @@ public class CriarRestauranteUseCase
 
         Restaurante restauranteCriado = this.restauranteInterface.criarRestaurante( restaurante );
 
-        return new RestauranteOutput(
+        return new CriarRestauranteOutput(
                 restauranteCriado.getUuid(),
                 restauranteCriado.getNome(),
                 restauranteCriado.getEndereco(),

@@ -5,9 +5,9 @@ import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.cardapio.CardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
 import br.com.fiap.techchallenge2.domain.input.cardapio.AlterarNomeCardapioInput;
-import br.com.fiap.techchallenge2.domain.output.CardapioOutput;
-import br.com.fiap.techchallenge2.domain.output.ItemCardapioOutput;
-import br.com.fiap.techchallenge2.domain.output.DisponibilidadePedidoOutput;
+import br.com.fiap.techchallenge2.domain.output.cardapio.CardapioOutput;
+import br.com.fiap.techchallenge2.domain.output.itemcardapio.ItemCardapioOutput;
+import br.com.fiap.techchallenge2.domain.output.itemcardapio.DisponibilidadePedidoOutput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
