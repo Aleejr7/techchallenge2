@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/tipo-usuario")
+@RequestMapping(BASE + "/tipo-usuario")
 public class TipoUsuarioController {
 
     private final TipoUsuarioRepository tipoUsuarioRepository;
