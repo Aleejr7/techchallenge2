@@ -16,6 +16,9 @@ public class TipoUsuarioAdapterRepository implements TipoUsuarioInterface {
     @Override
     public TipoUsuario buscarTipoUsuarioPorNome(String nome) {
         TipoUsuarioModel tpUsuarioModel = repository.findByNome(nome);
+        if (tpUsuarioModel == null){
+            return null;
+        }
         return new TipoUsuario(tpUsuarioModel.getId(), tpUsuarioModel.getNome());
     }
 
@@ -36,7 +39,7 @@ public class TipoUsuarioAdapterRepository implements TipoUsuarioInterface {
         tpUsuarioModel.setNome(tipoUsuario.getNome());
         TipoUsuarioModel tpUsuarioModelSalvo = repository.save(tpUsuarioModel);
 
-        return new TipoUsuario(tpUsuarioModelSalvo.getNome());
+        return new TipoUsuario(tpUsuarioModelSalvo.getId(),tpUsuarioModelSalvo.getNome());
     }
 
     @Override
