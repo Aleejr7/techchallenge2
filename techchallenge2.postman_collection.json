@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "14aa1c8a-9712-4f74-9118-71f2bd9c5fe7",
+		"name": "techchallenge2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26247817"
+	},
+	"item": [
+		{
+			"name": "TipoUsuario",
+			"item": [
+				{
+					"name": "buscarTodosTipoUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{UrlBase}}/tipo-usuario"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"pm.request.headers.add({\r",
+					"    key: 'TipoUsuarioLogado',\r",
+					"    value: pm.collectionVariables.get('TipoUsuarioLogado')\r",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TipoUsuarioLogado",
+			"value": ""
+		},
+		{
+			"key": "UrlBase",
+			"value": ""
+		}
+	]
+}
