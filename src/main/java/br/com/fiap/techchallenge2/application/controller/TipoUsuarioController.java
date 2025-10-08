@@ -1,5 +1,6 @@
 package br.com.fiap.techchallenge2.application.controller;
 
+import br.com.fiap.techchallenge2.application.controller.request.CriarTipoUsuarioRequest;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.tipousuario.*;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 
@@ -52,11 +54,11 @@ public class TipoUsuarioController {
 
     @PostMapping
     public ResponseEntity<TipoUsuarioOutput> criarTipoUsuario(
-                @RequestBody String nomeTipoUsuario,
+                @RequestBody CriarTipoUsuarioRequest tipoUsuarioRequest,
                 @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado) {
 
 
-        TipoUsuarioInput tipoUsuarioInput = new TipoUsuarioInput( nomeTipoUsuario, tipoUsuarioLogado );
+        TipoUsuarioInput tipoUsuarioInput = new TipoUsuarioInput( tipoUsuarioRequest.nomeTipoUsuario(), tipoUsuarioLogado );
 
         CriarTipoUsuarioUseCase useCase = new CriarTipoUsuarioUseCase(
                 new TipoUsuarioAdapterRepository( tipoUsuarioRepository )
