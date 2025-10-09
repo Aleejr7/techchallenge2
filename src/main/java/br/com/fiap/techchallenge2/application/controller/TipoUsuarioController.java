@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 
@@ -68,6 +67,7 @@ public class TipoUsuarioController {
 
         return ResponseEntity.status( 201 ).body( tipoUsuarioOutput );
     }
+
 
     @PutMapping("/{nomeTipoUsuario}")
     public ResponseEntity<TipoUsuarioOutput> alterarTipoUsuario(

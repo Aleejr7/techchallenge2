@@ -2,6 +2,7 @@ package br.com.fiap.techchallenge2.infra.adapter;
 
 import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;
 import br.com.fiap.techchallenge2.domain.entity.Usuario;
+import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
 import br.com.fiap.techchallenge2.infra.model.TipoUsuarioModel;
 import br.com.fiap.techchallenge2.infra.model.UsuarioModel;
