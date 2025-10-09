@@ -19,6 +19,7 @@ public class RestauranteModel {
     private String nome;
     private String endereco;
     private String tipoCozinha;
+    @Embedded
     private HorarioFuncionamentoModel horarioFuncionamento;
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
