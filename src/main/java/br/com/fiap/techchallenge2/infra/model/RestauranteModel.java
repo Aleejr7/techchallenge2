@@ -1,6 +1,5 @@
 package br.com.fiap.techchallenge2.infra.model;
 
-import br.com.fiap.techchallenge2.domain.entity.HorarioFuncionamento;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,10 +19,12 @@ public class RestauranteModel {
     private String nome;
     private String endereco;
     private String tipoCozinha;
-    private HorarioFuncionamento horarioFuncionamento;
+    private HorarioFuncionamentoModel horarioFuncionamento;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id")
     private UsuarioModel donoRestaurante;
 
-    public RestauranteModel(String nome, String endereco, String tipoCozinha, HorarioFuncionamento horarioFuncionamento, UsuarioModel donoRestaurante) {
+    public RestauranteModel(String nome, String endereco, String tipoCozinha, HorarioFuncionamentoModel horarioFuncionamento, UsuarioModel donoRestaurante) {
         this.nome = nome;
         this.endereco = endereco;
         this.tipoCozinha = tipoCozinha;

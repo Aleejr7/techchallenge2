@@ -4,6 +4,7 @@ import br.com.fiap.techchallenge2.domain.entity.Restaurante;
 import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;
 import br.com.fiap.techchallenge2.domain.entity.Usuario;
 import br.com.fiap.techchallenge2.domain.gateway.RestauranteInterface;
+import br.com.fiap.techchallenge2.infra.model.HorarioFuncionamentoModel;
 import br.com.fiap.techchallenge2.infra.model.RestauranteModel;
 import br.com.fiap.techchallenge2.infra.model.UsuarioModel;
 import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
@@ -21,15 +22,38 @@ public class RestauranteAdapterRepository implements RestauranteInterface {
     @Override
     public Restaurante criarRestaurante(Restaurante restaurante) {
         UsuarioModel usuarioModel = usuarioModelRepository.findById(restaurante.getDonoRestaurante().getUuid()).orElse(null);
+        HorarioFuncionamentoModel horario = new HorarioFuncionamentoModel
+                (restaurante.getHorarioFuncionamento().horarioAbertura(),
+                        restaurante.getHorarioFuncionamento().horarioFechamento());
         RestauranteModel restauranteModel = new RestauranteModel(
                 restaurante.getNome(),
                 restaurante.getEndereco(),
                 restaurante.getTipoCozinha(),
-                restaurante.getHorarioFuncionamento(),
+                horario,
                 usuarioModel
         );
         repository.save(restauranteModel);
-        return null;
+        TipoUsuario tipoUsuario = new TipoUsuario(
+                restauranteModel.getDonoRestaurante().getUuid(),
+                restauranteModel.getDonoRestaurante().getNome());
+
+        Usuario usuarioEntity = new Usuario(
+                restauranteModel.getDonoRestaurante().getNome(),
+                restauranteModel.getDonoRestaurante().getCpf(),
+                restauranteModel.getDonoRestaurante().getEmail(),
+                restauranteModel.getDonoRestaurante().getSenha(),
+                restauranteModel.getDonoRestaurante().getTelefone(),
+                restauranteModel.getDonoRestaurante().getEndereco(),
+                tipoUsuario
+        );
+
+
+        return new Restaurante(restauranteModel.getNome(),
+                restauranteModel.getEndereco(),
+                restauranteModel.getTipoCozinha(),
+                restauranteModel.getHorarioFuncionamento().horarioAbertura().toString(),
+                restauranteModel.getHorarioFuncionamento().horarioFechamento().toString(),
+                usuarioEntity);
     }
 
     @Override
