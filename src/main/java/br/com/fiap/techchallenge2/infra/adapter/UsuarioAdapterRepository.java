@@ -18,6 +18,7 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
     private final UsuarioModelRepository repository;
     @Override
     public void deletarUsuario(UUID id) {
+        UsuarioModel usuarioModel = repository.findById(id).orElse(null);
         repository.deleteById(id);
     }
     @Override

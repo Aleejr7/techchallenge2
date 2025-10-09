@@ -142,6 +142,7 @@ public class RestauranteAdapterRepository implements RestauranteInterface {
 
     @Override
     public void deletarRestaurantePorUuid(UUID uuid) {
+        RestauranteModel restauranteModel = repository.findById(uuid).orElse(null);
         repository.deleteById(uuid);
     }
 }
