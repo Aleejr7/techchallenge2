@@ -37,6 +37,10 @@ public class ItemCardapio
         this.uuidCardapio = uuidCardapio;
     }
 
+    public ItemCardapio() {
+
+    }
+
     public void setNome( String nome )
     {
         validaNome( nome );

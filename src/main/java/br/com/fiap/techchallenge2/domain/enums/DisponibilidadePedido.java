@@ -2,8 +2,8 @@ package br.com.fiap.techchallenge2.domain.enums;
 
 public enum DisponibilidadePedido
 {
-    RESTAURANTE;
-    //DELIVERY,
+    RESTAURANTE,
+    DELIVERY;
     //RESTAURANTE_E_DELIVERY;
 
     public String getDescricao() {
