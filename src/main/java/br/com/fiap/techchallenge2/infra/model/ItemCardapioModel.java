@@ -24,4 +24,36 @@ public class ItemCardapioModel {
     @JoinColumn(name = "cardapio_uuid")
     private UUID uuidCardapio;
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public void setDisponibilidadePedido(DisponibilidadePedido disponibilidadePedido) {
+        this.disponibilidadePedido = disponibilidadePedido;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
+    }
+
+    public void setUuidCardapio(UUID uuidCardapio) {
+        this.uuidCardapio = uuidCardapio;
+    }
+
+    public ItemCardapioModel(String nome, String descricao, Double preco, DisponibilidadePedido disponibilidadePedido, String imagemUrl, UUID uuidCardapio) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.disponibilidadePedido = disponibilidadePedido;
+        this.imagemUrl = imagemUrl;
+        this.uuidCardapio = uuidCardapio;
+    }
 }

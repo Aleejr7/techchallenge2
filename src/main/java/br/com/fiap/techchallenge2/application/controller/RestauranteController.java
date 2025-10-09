@@ -8,6 +8,8 @@ import br.com.fiap.techchallenge2.domain.input.restaurante.DeletarRestauranteInp
 import br.com.fiap.techchallenge2.domain.output.restaurante.BuscarRestauranteOutput;
 import br.com.fiap.techchallenge2.domain.output.restaurante.CriarRestauranteOutput;
 import br.com.fiap.techchallenge2.domain.usecase.restaurante.*;
+import br.com.fiap.techchallenge2.infra.adapter.CardapioAdapterRepository;
+import br.com.fiap.techchallenge2.infra.adapter.ItemCardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.adapter.RestauranteAdapterRepository;
 import br.com.fiap.techchallenge2.infra.adapter.UsuarioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
@@ -119,8 +121,8 @@ public class RestauranteController {
         DeletarRestauranteUseCase useCase = new DeletarRestauranteUseCase(
                 new RestauranteAdapterRepository(),
                 new UsuarioAdapterRepository( usuarioModelRepository ),
-                new CardapioAdapterRepository( cardapioModelRepository),
-                new ItemCardapioRepository( cardapioModelRepository)
+                new CardapioAdapterRepository(),
+                new ItemCardapioAdapterRepository()
         );
 
         useCase.execute(deletarRestauranteInput);

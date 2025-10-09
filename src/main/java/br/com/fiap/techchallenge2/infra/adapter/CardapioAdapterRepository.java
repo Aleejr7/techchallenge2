@@ -27,7 +27,6 @@ public class CardapioAdapterRepository implements CardapioInterface {
                 cardapioModel.getNome(),
                 cardapioModel.getUuidRestaurante()
         );
-
         cardapio.setUuid(cardapioModel.getUuid());
 
         List<ItemCardapio> itens = cardapioModel.getItensCardapio().stream()
@@ -46,7 +45,29 @@ public class CardapioAdapterRepository implements CardapioInterface {
 
     @Override
     public Cardapio adicionarItemAoCardapio(UUID uuidCardapio, UUID uuidItem) {
-        return null;
+        CardapioModel cardapioModel = cardapioModelRepository.findById(uuidCardapio).orElse(null);
+        ItemCardapioModel itemCardapioModel = itemCardapioModelRepository.findById(uuidItem).orElse(null);
+
+        ItemCardapio itemCardapioEntity = new ItemCardapio(
+                itemCardapioModel.getNome(),
+                itemCardapioModel.getDescricao(),
+                itemCardapioModel.getPreco(),
+                itemCardapioModel.getDisponibilidadePedido(),
+                itemCardapioModel.getImagemUrl(),
+                cardapioModel.getUuid()
+        );
+
+        cardapioModel.getItensCardapio().add(itemCardapioModel);
+        itemCardapioModel.setUuidCardapio(itemCardapioEntity.getUuidCardapio());
+        
+        var cardapioAtualizado = cardapioModelRepository.save(cardapioModel);
+        Cardapio cardapioEntity = new Cardapio(cardapioAtualizado.getNome(),cardapioAtualizado.getUuidRestaurante());
+
+        cardapioEntity.setUuid(cardapioEntity.getUuid());
+        cardapioEntity.getItensCardapio().add(itemCardapioEntity);
+        cardapioEntity.setItensCardapio(cardapioEntity.getItensCardapio());
+
+        return cardapioEntity;
     }
 
     @Override
@@ -58,7 +79,12 @@ public class CardapioAdapterRepository implements CardapioInterface {
 
     @Override
     public Cardapio atualizarCardapio(Cardapio cardapio) {
-        return null;
+        CardapioModel cardapioModel = cardapioModelRepository.findById(cardapio.getUuid()).orElse(null);
+        cardapioModel.setNome(cardapio.getNome());
+        Cardapio cardapioEntity = new Cardapio(cardapio.getNome(), cardapio.getUuidRestaurante());
+        cardapioEntity.setUuid(cardapioEntity.getUuid());
+        cardapioEntity.setUuidRestaurante(cardapioEntity.getUuidRestaurante());
+        return cardapioEntity;
     }
 
     @Override

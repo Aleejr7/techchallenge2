@@ -20,4 +20,7 @@ public class CardapioModel {
     private List<ItemCardapioModel> itensCardapio;
     private UUID uuidRestaurante;
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }
