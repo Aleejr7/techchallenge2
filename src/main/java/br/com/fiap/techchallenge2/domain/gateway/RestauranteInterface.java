@@ -16,4 +16,6 @@ public interface RestauranteInterface
     List<Restaurante> buscarTodosRestaurantes( );
 
     void deletarRestaurantePorUuid( UUID uuid );
+
+    Restaurante atualizarRestaurante( Restaurante restaurante );
 }
