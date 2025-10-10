@@ -2,7 +2,6 @@ package br.com.fiap.techchallenge2.infra.adapter;
 
 import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.entity.ItemCardapio;
-import br.com.fiap.techchallenge2.domain.enums.DisponibilidadePedido;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
 import br.com.fiap.techchallenge2.infra.model.CardapioModel;
 import br.com.fiap.techchallenge2.infra.model.ItemCardapioModel;
@@ -58,7 +57,7 @@ public class CardapioAdapterRepository implements CardapioInterface {
         );
 
         cardapioModel.getItensCardapio().add(itemCardapioModel);
-        itemCardapioModel.setUuidCardapio(itemCardapioEntity.getUuidCardapio());
+        itemCardapioModel.setCardapioModel(cardapioModel);
         
         var cardapioAtualizado = cardapioModelRepository.save(cardapioModel);
         Cardapio cardapioEntity = new Cardapio(cardapioAtualizado.getNome(),cardapioAtualizado.getUuidRestaurante());

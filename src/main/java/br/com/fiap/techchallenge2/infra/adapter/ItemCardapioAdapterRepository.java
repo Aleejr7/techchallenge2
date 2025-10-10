@@ -88,9 +88,9 @@ public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
 
     @Override
     public void deletarTodosItensPorUuidCardapio(UUID uuidCardapio) {
-        List<ItemCardapioModel> itensCardapio = repository.findByUuidCardapio(uuidCardapio);
+        List<ItemCardapioModel> itensCardapio = repository.findByCardapioModelUuid(uuidCardapio);
         if (itensCardapio != null){
-            repository.deleteByCardapioUuid(uuidCardapio);
+            repository.deleteByCardapioModelUuid(uuidCardapio);
         }
     }
 }

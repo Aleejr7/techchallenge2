@@ -3,12 +3,14 @@ package br.com.fiap.techchallenge2.infra.model;
 import br.com.fiap.techchallenge2.domain.enums.DisponibilidadePedido;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "itemCardapio")
 @Getter
+@NoArgsConstructor
 public class ItemCardapioModel {
 
     @Id
@@ -21,7 +23,7 @@ public class ItemCardapioModel {
     private DisponibilidadePedido disponibilidadePedido;
     private String imagemUrl;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardapio_uuid")
+    @JoinColumn(name = "cardapiouuid")
     private CardapioModel cardapioModel;
 
     public void setNome(String nome) {
