@@ -22,7 +22,7 @@ public class ItemCardapioModel {
     private String imagemUrl;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cardapio_uuid")
-    private UUID uuidCardapio;
+    private CardapioModel cardapioModel;
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -44,16 +44,16 @@ public class ItemCardapioModel {
         this.imagemUrl = imagemUrl;
     }
 
-    public void setUuidCardapio(UUID uuidCardapio) {
-        this.uuidCardapio = uuidCardapio;
+    public void setCardapioModel(CardapioModel cardapioModel) {
+        this.cardapioModel = cardapioModel;
     }
 
-    public ItemCardapioModel(String nome, String descricao, Double preco, DisponibilidadePedido disponibilidadePedido, String imagemUrl, UUID uuidCardapio) {
+    public ItemCardapioModel(String nome, String descricao, Double preco, DisponibilidadePedido disponibilidadePedido, String imagemUrl, CardapioModel cardapioModel) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.disponibilidadePedido = disponibilidadePedido;
         this.imagemUrl = imagemUrl;
-        this.uuidCardapio = uuidCardapio;
+        this.cardapioModel = cardapioModel;
     }
 }
