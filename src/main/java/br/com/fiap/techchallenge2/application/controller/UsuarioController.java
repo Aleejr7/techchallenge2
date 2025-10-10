@@ -9,7 +9,6 @@ import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;
 import br.com.fiap.techchallenge2.infra.repository.UsuarioModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
