@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/fiap/techchallenge2/domain/gateway/TipoUsuarioInterface.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/br/com/fiap/techchallenge2/domain/gateway/TipoUsuarioInterface.java" />
+              <option name="originalContent" value="package br.com.fiap.techchallenge2.domain.gateway;&#10;&#10;import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;&#10;&#10;import java.util.List;&#10;import java.util.UUID;&#10;&#10;public interface TipoUsuarioInterface&#10;{&#10;    TipoUsuario buscarTipoUsuarioPorUuid( UUID uuid );&#10;&#10;    TipoUsuario buscarTipoUsuarioPorNome( String nome );&#10;&#10;    List&lt;TipoUsuario&gt; buscarTodosTiposUsuario();&#10;&#10;    TipoUsuario criarTipoUsuario( TipoUsuario tipoUsuario );&#10;&#10;    void deletarTipoUsuarioPorUuid(UUID uuid);&#10;&#10;    TipoUsuario atualizarTipoUsuario(TipoUsuario tipoUsuario);&#10;}&#10;" />
+              <option name="updatedContent" value="package br.com.fiap.techchallenge2.domain.gateway;&#10;&#10;import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;&#10;&#10;import java.util.List;&#10;import java.util.UUID;&#10;&#10;public interface TipoUsuarioInterface&#10;{&#10;    TipoUsuario buscarTipoUsuarioPorUuid( UUID uuid );&#10;&#10;    TipoUsuario buscarTipoUsuarioPorNome( String nome );&#10;&#10;    List&lt;TipoUsuario&gt; buscarTodosTiposUsuario();&#10;&#10;    TipoUsuario criarTipoUsuario( TipoUsuario tipoUsuario );&#10;&#10;    void deletarTipoUsuarioPorUuid(UUID uuid);&#10;&#10;    TipoUsuario atualizarTipoUsuario(TipoUsuario tipoUsuario);&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/fiap/techchallenge2/domain/usecase/tipousuario/DeletarTipoUsuarioUseCase.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/br/com/fiap/techchallenge2/domain/usecase/tipousuario/DeletarTipoUsuarioUseCase.java" />
+              <option name="originalContent" value="package br.com.fiap.techchallenge2.domain.usecase.tipousuario;&#10;&#10;import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;&#10;import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;&#10;import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioInexistenteException;&#10;import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;&#10;import br.com.fiap.techchallenge2.domain.input.tipousuario.DeletarTipoUsuarioInput;&#10;import lombok.RequiredArgsConstructor;&#10;&#10;@RequiredArgsConstructor&#10;public class DeletarTipoUsuarioUseCase&#10;{&#10;&#10;    private final TipoUsuarioInterface tipoUsuarioInterface;&#10;&#10;    public void execute( DeletarTipoUsuarioInput tipoUsuarioInput ){&#10;&#10;        if ( !tipoUsuarioInput.tipoUsuarioLogado( ).equals( &quot;Admin&quot; ) ) {&#10;            throw new AcessoNegadoException( &quot;Apenas usuários do tipo 'Admin' podem deletar um tipo de usuário&quot; );&#10;        }&#10;&#10;        TipoUsuario tipoUsuario = this.tipoUsuarioInterface.buscarTipoUsuarioPorUuid( tipoUsuarioInput.uuid( ) );&#10;&#10;        if( tipoUsuario == null ){&#10;            throw new TipoUsuarioInexistenteException( &quot;O tipo de usuário com o UUID: &quot; + tipoUsuarioInput.uuid( ) + &quot; a ser apagado não existe&quot; );&#10;        }&#10;&#10;        this.tipoUsuarioInterface.deletarTipoUsuarioPorUuid(tipoUsuario.getId());&#10;    }&#10;}&#10;" />
+              <option name="updatedContent" value="package br.com.fiap.techchallenge2.domain.usecase.tipousuario;&#10;&#10;import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;&#10;import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;&#10;import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioInexistenteException;&#10;import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;&#10;import br.com.fiap.techchallenge2.domain.input.tipousuario.DeletarTipoUsuarioInput;&#10;import lombok.RequiredArgsConstructor;&#10;&#10;@RequiredArgsConstructor&#10;public class DeletarTipoUsuarioUseCase&#10;{&#10;&#10;    private final TipoUsuarioInterface tipoUsuarioInterface;&#10;&#10;    public void execute( DeletarTipoUsuarioInput tipoUsuarioInput ){&#10;&#10;        if ( !tipoUsuarioInput.tipoUsuarioLogado( ).equals( &quot;Admin&quot; ) ) {&#10;            throw new AcessoNegadoException( &quot;Apenas usuários do tipo 'Admin' podem deletar um tipo de usuário&quot; );&#10;        }&#10;&#10;        TipoUsuario tipoUsuario = this.tipoUsuarioInterface.buscarTipoUsuarioPorUuid( tipoUsuarioInput.uuid( ) );&#10;&#10;        if( tipoUsuario == null ){&#10;            throw new TipoUsuarioInexistenteException( &quot;O tipo de usuário com o UUID: &quot; + tipoUsuarioInput.uuid( ) + &quot; a ser apagado não existe&quot; );&#10;        }&#10;&#10;        this.tipoUsuarioInterface.deletarTipoUsuarioPorUuid(tipoUsuario.getId());&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

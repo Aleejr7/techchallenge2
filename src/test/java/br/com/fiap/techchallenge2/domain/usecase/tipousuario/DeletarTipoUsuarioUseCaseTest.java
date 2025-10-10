@@ -4,12 +4,14 @@ import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
-import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
+import br.com.fiap.techchallenge2.domain.input.tipousuario.DeletarTipoUsuarioInput;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -35,26 +37,28 @@ public class DeletarTipoUsuarioUseCaseTest {
 
     @Test
     void deveLancarExcecaoQuandoUsuarioLogadoNaoForAdmin() {
-        TipoUsuarioInput input = new TipoUsuarioInput("Cliente", "DonoRestaurante");
+        DeletarTipoUsuarioInput input = new DeletarTipoUsuarioInput(UUID.randomUUID(), "Cliente");
         assertThrows(AcessoNegadoException.class, () -> useCase.execute(input));
-        verify(tipoUsuarioInterface, never()).deletarTipoUsuarioPorNome(anyString());
+        verify(tipoUsuarioInterface, never()).deletarTipoUsuarioPorUuid(any(UUID.class));
     }
 
     @Test
     void deveLancarExcecaoQuandoTipoUsuarioNaoExistente() {
-        TipoUsuarioInput input = new TipoUsuarioInput("Cliente", "Admin");
-        when(tipoUsuarioInterface.buscarTipoUsuarioPorNome("Cliente")).thenReturn(null);
+        UUID uuid = UUID.randomUUID();
+        DeletarTipoUsuarioInput input = new DeletarTipoUsuarioInput(uuid, "Admin");
+        when(tipoUsuarioInterface.buscarTipoUsuarioPorUuid(uuid)).thenReturn(null);
         assertThrows(TipoUsuarioInexistenteException.class, () -> useCase.execute(input));
-        verify(tipoUsuarioInterface, never()).deletarTipoUsuarioPorNome("Cliente");
+        verify(tipoUsuarioInterface, never()).deletarTipoUsuarioPorUuid(any(UUID.class));
     }
 
     @Test
     void deveDeletarTipoUsuarioQuandoExistenteEAdmin() {
-        TipoUsuarioInput input = new TipoUsuarioInput("Cliente", "Admin");
+        UUID uuid = UUID.randomUUID();
+        DeletarTipoUsuarioInput input = new DeletarTipoUsuarioInput(uuid, "Admin");
         TipoUsuario tipoUsuario = mock(TipoUsuario.class);
-        when(tipoUsuarioInterface.buscarTipoUsuarioPorNome("Cliente")).thenReturn(tipoUsuario);
+        when(tipoUsuarioInterface.buscarTipoUsuarioPorUuid(uuid)).thenReturn(tipoUsuario);
+        when(tipoUsuario.getId()).thenReturn(uuid);
         useCase.execute(input);
-        verify(tipoUsuarioInterface).deletarTipoUsuarioPorNome("Cliente");
+        verify(tipoUsuarioInterface).deletarTipoUsuarioPorUuid(uuid);
     }
 }
-

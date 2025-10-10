@@ -8,11 +8,13 @@ import br.com.fiap.techchallenge2.infra.model.TipoUsuarioModel;
 import br.com.fiap.techchallenge2.infra.model.UsuarioModel;
 import br.com.fiap.techchallenge2.infra.repository.UsuarioModelRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 @RequiredArgsConstructor
 public class UsuarioAdapterRepository implements UsuarioInterface {
 

@@ -8,9 +8,12 @@ import br.com.fiap.techchallenge2.infra.model.ItemCardapioModel;
 import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 @RequiredArgsConstructor
 public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
 

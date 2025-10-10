@@ -3,12 +3,12 @@ package br.com.fiap.techchallenge2.application.controller;
 import br.com.fiap.techchallenge2.application.controller.request.AtualizarTipoUsuarioRequest;
 import br.com.fiap.techchallenge2.application.controller.request.CriarTipoUsuarioRequest;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.AtualizarTipoUsuarioInput;
+import br.com.fiap.techchallenge2.domain.input.tipousuario.DeletarTipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.tipousuario.*;
 import br.com.fiap.techchallenge2.infra.adapter.TipoUsuarioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +73,7 @@ public class TipoUsuarioController {
     }
 
 
-    @PutMapping("/{nomeTipoUsuario}")
+    @PutMapping("/{uuid}")
     public ResponseEntity<TipoUsuarioOutput> alterarTipoUsuario(
             @PathVariable UUID uuid,
             @RequestBody AtualizarTipoUsuarioRequest requestBody,
@@ -90,13 +90,13 @@ public class TipoUsuarioController {
         return ResponseEntity.status(201).body( tipoUsuarioOutput );
     }
 
-    @DeleteMapping("/{nomeTipoUsuario}")
+    @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deletarTipoUsuario(
-            @PathVariable String nomeTipoUsuario,
+            @PathVariable UUID uuid,
             @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado
     ) {
 
-        TipoUsuarioInput tipoUsuarioInput = new TipoUsuarioInput(nomeTipoUsuario, tipoUsuarioLogado);
+        DeletarTipoUsuarioInput tipoUsuarioInput = new DeletarTipoUsuarioInput(uuid, tipoUsuarioLogado);
 
         DeletarTipoUsuarioUseCase useCase = new DeletarTipoUsuarioUseCase(
                 new TipoUsuarioAdapterRepository(tipoUsuarioRepository)

@@ -15,7 +15,7 @@ public interface TipoUsuarioInterface
 
     TipoUsuario criarTipoUsuario( TipoUsuario tipoUsuario );
 
-    void deletarTipoUsuarioPorNome( String nome );
+    void deletarTipoUsuarioPorUuid(UUID uuid);
 
     TipoUsuario atualizarTipoUsuario(TipoUsuario tipoUsuario);
 }

@@ -4,11 +4,15 @@ import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;
 import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
 import br.com.fiap.techchallenge2.infra.model.TipoUsuarioModel;
 import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
+@Repository
 @RequiredArgsConstructor
 public class TipoUsuarioAdapterRepository implements TipoUsuarioInterface {
 
@@ -16,11 +20,11 @@ public class TipoUsuarioAdapterRepository implements TipoUsuarioInterface {
 
     @Override
     public TipoUsuario buscarTipoUsuarioPorUuid( UUID uuid ) {
-        TipoUsuarioModel tpUsuarioModel = repository.findbyId( uuid );
-        if (tpUsuarioModel == null){
+        Optional<TipoUsuarioModel> tpUsuarioModel = repository.findById( uuid );
+        if (!tpUsuarioModel.isPresent()){
             return null;
         }
-        return new TipoUsuario(tpUsuarioModel.getId(), tpUsuarioModel.getNome());
+        return new TipoUsuario(tpUsuarioModel.get().getId() , tpUsuarioModel.get().getNome());
     }
 
     @Override
@@ -53,11 +57,8 @@ public class TipoUsuarioAdapterRepository implements TipoUsuarioInterface {
     }
 
     @Override
-    public void deletarTipoUsuarioPorNome(String nome) {
-        TipoUsuarioModel tpUsuarioModel = repository.findByNome(nome);
-        if (tpUsuarioModel != null){
-            repository.deleteByNome(tpUsuarioModel.getNome());
-        }
+    public void deletarTipoUsuarioPorUuid(UUID uuid) {
+        repository.deleteById(uuid);
     }
 
     @Override
