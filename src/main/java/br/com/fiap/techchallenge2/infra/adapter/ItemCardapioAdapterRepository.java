@@ -1,8 +1,11 @@
 package br.com.fiap.techchallenge2.infra.adapter;
 
+import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.entity.ItemCardapio;
 import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
+import br.com.fiap.techchallenge2.infra.model.CardapioModel;
 import br.com.fiap.techchallenge2.infra.model.ItemCardapioModel;
+import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
@@ -12,23 +15,26 @@ import java.util.UUID;
 public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
 
     ItemCardapioModelRepository repository;
+    CardapioModelRepository cardapioModelRepository;
     @Override
     public ItemCardapio criarItemCardapio(ItemCardapio itemCardapio) {
+        CardapioModel cardapioModel = cardapioModelRepository.findById(itemCardapio.getUuidCardapio()).orElse(null);
         ItemCardapioModel itemCardapioModel = new ItemCardapioModel(
                 itemCardapio.getNome(),
                 itemCardapio.getDescricao(),
                 itemCardapio.getPreco(),
                 itemCardapio.getDisponibilidadePedido(),
                 itemCardapio.getImagemUrl(),
-                itemCardapio.getUuidCardapio()
+                cardapioModel
         );
+        Cardapio cardapioEntity = new Cardapio(cardapioModel.getNome(),cardapioModel.getUuidRestaurante());
         repository.save(itemCardapioModel);
         ItemCardapio itemCardapioEntity = new ItemCardapio(itemCardapioModel.getNome(),
                 itemCardapioModel.getDescricao(),
                 itemCardapioModel.getPreco(),
                 itemCardapioModel.getDisponibilidadePedido(),
                 itemCardapioModel.getImagemUrl(),
-                itemCardapioModel.getUuidCardapio()
+                cardapioEntity.getUuid()
         );
         itemCardapioEntity.setUuid(itemCardapioModel.getUuid());
         return itemCardapioEntity;
@@ -43,7 +49,7 @@ public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
                 itemCardapioModel.getPreco(),
                 itemCardapioModel.getDisponibilidadePedido(),
                 itemCardapioModel.getImagemUrl(),
-                itemCardapioModel.getUuidCardapio()
+                itemCardapioModel.getCardapioModel().getUuid()
         );
         itemCardapio.setUuid(itemCardapioModel.getUuid());
         return itemCardapio;
@@ -66,7 +72,7 @@ public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
                 itemCardapioModel.getPreco(),
                 itemCardapioModel.getDisponibilidadePedido(),
                 itemCardapioModel.getImagemUrl(),
-                itemCardapioModel.getUuidCardapio()
+                itemCardapioModel.getCardapioModel().getUuid()
         );
         itemCardapioEntity.setUuid(itemCardapio.getUuid());
         return itemCardapioEntity;
