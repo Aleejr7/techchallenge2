@@ -6,6 +6,7 @@ import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioJaExis
 import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

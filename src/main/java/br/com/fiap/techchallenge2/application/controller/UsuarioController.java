@@ -154,7 +154,7 @@ public class UsuarioController {
 
         useCase.execute(uuid);
 
-        return ResponseEntity.status( 200 ).build();
+        return ResponseEntity.status( 204 ).build();
 
     }
 

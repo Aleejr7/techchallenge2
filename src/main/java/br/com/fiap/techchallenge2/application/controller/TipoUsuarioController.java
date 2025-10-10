@@ -6,6 +6,7 @@ import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.tipousuario.*;
 import br.com.fiap.techchallenge2.infra.adapter.TipoUsuarioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -99,7 +100,7 @@ public class TipoUsuarioController {
 
         useCase.execute(tipoUsuarioInput);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(204).build();
 
     }
 

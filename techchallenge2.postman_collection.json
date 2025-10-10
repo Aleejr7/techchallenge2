@@ -1,24 +1,223 @@
 {
 	"info": {
-		"_postman_id": "14aa1c8a-9712-4f74-9118-71f2bd9c5fe7",
-		"name": "techchallenge2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "26247817"
+		"_postman_id": "1c064239-46f3-4e51-81a0-51099e2a04d6",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43217404",
+		"_collection_link": "https://orange-flare-239971.postman.co/workspace/Team-Workspace~bae0096a-7ce3-435d-80eb-2f32339e98fb/collection/43217404-1c064239-46f3-4e51-81a0-51099e2a04d6?action=share&source=collection_link&creator=43217404"
 	},
 	"item": [
 		{
-			"name": "TipoUsuario",
+			"name": "New Folder",
 			"item": [
 				{
-					"name": "buscarTodosTipoUsuario",
+					"name": "GetUsuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": "{{UrlBase}}/tipo-usuario"
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostUsuarios",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Teste da Silva\",\r\n    \"cpf\" : \"123123132\",\r\n    \"email\" : \"fazol@gmail.com\",\r\n    \"senha\": \"1234\",\r\n    \"telefone\" : \"999999999\",\r\n    \"endereco\" : \"Rua infinito, 999\",\r\n    \"nomeTipoUsuario\" : \"Cliente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "GetTipoUsuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "TipoUsuarioLogado",
+						"value": "{{TipoUsuarioLogado}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/techchallenge2/api/tipo-usuario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"techchallenge2",
+						"api",
+						"tipo-usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostTipoUsuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "TipoUsuarioLogado",
+						"value": "{{TipoUsuarioLogado}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeTipoUsuario\":\"Cliente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/techchallenge2/api/tipo-usuario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"techchallenge2",
+						"api",
+						"tipo-usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutTipoUsuario",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "TipoUsuarioLogado",
+						"value": "{{TipoUsuarioLogado}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeTipoUsuario\" : \"Clientes\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/techchallenge2/api/tipo-usuario/Cliente",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"techchallenge2",
+						"api",
+						"tipo-usuario",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTipoUsuario",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "TipoUsuarioLogado",
+						"value": "{{TipoUsuarioLogado}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/techchallenge2/api/tipo-usuario/Cliente",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"techchallenge2",
+						"api",
+						"tipo-usuario",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -29,10 +228,7 @@
 				"packages": {},
 				"requests": {},
 				"exec": [
-					"pm.request.headers.add({\r",
-					"    key: 'TipoUsuarioLogado',\r",
-					"    value: pm.collectionVariables.get('TipoUsuarioLogado')\r",
-					"});"
+					""
 				]
 			}
 		},
@@ -51,10 +247,6 @@
 	"variable": [
 		{
 			"key": "TipoUsuarioLogado",
-			"value": ""
-		},
-		{
-			"key": "UrlBase",
 			"value": ""
 		}
 	]

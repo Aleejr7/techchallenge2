@@ -127,7 +127,7 @@ public class RestauranteController {
 
         useCase.execute(deletarRestauranteInput);
 
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(204).build();
 
     }
 
