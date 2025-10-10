@@ -20,11 +20,12 @@ public class TipoUsuarioAdapterRepository implements TipoUsuarioInterface {
 
     @Override
     public TipoUsuario buscarTipoUsuarioPorUuid( UUID uuid ) {
-        Optional<TipoUsuarioModel> tpUsuarioModel = repository.findById( uuid );
-        if (!tpUsuarioModel.isPresent()){
+        Optional<TipoUsuarioModel> tpUsuarioModelOpt = repository.findById(uuid);
+        if (tpUsuarioModelOpt.isEmpty()) {
             return null;
         }
-        return new TipoUsuario(tpUsuarioModel.get().getId() , tpUsuarioModel.get().getNome());
+        TipoUsuarioModel tpUsuarioModel = tpUsuarioModelOpt.get();
+        return new TipoUsuario(tpUsuarioModel.getId(), tpUsuarioModel.getNome());
     }
 
     @Override

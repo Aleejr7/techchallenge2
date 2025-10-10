@@ -4,7 +4,7 @@ import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
-import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
+import br.com.fiap.techchallenge2.domain.input.tipousuario.BuscarTipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,34 +38,34 @@ public class BuscarTipoUsuarioUseCaseTest {
 
     @Test
     void deveLancarExcecaoQuandoUsuarioLogadoNaoForAdmin() {
-        TipoUsuarioInput input = new TipoUsuarioInput("Cliente", "DonoRestaurante");
+        BuscarTipoUsuarioInput input = new BuscarTipoUsuarioInput(UUID.randomUUID(), "DonoRestaurante");
         assertThrows(AcessoNegadoException.class, () -> useCase.execute(input));
-        verify(tipoUsuarioInterface, never()).buscarTipoUsuarioPorNome(anyString());
+        verify(tipoUsuarioInterface, never()).buscarTipoUsuarioPorUuid(any(UUID.class));
     }
 
     @Test
     void deveLancarExcecaoQuandoTipoUsuarioNaoExistente() {
-        TipoUsuarioInput input = new TipoUsuarioInput("Cliente", "Admin");
-        when(tipoUsuarioInterface.buscarTipoUsuarioPorNome("Cliente")).thenReturn(null);
+        UUID uuid = UUID.randomUUID();
+        BuscarTipoUsuarioInput input = new BuscarTipoUsuarioInput(uuid, "Admin");
+        when(tipoUsuarioInterface.buscarTipoUsuarioPorUuid(uuid)).thenReturn(null);
         assertThrows(TipoUsuarioInexistenteException.class, () -> useCase.execute(input));
-        verify(tipoUsuarioInterface).buscarTipoUsuarioPorNome("Cliente");
+        verify(tipoUsuarioInterface).buscarTipoUsuarioPorUuid(uuid);
     }
 
     @Test
     void deveRetornarTipoUsuarioOutputQuandoExistenteEAdmin() {
-        UUID id = UUID.randomUUID();
-        TipoUsuarioInput input = new TipoUsuarioInput("Cliente", "Admin");
+        UUID uuid = UUID.randomUUID();
+        BuscarTipoUsuarioInput input = new BuscarTipoUsuarioInput(uuid, "Admin");
         TipoUsuario tipoUsuario = mock(TipoUsuario.class);
-        when(tipoUsuario.getId()).thenReturn(id);
+        when(tipoUsuario.getId()).thenReturn(uuid);
         when(tipoUsuario.getNome()).thenReturn("Cliente");
-        when(tipoUsuarioInterface.buscarTipoUsuarioPorNome("Cliente")).thenReturn(tipoUsuario);
+        when(tipoUsuarioInterface.buscarTipoUsuarioPorUuid(uuid)).thenReturn(tipoUsuario);
 
         TipoUsuarioOutput output = useCase.execute(input);
 
         assertNotNull(output);
-        assertEquals(id, output.uuid());
+        assertEquals(uuid, output.uuid());
         assertEquals("Cliente", output.nome());
-        verify(tipoUsuarioInterface).buscarTipoUsuarioPorNome("Cliente");
+        verify(tipoUsuarioInterface).buscarTipoUsuarioPorUuid(uuid);
     }
 }
-

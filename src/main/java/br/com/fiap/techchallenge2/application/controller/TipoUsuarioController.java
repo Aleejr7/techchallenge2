@@ -3,6 +3,7 @@ package br.com.fiap.techchallenge2.application.controller;
 import br.com.fiap.techchallenge2.application.controller.request.AtualizarTipoUsuarioRequest;
 import br.com.fiap.techchallenge2.application.controller.request.CriarTipoUsuarioRequest;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.AtualizarTipoUsuarioInput;
+import br.com.fiap.techchallenge2.domain.input.tipousuario.BuscarTipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.DeletarTipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
@@ -38,12 +39,12 @@ public class TipoUsuarioController {
 
     }
 
-    @GetMapping("/{nomeTipoUsuario}")
-    public ResponseEntity<TipoUsuarioOutput> buscarTipoUsuario(
-            @PathVariable String nomeTipoUsuario,
+    @GetMapping("/{uuid}")
+    public ResponseEntity<TipoUsuarioOutput> buscarTipoUsuarioPorUuid(
+            @PathVariable UUID uuid,
             @RequestHeader ("TipoUsuarioLogado") String tipoUsuarioLogado
     ) {
-        TipoUsuarioInput tipoUsuarioInput = new TipoUsuarioInput(nomeTipoUsuario, tipoUsuarioLogado);
+        BuscarTipoUsuarioInput tipoUsuarioInput = new BuscarTipoUsuarioInput(uuid, tipoUsuarioLogado);
 
         BuscarTipoUsuarioUseCase useCase = new BuscarTipoUsuarioUseCase(
                 new TipoUsuarioAdapterRepository(tipoUsuarioRepository)
