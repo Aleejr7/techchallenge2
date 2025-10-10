@@ -30,7 +30,7 @@ public class DeletarItemCardapioUseCase
         }
 
         boolean itemExisteNoCardapio = cardapio.getItensCardapio().stream()
-                .anyMatch(item -> item.getUuid( ).equals( itemCardapioInput.uuidCardapio() ) );
+                .anyMatch(item -> item.getUuid( ).equals( itemCardapioInput.uuidItemCardapio() ) );
         if ( !itemExisteNoCardapio ) {
             throw new ItemCardapioJaExisteException( "O item com uuid " + itemCardapioInput.uuidItemCardapio() + " não existe no cardápio " + cardapio.getNome( ) );
         }
