@@ -9,6 +9,8 @@ import java.util.UUID;
 @Repository
 public interface TipoUsuarioRepository extends JpaRepository<TipoUsuarioModel, UUID> {
 
+    TipoUsuarioModel findbyId(UUID uuid);
+
     TipoUsuarioModel findByNome(String nome);
 
     TipoUsuarioModel deleteByNome(String nome);

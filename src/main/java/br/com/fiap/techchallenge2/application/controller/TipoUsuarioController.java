@@ -1,6 +1,8 @@
 package br.com.fiap.techchallenge2.application.controller;
 
+import br.com.fiap.techchallenge2.application.controller.request.AtualizarTipoUsuarioRequest;
 import br.com.fiap.techchallenge2.application.controller.request.CriarTipoUsuarioRequest;
+import br.com.fiap.techchallenge2.domain.input.tipousuario.AtualizarTipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.tipousuario.*;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 
@@ -72,10 +75,11 @@ public class TipoUsuarioController {
 
     @PutMapping("/{nomeTipoUsuario}")
     public ResponseEntity<TipoUsuarioOutput> alterarTipoUsuario(
-            @PathVariable String nomeTipoUsuario,
+            @PathVariable UUID uuid,
+            @RequestBody AtualizarTipoUsuarioRequest requestBody,
             @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado) {
 
-        TipoUsuarioInput tipoUsuarioInput = new TipoUsuarioInput(nomeTipoUsuario, tipoUsuarioLogado);
+        AtualizarTipoUsuarioInput tipoUsuarioInput = new AtualizarTipoUsuarioInput(uuid, requestBody.nomeTipoUsuario(), tipoUsuarioLogado);
 
         AtualizarTipoUsuarioUseCase useCase = new AtualizarTipoUsuarioUseCase(
                 new TipoUsuarioAdapterRepository(tipoUsuarioRepository)
@@ -83,7 +87,7 @@ public class TipoUsuarioController {
 
         TipoUsuarioOutput tipoUsuarioOutput = useCase.execute(tipoUsuarioInput);
 
-        return ResponseEntity.status(200).body( tipoUsuarioOutput );
+        return ResponseEntity.status(201).body( tipoUsuarioOutput );
     }
 
     @DeleteMapping("/{nomeTipoUsuario}")

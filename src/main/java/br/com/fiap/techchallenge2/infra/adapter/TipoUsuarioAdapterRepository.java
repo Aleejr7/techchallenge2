@@ -7,11 +7,21 @@ import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 public class TipoUsuarioAdapterRepository implements TipoUsuarioInterface {
 
     private final TipoUsuarioRepository repository;
+
+    @Override
+    public TipoUsuario buscarTipoUsuarioPorUuid( UUID uuid ) {
+        TipoUsuarioModel tpUsuarioModel = repository.findbyId( uuid );
+        if (tpUsuarioModel == null){
+            return null;
+        }
+        return new TipoUsuario(tpUsuarioModel.getId(), tpUsuarioModel.getNome());
+    }
 
     @Override
     public TipoUsuario buscarTipoUsuarioPorNome(String nome) {
