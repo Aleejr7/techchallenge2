@@ -69,7 +69,7 @@
             },
             "description": "",
             "url": {
-              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/99c1faf2-f881-4423-804f-b1d26f3be110",
+              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/2a4bd61f-d13e-4670-90c1-e34d9edc61e5",
               "protocol": "http",
               "host": [
                 "localhost:8080"
@@ -78,7 +78,7 @@
                 "techchallenge2",
                 "api",
                 "tipo-usuario",
-                "99c1faf2-f881-4423-804f-b1d26f3be110"
+                "2a4bd61f-d13e-4670-90c1-e34d9edc61e5"
               ],
               "query": [],
               "variable": []
@@ -145,7 +145,7 @@
             },
             "description": "",
             "url": {
-              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/b0b2bc38-112a-417c-8f33-b894b663a910",
+              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/2a4bd61f-d13e-4670-90c1-e34d9edc61e5",
               "protocol": "http",
               "host": [
                 "localhost:8080"
@@ -154,7 +154,7 @@
                 "techchallenge2",
                 "api",
                 "tipo-usuario",
-                "b0b2bc38-112a-417c-8f33-b894b663a910"
+                "2a4bd61f-d13e-4670-90c1-e34d9edc61e5"
               ],
               "query": [],
               "variable": []
@@ -501,7 +501,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"nome\" : \"Cantinho do Bode\",\n    \"endereco\" : \"Rua infinito, 123\",\n    \"tipoCozinha\" : \"Regional\",\n    \"horarioAbertura\": \"11:00\",\n    \"horarioFechamento\" : \"16:00\",\n    \"uuidDonoRestaurante\" : \"dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7\"\n}",
+              "raw": "{\n    \"nome\" : \"Cantinho do Bode\",\n    \"endereco\" : \"Rua infinito, 123\",\n    \"tipoCozinha\" : \"Regional\",\n    \"horarioAbertura\": \"11:00\",\n    \"horarioFechamento\" : \"16:00\",\n    \"donoRestaurante\" : \"dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -631,6 +631,230 @@
             "body": {
               "mode": "raw",
               "raw": "  {\n    \"nome\": \"Cantinho do Bode Novo\",\n    \"endereco\": \"Rua infinito, 4000\",\n    \"tipoCozinha\": \"Típica\",\n    \"horarioAbertura\": \"10:00\",\n    \"horarioFechamento\": \"23:00\",\n    \"donoRestaurante\": \"dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "cardapio",
+      "item": [
+        {
+          "name": "atualizar",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/cardapio/fceabf3a-76b3-4f3d-9dd4-3be360f418e0",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "cardapio",
+                "fceabf3a-76b3-4f3d-9dd4-3be360f418e0"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uuid\": \"32613462-6436-3166-2d64-3133652d3436\",\n  \"nome\": \"Principal de Novo\",\n  \"restauranteId\": \"35950d8e-3111-47d2-9c62-95fdb083ae40\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "buscar",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/cardapio/32613462-6436-3166-2d64-3133652d3436",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "cardapio",
+                "32613462-6436-3166-2d64-3133652d3436"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "itemcardapio",
+      "item": [
+        {
+          "name": "atualizar",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/itemcardapio/dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "itemcardapio",
+                "dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\" : \"Picanha Grill\",\n    \"descricao\" : \"Suculento corte de picanha com salada tropical\",\n    \"preco\" : 10.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/wp-content/uploads/2024/10/image-2.jpeg\",\n    \"cardapioId\" : \"32613462-6436-3166-2d64-3133652d3436\",\n    \"tipoUsuarioLogado\" : \"DonoRestaurante\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "excluir",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/itemcardapio/dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "itemcardapio",
+                "dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\" : \"Picanha Grill\",\n    \"descricao\" : \"Suculento corte de picanha com salada tropical\",\n    \"preco\" : 10.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/wp-content/uploads/2024/10/image-2.jpeg\",\n    \"cardapioId\" : \"32613462-6436-3166-2d64-3133652d3436\",\n    \"tipoUsuarioLogado\" : \"DonoRestaurante\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "criar",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/itemcardapio",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "itemcardapio"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\" : \"Picanha Grill\",\n    \"descricao\" : \"Suculento corte de picanha com salada tropical\",\n    \"preco\" : 10.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/wp-content/uploads/2024/10/image-2.jpeg\",\n    \"cardapioId\" : \"32613462-6436-3166-2d64-3133652d3436\",\n    \"tipoUsuarioLogado\" : \"DonoRestaurante\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
