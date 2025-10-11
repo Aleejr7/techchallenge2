@@ -7,6 +7,7 @@ import br.com.fiap.techchallenge2.infra.model.CardapioModel;
 import br.com.fiap.techchallenge2.infra.model.ItemCardapioModel;
 import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
+import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -82,9 +83,10 @@ public class CardapioAdapterRepository implements CardapioInterface {
     public Cardapio atualizarCardapio(Cardapio cardapio) {
         CardapioModel cardapioModel = cardapioModelRepository.findById(cardapio.getUuid()).orElse(null);
         cardapioModel.setNome(cardapio.getNome());
-        Cardapio cardapioEntity = new Cardapio(cardapio.getNome(), cardapio.getUuidRestaurante());
-        cardapioEntity.setUuid(cardapioEntity.getUuid());
-        cardapioEntity.setUuidRestaurante(cardapioEntity.getUuidRestaurante());
+        cardapioModelRepository.save(cardapioModel);
+
+        Cardapio cardapioEntity = new Cardapio(cardapioModel.getNome(), cardapioModel.getUuidRestaurante());
+        cardapioEntity.setUuid(cardapioModel.getUuid());
         return cardapioEntity;
     }
 

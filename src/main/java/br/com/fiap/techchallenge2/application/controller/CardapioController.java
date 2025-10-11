@@ -6,25 +6,25 @@ import br.com.fiap.techchallenge2.domain.output.cardapio.CardapioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.cardapio.AlterarNomeCardapioUseCase;
 import br.com.fiap.techchallenge2.domain.usecase.cardapio.BuscarCardapioUseCase;
 import br.com.fiap.techchallenge2.infra.adapter.CardapioAdapterRepository;
-import br.com.fiap.techchallenge2.infra.adapter.ItemCardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
+import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(BASE + "/cardapio" )
+@RequestMapping(BASE + "/cardapio")
 public class CardapioController {
 
     private final CardapioModelRepository cardapioModelRepository;
     private final ItemCardapioModelRepository itemCardapioModelRepository;
+    private final RestauranteModelRepository restauranteModelRepository;
 
     @GetMapping("/{uuid}")
     public ResponseEntity<CardapioOutput> buscarCardapio(
@@ -43,9 +43,9 @@ public class CardapioController {
     @PutMapping("/{uuid}")
     public ResponseEntity<CardapioOutput> atualizarNomeCardapio(
             @PathVariable UUID uuid,
-            @RequestParam CardapioRequest cardapioRequest,
+            @RequestBody CardapioRequest cardapioRequest,
             @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado
-            ) {
+    ) {
         AlterarNomeCardapioInput alterarNomeCardapioInput = new AlterarNomeCardapioInput(
                 cardapioRequest.uuid(),
                 cardapioRequest.nome(),
@@ -60,7 +60,4 @@ public class CardapioController {
 
         return ResponseEntity.status(200).body(cardapioOutput);
     }
-
-
-
 }

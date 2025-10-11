@@ -1,6 +1,7 @@
 package br.com.fiap.techchallenge2.domain.usecase.cardapio;
 
 import br.com.fiap.techchallenge2.domain.entity.Cardapio;
+import br.com.fiap.techchallenge2.domain.entity.ItemCardapio;
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.cardapio.CardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
@@ -9,6 +10,10 @@ import br.com.fiap.techchallenge2.domain.output.cardapio.CardapioOutput;
 import br.com.fiap.techchallenge2.domain.output.itemcardapio.ItemCardapioOutput;
 import br.com.fiap.techchallenge2.domain.output.itemcardapio.DisponibilidadePedidoOutput;
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class AlterarNomeCardapioUseCase
@@ -28,23 +33,26 @@ public class AlterarNomeCardapioUseCase
         }
 
         cardapioExistente.setNome( cardapioInput.nome( ) );
-        cardapioExistente = this.cardapioInterface.atualizarCardapio( cardapioExistente );
+        final Cardapio cardapioAtualizado = this.cardapioInterface.atualizarCardapio( cardapioExistente );
 
-        final Cardapio cardapioAtualizado = cardapioExistente;
+        List<ItemCardapioOutput> itensCardapio = new ArrayList<>();
+        if (cardapioAtualizado.getItensCardapio() != null){
+            itensCardapio = cardapioAtualizado.getItensCardapio().stream()
+                    .map(item -> new ItemCardapioOutput(
+                            item.getUuid(),
+                            item.getNome(),
+                            item.getDescricao(),
+                            item.getPreco(),
+                            new DisponibilidadePedidoOutput(item.getDisponibilidadePedido().getDescricao()),
+                            item.getImagemUrl(),
+                            cardapioAtualizado.getUuid()
+                    )).toList();
+        }
 
         return new CardapioOutput(
                 cardapioAtualizado.getUuid(),
                 cardapioAtualizado.getNome(),
-                cardapioAtualizado.getItensCardapio().stream()
-                        .map(item -> new ItemCardapioOutput(
-                                item.getUuid(),
-                                item.getNome(),
-                                item.getDescricao(),
-                                item.getPreco(),
-                                new DisponibilidadePedidoOutput(item.getDisponibilidadePedido().getDescricao()),
-                                item.getImagemUrl(),
-                                cardapioAtualizado.getUuid()
-                        )).toList()
+                itensCardapio
         );
     }
 }

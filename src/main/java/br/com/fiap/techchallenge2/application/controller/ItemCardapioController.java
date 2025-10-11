@@ -5,7 +5,6 @@ import br.com.fiap.techchallenge2.application.controller.request.ItemCardapioReq
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.AtualizarItemCardapioInput;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.CriarItemCardapioInput;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.DeletarItemCardapioInput;
-import br.com.fiap.techchallenge2.domain.input.restaurante.DeletarRestauranteInput;
 import br.com.fiap.techchallenge2.domain.output.itemcardapio.ItemCardapioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.itemcardapio.AtualizarItemCardapioUseCase;
 import br.com.fiap.techchallenge2.domain.usecase.itemcardapio.CriarItemCardapioUseCase;
@@ -14,8 +13,6 @@ import br.com.fiap.techchallenge2.infra.adapter.CardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.adapter.ItemCardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
-import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
-import br.com.fiap.techchallenge2.infra.repository.UsuarioModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +41,6 @@ public class ItemCardapioController {
                 itemCardapioRequest.imagemUrl(),
                 itemCardapioRequest.cardapioId(),
                 itemCardapioRequest.disponibilidadePedido()
-
         );
 
         CriarItemCardapioUseCase useCase = new CriarItemCardapioUseCase(
