@@ -43,6 +43,40 @@
 					"response": []
 				},
 				{
+					"name": "buscar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/usuario/f09db75c-98a2-455b-be0c-bec20e48f294",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario",
+								"f09db75c-98a2-455b-be0c-bec20e48f294"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "criar",
 					"request": {
 						"method": "POST",
@@ -55,7 +89,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\" : \"Teste da Silva\",\r\n    \"cpf\" : \"123123132\",\r\n    \"email\" : \"fazol@gmail.com\",\r\n    \"senha\": \"1234\",\r\n    \"telefone\" : \"999999999\",\r\n    \"endereco\" : \"Rua infinito, 999\",\r\n    \"nomeTipoUsuario\" : \"Cliente\"\r\n}",
+							"raw": "{\r\n    \"nome\" : \"Teste da Silva\",\r\n    \"cpf\" : \"01722334555\",\r\n    \"email\" : \"fazol@gmail.com\",\r\n    \"senha\": \"123456\",\r\n    \"telefone\" : \"999999999\",\r\n    \"endereco\" : \"Rua infinito, 999\",\r\n    \"tipoUsuario\" : \"Cliente\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,6 +106,78 @@
 								"techchallenge2",
 								"api",
 								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Teste\",\r\n    \"telefone\" : \"999999999\",\r\n    \"endereco\" : \"Rua infinito, 999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/usuario/f09db75c-98a2-455b-be0c-bec20e48f294",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario",
+								"f09db75c-98a2-455b-be0c-bec20e48f294"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/usuario/c72271b6-601e-45de-b63e-9aa3febf6458",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario",
+								"c72271b6-601e-45de-b63e-9aa3febf6458"
 							]
 						}
 					},
@@ -106,6 +212,36 @@
 								"techchallenge2",
 								"api",
 								"tipo-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/0dfee262-8285-4e5b-ae16-5acbfec2e8cd",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"0dfee262-8285-4e5b-ae16-5acbfec2e8cd"
 							]
 						}
 					},
@@ -162,7 +298,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nomeTipoUsuario\" : \"Clientes\"\r\n}",
+							"raw": "{\r\n    \"nomeTipoUsuario\" : \"Cliente\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -170,7 +306,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/Cliente",
+							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/098b1092-4a49-40cc-8dc7-e4654bf7110a",
 							"host": [
 								"localhost"
 							],
@@ -179,7 +315,7 @@
 								"techchallenge2",
 								"api",
 								"tipo-usuario",
-								"Cliente"
+								"098b1092-4a49-40cc-8dc7-e4654bf7110a"
 							]
 						}
 					},
@@ -206,7 +342,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/Cliente",
+							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/b7897872-2c52-43f6-af1a-bcc78558b739",
 							"host": [
 								"localhost"
 							],
@@ -215,7 +351,7 @@
 								"techchallenge2",
 								"api",
 								"tipo-usuario",
-								"Cliente"
+								"b7897872-2c52-43f6-af1a-bcc78558b739"
 							]
 						}
 					},
