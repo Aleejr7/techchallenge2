@@ -5,6 +5,7 @@ import br.com.fiap.techchallenge2.application.controller.request.ItemCardapioReq
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.AtualizarItemCardapioInput;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.CriarItemCardapioInput;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.DeletarItemCardapioInput;
+import br.com.fiap.techchallenge2.domain.output.itemcardapio.AtualizarItemCardapioOutput;
 import br.com.fiap.techchallenge2.domain.output.itemcardapio.ItemCardapioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.itemcardapio.AtualizarItemCardapioUseCase;
 import br.com.fiap.techchallenge2.domain.usecase.itemcardapio.CriarItemCardapioUseCase;
@@ -14,6 +15,7 @@ import br.com.fiap.techchallenge2.infra.adapter.ItemCardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +36,6 @@ public class ItemCardapioController {
             @RequestBody ItemCardapioRequest itemCardapioRequest,
             @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado
             ) {
-
         CriarItemCardapioInput criarItemCardapioInput = new CriarItemCardapioInput(
                 itemCardapioRequest.nome(),
                 itemCardapioRequest.descricao(),
@@ -45,12 +46,11 @@ public class ItemCardapioController {
         );
 
         CriarItemCardapioUseCase useCase = new CriarItemCardapioUseCase(
-                new ItemCardapioAdapterRepository(itemCardapioRepository, cardapioRepository), new CardapioAdapterRepository(cardapioRepository, itemCardapioRepository)
+                new ItemCardapioAdapterRepository(itemCardapioRepository, cardapioRepository),
+                new CardapioAdapterRepository(cardapioRepository, itemCardapioRepository)
         );
-
         ItemCardapioOutput itemCardapioOutput = useCase.execute(criarItemCardapioInput);
-
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(201).body(itemCardapioOutput);
     }
 
     @PutMapping("{uuid}")
@@ -67,25 +67,34 @@ public class ItemCardapioController {
                 itemCardapioRequest.imagemUrl(),
                 tipoUsuarioLogado
         );
-
         AtualizarItemCardapioUseCase useCase = new AtualizarItemCardapioUseCase(
                 new ItemCardapioAdapterRepository(itemCardapioRepository, cardapioRepository)
         );
-
-        useCase.execute(atualizarItemCardapioInput);
-
-
-        return ResponseEntity.status(200).build();
+        AtualizarItemCardapioOutput output = useCase.execute(atualizarItemCardapioInput);
+        ItemCardapioOutput out = new ItemCardapioOutput(
+                output.uuid(),
+                output.nome(),
+                output.descricao(),
+                output.preco(),
+                output.disponibilidadePedido(),
+                output.imagemUrl(),
+                output.cardapioId()
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(out);
     }
 
     @DeleteMapping("{uuid}")
     public ResponseEntity<Void> deletarItemCardapio(
             @PathVariable UUID uuid,
             @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado,
-            ItemCardapioRequest itemCardapioRequest) {
+            @RequestBody ItemCardapioRequest itemCardapioRequest) {
+
+        if (itemCardapioRequest.cardapioId() == null) {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
 
         DeletarItemCardapioInput deletarItemCardapioInput = new DeletarItemCardapioInput(
-                itemCardapioRequest.uuid(),
+                uuid,
                 itemCardapioRequest.cardapioId(),
                 tipoUsuarioLogado
         );

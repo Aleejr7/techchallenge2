@@ -3,6 +3,7 @@ package br.com.fiap.techchallenge2.domain.usecase.itemcardapio;
 import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.cardapio.CardapioInexistenteException;
+import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioJaExisteException;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
 import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
@@ -16,7 +17,6 @@ public class DeletarItemCardapioUseCase
 
     private final ItemCardapioInterface itemCardapioInterface;
     private final CardapioInterface cardapioInterface;
-
 
     public void execute ( DeletarItemCardapioInput itemCardapioInput ) {
 
@@ -32,7 +32,7 @@ public class DeletarItemCardapioUseCase
         boolean itemExisteNoCardapio = cardapio.getItensCardapio().stream()
                 .anyMatch(item -> item.getUuid( ).equals( itemCardapioInput.uuidItemCardapio() ) );
         if ( !itemExisteNoCardapio ) {
-            throw new ItemCardapioJaExisteException( "O item com uuid " + itemCardapioInput.uuidItemCardapio() + " não existe no cardápio " + cardapio.getNome( ) );
+            throw new ItemCardapioInexistenteException("O item com uuid " + itemCardapioInput.uuidItemCardapio() + " não existe no cardápio " + cardapio.getNome( ) );
         }
 
         this.cardapioInterface.removerItemDoCardapio( itemCardapioInput.uuidCardapio(), itemCardapioInput.uuidItemCardapio() );

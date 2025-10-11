@@ -6,6 +6,7 @@ import br.com.fiap.techchallenge2.domain.exception.DadoVazioException;
 import br.com.fiap.techchallenge2.domain.exception.disponibilidadePedido.DisponibilidadePedidoInexistenteException;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 public class ItemCardapio
 {
 
+    @Setter
     private UUID uuid;
     private String nome;
     private String descricao;
@@ -35,6 +37,11 @@ public class ItemCardapio
         this.disponibilidadePedido = disponibilidadePedido;
         this.imagemUrl = imagemUrl;
         this.uuidCardapio = uuidCardapio;
+    }
+
+    public ItemCardapio(UUID uuid, String nome, String descricao, Double preco, DisponibilidadePedido disponibilidadePedido, String imagemUrl, UUID uuidCardapio ) {
+        this(nome, descricao, preco, disponibilidadePedido, imagemUrl, uuidCardapio);
+        this.uuid = uuid;
     }
 
     public ItemCardapio() {

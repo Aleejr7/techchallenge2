@@ -8,7 +8,8 @@ public record AtualizarItemCardapioOutput(
         String descricao,
         Double preco,
         DisponibilidadePedidoOutput disponibilidadePedido,
-        String imagemUrl
+        String imagemUrl,
+        UUID cardapioId
 )
 {
 }

@@ -16,7 +16,6 @@ public class AtualizarItemCardapioUseCase
     private final ItemCardapioInterface itemCardapioInterface;
 
     public AtualizarItemCardapioOutput execute ( AtualizarItemCardapioInput itemCardapioInput ){
-
         if ( !itemCardapioInput.tipoUsuarioLogado().equals( "DonoRestaurante" ) ) {
             throw new AcessoNegadoException( "Apenas usuários do tipo DonoRestaurante podem atualizar itens do cardápio" );
         }
@@ -38,7 +37,8 @@ public class AtualizarItemCardapioUseCase
                 itemCardapio.getDescricao( ),
                 itemCardapio.getPreco( ),
                 new DisponibilidadePedidoOutput( itemCardapio.getDisponibilidadePedido( ).getDescricao( ) ),
-                itemCardapio.getImagemUrl(  )
+                itemCardapio.getImagemUrl(  ),
+                itemCardapio.getUuidCardapio()
         );
     }
 }

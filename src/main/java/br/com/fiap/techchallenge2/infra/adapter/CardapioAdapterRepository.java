@@ -35,6 +35,7 @@ public class CardapioAdapterRepository implements CardapioInterface {
 
         List<ItemCardapio> itens = cardapioModel.getItensCardapio().stream()
                 .map(itemModel -> new ItemCardapio(
+                        itemModel.getUuid(),
                         itemModel.getNome(),
                         itemModel.getDescricao(),
                         itemModel.getPreco(),

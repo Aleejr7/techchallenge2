@@ -1,6 +1,5 @@
 package br.com.fiap.techchallenge2.infra.adapter;
 
-import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.entity.ItemCardapio;
 import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
 import br.com.fiap.techchallenge2.infra.model.CardapioModel;
@@ -9,6 +8,7 @@ import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +23,7 @@ public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
     @Override
     public ItemCardapio criarItemCardapio(ItemCardapio itemCardapio) {
         CardapioModel cardapioModel = cardapioModelRepository.findById(itemCardapio.getUuidCardapio()).orElse(null);
+        if (cardapioModel == null) return null;
         ItemCardapioModel itemCardapioModel = new ItemCardapioModel(
                 itemCardapio.getNome(),
                 itemCardapio.getDescricao(),
@@ -31,14 +32,14 @@ public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
                 itemCardapio.getImagemUrl(),
                 cardapioModel
         );
-        Cardapio cardapioEntity = new Cardapio(cardapioModel.getNome(),cardapioModel.getUuidRestaurante());
         repository.save(itemCardapioModel);
+        // Cardapio cardapioEntity = new Cardapio(cardapioModel.getNome(),cardapioModel.getUuidRestaurante());
         ItemCardapio itemCardapioEntity = new ItemCardapio(itemCardapioModel.getNome(),
                 itemCardapioModel.getDescricao(),
                 itemCardapioModel.getPreco(),
                 itemCardapioModel.getDisponibilidadePedido(),
                 itemCardapioModel.getImagemUrl(),
-                cardapioEntity.getUuid()
+                cardapioModel.getUuid()
         );
         itemCardapioEntity.setUuid(itemCardapioModel.getUuid());
         return itemCardapioEntity;
@@ -47,6 +48,7 @@ public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
     @Override
     public ItemCardapio buscarItemCardapioPorUuid(UUID uuid) {
         ItemCardapioModel itemCardapioModel = repository.findById(uuid).orElse(null);
+        if (itemCardapioModel == null) return null;
         ItemCardapio itemCardapio = new ItemCardapio(
                 itemCardapioModel.getNome(),
                 itemCardapioModel.getDescricao(),
@@ -82,12 +84,10 @@ public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
         return itemCardapioEntity;
     }
 
+    @Transactional
     @Override
     public void deletarItemCardapioPorUuid(UUID uuid) {
-        ItemCardapioModel itemCardapioModel = repository.findById(uuid).orElse(null);
-        if ( itemCardapioModel != null){
-            repository.deleteById(itemCardapioModel.getUuid());
-        }
+        repository.deleteById(uuid);
     }
 
     @Override

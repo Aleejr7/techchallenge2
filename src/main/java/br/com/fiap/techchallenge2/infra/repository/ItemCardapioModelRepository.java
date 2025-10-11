@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ItemCardapioModelRepository extends JpaRepository<ItemCardapioModel, UUID> {
+
     List<ItemCardapioModel> findByCardapioModelUuid(UUID cardapioUuid);
-
     void deleteByCardapioModelUuid(UUID cardapioUuid);
-
 }

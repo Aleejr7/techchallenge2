@@ -44,7 +44,7 @@ public class CriarItemCardapioUseCase
         );
 
         itemCardapio = this.itemCardapioInterface.criarItemCardapio( itemCardapio );
-        this.cardapioInterface.adicionarItemAoCardapio( cardapio.getUuid( ), itemCardapio.getUuid( ) );
+        // this.cardapioInterface.adicionarItemAoCardapio( cardapio.getUuid( ), itemCardapio.getUuid( ) );
 
         return new ItemCardapioOutput(
                 itemCardapio.getUuid( ),
