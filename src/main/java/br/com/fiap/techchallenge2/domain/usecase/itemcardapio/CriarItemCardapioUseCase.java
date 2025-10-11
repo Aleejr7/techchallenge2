@@ -27,7 +27,7 @@ public class CriarItemCardapioUseCase
         }
 
         Cardapio cardapio = this.cardapioInterface.buscarCardapioPorUuid( itemCardapioInput.cardapioUuid( ) );
-        if( cardapio == null ){
+        if ( cardapio == null ){
             throw new CardapioInexistenteException( "Cardápio com uuid " + itemCardapioInput.cardapioUuid( ) + " a ser criado o item não existe" );
         }
         if (cardapio.getItensCardapio( ).stream( )

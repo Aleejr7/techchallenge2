@@ -23,7 +23,7 @@ import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(BASE + "/{cardapioId}/item")
+@RequestMapping(BASE + "/itemcardapio")
 public class ItemCardapioController {
 
     private final CardapioModelRepository cardapioRepository;
@@ -31,7 +31,8 @@ public class ItemCardapioController {
 
     @PostMapping
     public ResponseEntity<ItemCardapioOutput> criarItemCardapio(
-            @RequestBody ItemCardapioRequest itemCardapioRequest
+            @RequestBody ItemCardapioRequest itemCardapioRequest,
+            @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado
             ) {
 
         CriarItemCardapioInput criarItemCardapioInput = new CriarItemCardapioInput(
@@ -40,7 +41,7 @@ public class ItemCardapioController {
                 itemCardapioRequest.preco(),
                 itemCardapioRequest.imagemUrl(),
                 itemCardapioRequest.cardapioId(),
-                itemCardapioRequest.disponibilidadePedido()
+                tipoUsuarioLogado
         );
 
         CriarItemCardapioUseCase useCase = new CriarItemCardapioUseCase(

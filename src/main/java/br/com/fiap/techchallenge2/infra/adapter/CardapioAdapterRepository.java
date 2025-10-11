@@ -25,6 +25,8 @@ public class CardapioAdapterRepository implements CardapioInterface {
         CardapioModel cardapioModel = cardapioModelRepository.findById(uuid)
                 .orElse(null);
 
+        if (cardapioModel == null) return null;
+
         Cardapio cardapio = new Cardapio(
                 cardapioModel.getNome(),
                 cardapioModel.getUuidRestaurante()
@@ -65,7 +67,7 @@ public class CardapioAdapterRepository implements CardapioInterface {
         var cardapioAtualizado = cardapioModelRepository.save(cardapioModel);
         Cardapio cardapioEntity = new Cardapio(cardapioAtualizado.getNome(),cardapioAtualizado.getUuidRestaurante());
 
-        cardapioEntity.setUuid(cardapioEntity.getUuid());
+        cardapioEntity.setUuid(cardapioAtualizado.getUuid());
         cardapioEntity.getItensCardapio().add(itemCardapioEntity);
         cardapioEntity.setItensCardapio(cardapioEntity.getItensCardapio());
 
