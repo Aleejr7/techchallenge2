@@ -1,17 +1,16 @@
 {
 	"info": {
-		"_postman_id": "1c064239-46f3-4e51-81a0-51099e2a04d6",
-		"name": "New Collection",
+		"_postman_id": "b68b8956-80bd-4317-a669-810382ac9cb1",
+		"name": "techchallenge2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "43217404",
-		"_collection_link": "https://orange-flare-239971.postman.co/workspace/Team-Workspace~bae0096a-7ce3-435d-80eb-2f32339e98fb/collection/43217404-1c064239-46f3-4e51-81a0-51099e2a04d6?action=share&source=collection_link&creator=43217404"
+		"_exporter_id": "22234520"
 	},
 	"item": [
 		{
-			"name": "New Folder",
+			"name": "usuario",
 			"item": [
 				{
-					"name": "GetUsuarios",
+					"name": "listar",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -44,7 +43,7 @@
 					"response": []
 				},
 				{
-					"name": "PostUsuarios",
+					"name": "criar",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -81,143 +80,148 @@
 			]
 		},
 		{
-			"name": "GetTipoUsuario",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "TipoUsuarioLogado",
-						"value": "{{TipoUsuarioLogado}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:8080/techchallenge2/api/tipo-usuario",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"techchallenge2",
-						"api",
-						"tipo-usuario"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PostTipoUsuario",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "TipoUsuarioLogado",
-						"value": "{{TipoUsuarioLogado}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nomeTipoUsuario\":\"Cliente\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "tipo-usuario",
+			"item": [
+				{
+					"name": "listar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/tipo-usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/techchallenge2/api/tipo-usuario",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"techchallenge2",
-						"api",
-						"tipo-usuario"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PutTipoUsuario",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "TipoUsuarioLogado",
-						"value": "{{TipoUsuarioLogado}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nomeTipoUsuario\" : \"Clientes\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "criar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeTipoUsuario\":\"Cliente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/tipo-usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/techchallenge2/api/tipo-usuario/Cliente",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"techchallenge2",
-						"api",
-						"tipo-usuario",
-						"Cliente"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteTipoUsuario",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "TipoUsuarioLogado",
-						"value": "{{TipoUsuarioLogado}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeTipoUsuario\" : \"Clientes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/Cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"Cliente"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/techchallenge2/api/tipo-usuario/Cliente",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"techchallenge2",
-						"api",
-						"tipo-usuario",
-						"Cliente"
-					]
+				{
+					"name": "excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/Cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"Cliente"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [
