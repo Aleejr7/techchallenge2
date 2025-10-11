@@ -21,6 +21,7 @@ public class AtualizarUsuarioUseCase
             throw new UsuarioInexistenteException("Usuário com UUID " + usuarioInput.uuid() + " não existe.");
         }
 
+        usuarioExistente.setNome( usuarioInput.nome( ) );
         usuarioExistente.setTelefone( usuarioInput.telefone( ) );
         usuarioExistente.setEndereco( usuarioInput.endereco( ) );
         Usuario usuarioAtualizado = this.usuarioInterface.atualizarUsuario( usuarioExistente );

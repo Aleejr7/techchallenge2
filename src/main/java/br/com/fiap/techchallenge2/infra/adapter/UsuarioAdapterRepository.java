@@ -86,13 +86,16 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
         TipoUsuarioModel tipoUsuarioModel = usuarioModel.getTipoUsuarioModel();
         TipoUsuario tipoUsuarioEntity = new TipoUsuario(tipoUsuarioModel.getId(), tipoUsuarioModel.getNome());
 
-        return new Usuario(usuarioModel.getNome(),
+        return new Usuario(
+                usuarioModel.getUuid(),
+                usuarioModel.getNome(),
                 usuarioModel.getCpf(),
                 usuarioModel.getEmail(),
                 usuarioModel.getSenha(),
                 usuarioModel.getTelefone(),
                 usuarioModel.getEndereco(),
-                tipoUsuarioEntity);
+                tipoUsuarioEntity
+            );
     }
     @Override
     public List<Usuario> buscarTodosUsuarios() {

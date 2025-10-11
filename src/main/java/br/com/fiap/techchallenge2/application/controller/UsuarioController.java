@@ -84,6 +84,7 @@ public class UsuarioController {
 
         AtualizarUsuarioInput atualizarUsuarioInput = new AtualizarUsuarioInput(
                 uuid,
+                usuarioRequest.nome(),
                 usuarioRequest.telefone(),
                 usuarioRequest.endereco()
         );
