@@ -9,6 +9,7 @@ import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioInex
 import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioJaExisteException;
 import br.com.fiap.techchallenge2.domain.exception.restaurante.RestauranteInexistenteException;
 import br.com.fiap.techchallenge2.domain.exception.restaurante.RestauranteJaExisteException;
+import br.com.fiap.techchallenge2.domain.exception.tipousuario.NaoPodeRemoverTipoUsuarioComUsuariosVinculadosException;
 import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioInexistenteException;
 import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioJaExisteException;
 import br.com.fiap.techchallenge2.domain.exception.usuario.SenhaErradaException;
@@ -183,6 +184,18 @@ public class GlobalExceptionHandler
                 ex.getMessage()
         );
         return ResponseEntity.status( HttpStatus.CONFLICT ).body( errorResponse );
+    }
+
+    @ExceptionHandler( NaoPodeRemoverTipoUsuarioComUsuariosVinculadosException.class )
+    public ResponseEntity<ErrorResponse> handleNaoPodeRemoverTipoUsuarioComUsuariosVinculadosException( NaoPodeRemoverTipoUsuarioComUsuariosVinculadosException ex )
+    {
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.CONFLICT.value(),
+                "Tipo de Usuário Não Pode Ser Removido",
+                ex.getMessage()
+        );
+        return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( errorResponse );
     }
 
     @ExceptionHandler( UsuarioJaExisteException.class )

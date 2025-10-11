@@ -4,6 +4,7 @@ import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.tipousuario.TipoUsuarioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.TipoUsuarioInterface;
+import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
 import br.com.fiap.techchallenge2.domain.input.tipousuario.DeletarTipoUsuarioInput;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,13 +22,16 @@ public class DeletarTipoUsuarioUseCaseTest {
     @Mock
     private TipoUsuarioInterface tipoUsuarioInterface;
 
+    @Mock
+    private UsuarioInterface usuarioInterface;
+
     private DeletarTipoUsuarioUseCase useCase;
     AutoCloseable openMocks;
 
     @BeforeEach
     void setup() {
         openMocks = MockitoAnnotations.openMocks(this);
-        useCase = new DeletarTipoUsuarioUseCase(tipoUsuarioInterface);
+        useCase = new DeletarTipoUsuarioUseCase(tipoUsuarioInterface, usuarioInterface);
     }
 
     @AfterEach

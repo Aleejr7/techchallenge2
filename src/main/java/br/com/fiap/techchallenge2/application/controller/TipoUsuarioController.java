@@ -9,7 +9,9 @@ import br.com.fiap.techchallenge2.domain.input.tipousuario.TipoUsuarioInput;
 import br.com.fiap.techchallenge2.domain.output.tipousuario.TipoUsuarioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.tipousuario.*;
 import br.com.fiap.techchallenge2.infra.adapter.TipoUsuarioAdapterRepository;
+import br.com.fiap.techchallenge2.infra.adapter.UsuarioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;
+import br.com.fiap.techchallenge2.infra.repository.UsuarioModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,7 @@ import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 public class TipoUsuarioController {
 
     private final TipoUsuarioRepository tipoUsuarioRepository;
+    private final UsuarioModelRepository usuarioRepository;
 
     @GetMapping
     public ResponseEntity<List<TipoUsuarioOutput>> buscarTodosTipoUsuario(
@@ -100,7 +103,8 @@ public class TipoUsuarioController {
         DeletarTipoUsuarioInput tipoUsuarioInput = new DeletarTipoUsuarioInput(uuid, tipoUsuarioLogado);
 
         DeletarTipoUsuarioUseCase useCase = new DeletarTipoUsuarioUseCase(
-                new TipoUsuarioAdapterRepository(tipoUsuarioRepository)
+                new TipoUsuarioAdapterRepository(tipoUsuarioRepository),
+                new UsuarioAdapterRepository(usuarioRepository)
         );
 
         useCase.execute(tipoUsuarioInput);
@@ -108,12 +112,4 @@ public class TipoUsuarioController {
         return ResponseEntity.status(204).build();
 
     }
-
-
-
-
-
-
-
-
 }

@@ -1,5 +1,6 @@
 package br.com.fiap.techchallenge2.domain.gateway;
 
+import br.com.fiap.techchallenge2.domain.entity.TipoUsuario;
 import br.com.fiap.techchallenge2.domain.entity.Usuario;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface UsuarioInterface
     Usuario buscarUsuarioPorUuid( UUID id );
     List<Usuario> buscarTodosUsuarios( );
     Usuario buscarUsuarioPorEmail( String email );
+    List<Usuario> buscarUsuariosPorTipo(UUID idTipo);
 }

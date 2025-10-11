@@ -119,6 +119,7 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
         }
         return listaUsuarioEntity;
     }
+
     @Override
     public Usuario buscarUsuarioPorEmail(String email) {
         UsuarioModel usuarioModel = repository.findByEmail(email);
@@ -136,5 +137,28 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
                 usuarioModel.getTelefone(),
                 usuarioModel.getEndereco(),
                 tipoUsuarioEntity);
+    }
+
+    @Override
+    public List<Usuario> buscarUsuariosPorTipo(UUID uuid) {
+        List<UsuarioModel> listaUsuarioModel = repository.findAllByTipoUsuarioModelId(uuid);
+        List<Usuario> listaUsuarioEntity = new ArrayList<>();
+        for (UsuarioModel usuarioModel : listaUsuarioModel){
+            TipoUsuarioModel tipoUsuarioModel = usuarioModel.getTipoUsuarioModel();
+            TipoUsuario tipoUsuarioEntity = new TipoUsuario(tipoUsuarioModel.getId(), tipoUsuarioModel.getNome());
+
+            Usuario usuarioEntity = new Usuario(
+                    usuarioModel.getUuid(),
+                    usuarioModel.getNome(),
+                    usuarioModel.getCpf(),
+                    usuarioModel.getEmail(),
+                    usuarioModel.getSenha(),
+                    usuarioModel.getTelefone(),
+                    usuarioModel.getEndereco(),
+                    tipoUsuarioEntity
+            );
+            listaUsuarioEntity.add(usuarioEntity);
+        }
+        return listaUsuarioEntity;
     }
 }
