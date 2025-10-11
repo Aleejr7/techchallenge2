@@ -41,13 +41,16 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
 
         UsuarioModel usuarioModelSalvo = repository.save(usuarioModel);
 
-        return new Usuario(usuarioModelSalvo.getNome(),
+        return new Usuario(
+                usuarioModelSalvo.getUuid(),
+                usuarioModelSalvo.getNome(),
                 usuarioModelSalvo.getCpf(),
                 usuarioModelSalvo.getEmail(),
                 usuarioModelSalvo.getSenha(),
                 usuarioModelSalvo.getTelefone(),
                 usuarioModelSalvo.getEndereco(),
-                tipoUsuarioEntity);
+                tipoUsuarioEntity
+            );
     }
     @Override
     public Usuario atualizarUsuario(Usuario usuario) {
@@ -65,14 +68,17 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
                 usuario.getEndereco(),
                 tipoUsuarioModel);
         UsuarioModel usuarioModelSalvo = repository.save(usuarioModel);
-        return new Usuario(usuarioModelSalvo.getNome(),
+
+        return new Usuario(
+                usuarioModelSalvo.getUuid(),
+                usuarioModelSalvo.getNome(),
                 usuarioModelSalvo.getCpf(),
                 usuarioModelSalvo.getEmail(),
                 usuarioModelSalvo.getSenha(),
                 usuarioModelSalvo.getTelefone(),
                 usuarioModelSalvo.getEndereco(),
                 tipoUsuarioEntity
-                );
+            );
     }
     @Override
     public Usuario buscarUsuarioPorUuid(UUID id) {
@@ -97,6 +103,7 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
             TipoUsuario tipoUsuarioEntity = new TipoUsuario(tipoUsuarioModel.getId(), tipoUsuarioModel.getNome());
 
             Usuario usuarioEntity = new Usuario(
+                    usuarioModel.getUuid(),
                     usuarioModel.getNome(),
                     usuarioModel.getCpf(),
                     usuarioModel.getEmail(),
@@ -112,6 +119,9 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
     @Override
     public Usuario buscarUsuarioPorEmail(String email) {
         UsuarioModel usuarioModel = repository.findByEmail(email);
+        if(usuarioModel == null){
+            return null;
+        }
 
         TipoUsuarioModel tipoUsuarioModel = usuarioModel.getTipoUsuarioModel();
         TipoUsuario tipoUsuarioEntity = new TipoUsuario(tipoUsuarioModel.getId(), tipoUsuarioModel.getNome());

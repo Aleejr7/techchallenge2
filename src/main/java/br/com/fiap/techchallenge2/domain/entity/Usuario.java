@@ -43,6 +43,25 @@ public class Usuario
         this.tipoUsuario = tipoUsuario;
     }
 
+    public Usuario( UUID uuid, String nome, String cpf, String email, String senha, String telefone, String endereco, TipoUsuario tipoUsuario )
+    {
+        validaNome( nome );
+        validaCpf( cpf );
+        validaEmail( email );
+        validaSenha( senha );
+        validaTelefone( telefone );
+        validaEndereco( endereco );
+
+        this.uuid = uuid;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = EncriptadorSenha.encriptar( senha );
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.tipoUsuario = tipoUsuario;
+    }
+
     public void setNome( String nome ){
         validaNome( nome );
         this.nome = nome;
