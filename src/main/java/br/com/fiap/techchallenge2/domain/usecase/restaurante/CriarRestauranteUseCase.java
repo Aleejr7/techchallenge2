@@ -34,7 +34,7 @@ public class CriarRestauranteUseCase
             throw new AcessoNegadoException( "Apenas usuários do tipo 'DonoRestaurante' podem criar um restaurante." );
         }
 
-        Restaurante restaurante = new Restaurante(
+        Restaurante restaurante = new Restaurante(null,
                 restauranteInput.nome(),
                 restauranteInput.endereco(),
                 restauranteInput.tipoCozinha(),

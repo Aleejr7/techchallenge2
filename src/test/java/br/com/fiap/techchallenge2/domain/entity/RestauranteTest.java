@@ -23,7 +23,7 @@ class RestauranteTest {
 
     @Test
     void deveCriarRestauranteComDadosValidos() throws DadoVazioException {
-        Restaurante restaurante = new Restaurante(
+        Restaurante restaurante = new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "Italiana",
@@ -41,7 +41,7 @@ class RestauranteTest {
 
     @Test
     void deveLancarExcecaoQuandoNomeVazio() {
-        assertThrows(DadoVazioException.class, () -> new Restaurante(
+        assertThrows(DadoVazioException.class, () -> new Restaurante(null,
                 "",
                 "Rua X, 100",
                 "Italiana",
@@ -53,7 +53,7 @@ class RestauranteTest {
 
     @Test
     void deveLancarExcecaoQuandoEnderecoVazio() {
-        assertThrows(DadoVazioException.class, () -> new Restaurante(
+        assertThrows(DadoVazioException.class, () -> new Restaurante(null,
                 "Restaurante A",
                 "",
                 "Italiana",
@@ -65,7 +65,7 @@ class RestauranteTest {
 
     @Test
     void deveLancarExcecaoQuandoTipoCozinhaVazio() {
-        assertThrows(DadoVazioException.class, () -> new Restaurante(
+        assertThrows(DadoVazioException.class, () -> new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "",
@@ -77,7 +77,7 @@ class RestauranteTest {
 
     @Test
     void deveLancarExcecaoQuandoHorarioAberturaVazio() {
-        assertThrows(DadoVazioException.class, () -> new Restaurante(
+        assertThrows(DadoVazioException.class, () -> new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "Italiana",
@@ -89,7 +89,7 @@ class RestauranteTest {
 
     @Test
     void deveLancarExcecaoQuandoHorarioFechamentoVazio() {
-        assertThrows(DadoVazioException.class, () -> new Restaurante(
+        assertThrows(DadoVazioException.class, () -> new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "Italiana",
@@ -101,7 +101,7 @@ class RestauranteTest {
 
     @Test
     void deveLancarExcecaoQuandoHorarioAberturaInvalido() {
-        assertThrows(DadoInvalidoException.class, () -> new Restaurante(
+        assertThrows(DadoInvalidoException.class, () -> new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "Italiana",
@@ -113,7 +113,7 @@ class RestauranteTest {
 
     @Test
     void deveLancarExcecaoQuandoHorarioFechamentoInvalido() {
-        assertThrows(DadoInvalidoException.class, () -> new Restaurante(
+        assertThrows(DadoInvalidoException.class, () -> new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "Italiana",
@@ -125,7 +125,7 @@ class RestauranteTest {
 
     @Test
     void deveAlterarNomeComValorValido() throws DadoVazioException {
-        Restaurante restaurante = new Restaurante(
+        Restaurante restaurante = new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "Italiana",
@@ -139,7 +139,7 @@ class RestauranteTest {
 
     @Test
     void deveLancarExcecaoAoAlterarNomeParaVazio() throws DadoVazioException {
-        Restaurante restaurante = new Restaurante(
+        Restaurante restaurante = new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "Italiana",
@@ -152,7 +152,7 @@ class RestauranteTest {
 
     @Test
     void deveAlterarHorarioFuncionamentoComValoresValidos() throws DadoVazioException {
-        Restaurante restaurante = new Restaurante(
+        Restaurante restaurante = new Restaurante(null,
                 "Restaurante A",
                 "Rua X, 100",
                 "Italiana",

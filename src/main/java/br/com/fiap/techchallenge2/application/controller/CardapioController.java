@@ -6,7 +6,9 @@ import br.com.fiap.techchallenge2.domain.output.cardapio.CardapioOutput;
 import br.com.fiap.techchallenge2.domain.usecase.cardapio.AlterarNomeCardapioUseCase;
 import br.com.fiap.techchallenge2.domain.usecase.cardapio.BuscarCardapioUseCase;
 import br.com.fiap.techchallenge2.infra.adapter.CardapioAdapterRepository;
+import br.com.fiap.techchallenge2.infra.adapter.ItemCardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
+import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +24,14 @@ import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 public class CardapioController {
 
     private final CardapioModelRepository cardapioModelRepository;
+    private final ItemCardapioModelRepository itemCardapioModelRepository;
 
     @GetMapping("/{uuid}")
     public ResponseEntity<CardapioOutput> buscarCardapio(
             @PathVariable UUID uuid) {
 
         BuscarCardapioUseCase buscarCardapioUseCase = new BuscarCardapioUseCase(
-                new CardapioAdapterRepository()
+                new CardapioAdapterRepository(cardapioModelRepository, itemCardapioModelRepository)
         );
 
         CardapioOutput cardapioOutput = buscarCardapioUseCase.execute(uuid);
@@ -50,7 +53,7 @@ public class CardapioController {
         );
 
         AlterarNomeCardapioUseCase alterarNomeCardapioUseCase = new AlterarNomeCardapioUseCase(
-                new CardapioAdapterRepository()
+                new CardapioAdapterRepository(cardapioModelRepository, itemCardapioModelRepository)
         );
 
         CardapioOutput cardapioOutput = alterarNomeCardapioUseCase.execute(alterarNomeCardapioInput);

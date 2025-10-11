@@ -12,6 +12,10 @@ import br.com.fiap.techchallenge2.domain.usecase.itemcardapio.CriarItemCardapioU
 import br.com.fiap.techchallenge2.domain.usecase.itemcardapio.DeletarItemCardapioUseCase;
 import br.com.fiap.techchallenge2.infra.adapter.CardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.adapter.ItemCardapioAdapterRepository;
+import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
+import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
+import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
+import br.com.fiap.techchallenge2.infra.repository.UsuarioModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +28,9 @@ import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 @RequiredArgsConstructor
 @RequestMapping(BASE + "/{cardapioId}/item")
 public class ItemCardapioController {
+
+    private final CardapioModelRepository cardapioRepository;
+    private final ItemCardapioModelRepository itemCardapioRepository;
 
     @PostMapping
     public ResponseEntity<ItemCardapioOutput> criarItemCardapio(
@@ -41,7 +48,7 @@ public class ItemCardapioController {
         );
 
         CriarItemCardapioUseCase useCase = new CriarItemCardapioUseCase(
-                new ItemCardapioAdapterRepository(), new CardapioAdapterRepository()
+                new ItemCardapioAdapterRepository(itemCardapioRepository, cardapioRepository), new CardapioAdapterRepository(cardapioRepository, itemCardapioRepository)
         );
 
         ItemCardapioOutput itemCardapioOutput = useCase.execute(criarItemCardapioInput);
@@ -65,7 +72,7 @@ public class ItemCardapioController {
         );
 
         AtualizarItemCardapioUseCase useCase = new AtualizarItemCardapioUseCase(
-                new ItemCardapioAdapterRepository()
+                new ItemCardapioAdapterRepository(itemCardapioRepository, cardapioRepository)
         );
 
         useCase.execute(atualizarItemCardapioInput);
@@ -87,8 +94,8 @@ public class ItemCardapioController {
         );
 
         DeletarItemCardapioUseCase useCase = new DeletarItemCardapioUseCase(
-                new ItemCardapioAdapterRepository(),
-                new CardapioAdapterRepository()
+                new ItemCardapioAdapterRepository(itemCardapioRepository, cardapioRepository),
+                new CardapioAdapterRepository(cardapioRepository, itemCardapioRepository)
         );
 
         useCase.execute(deletarItemCardapioInput);

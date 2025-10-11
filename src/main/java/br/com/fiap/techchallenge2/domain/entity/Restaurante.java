@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 @Data
 public class Restaurante
 {
-
+    @Setter
     private UUID uuid;
     private String nome;
     private String endereco;
@@ -23,13 +23,13 @@ public class Restaurante
     @Setter
     private Usuario donoRestaurante;
 
-    public Restaurante( String nome, String endereco, String tipoCozinha, String horarioAbertura, String horarioFechamento, Usuario donoRestaurante ) {
+    public Restaurante(UUID uuid, String nome, String endereco, String tipoCozinha, String horarioAbertura, String horarioFechamento, Usuario donoRestaurante ) {
         validaNome(nome);
         validaEndereco(endereco);
         validaTipoCozinha(tipoCozinha);
         validaHorarioFuncionamento(horarioAbertura, horarioFechamento);
 
-
+        this.uuid = uuid;
         this.nome = nome;
         this.endereco = endereco;
         this.tipoCozinha = tipoCozinha;

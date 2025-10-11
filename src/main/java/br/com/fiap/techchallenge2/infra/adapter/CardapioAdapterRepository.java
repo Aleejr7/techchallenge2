@@ -16,8 +16,8 @@ import java.util.UUID;
 @Repository
 @RequiredArgsConstructor
 public class CardapioAdapterRepository implements CardapioInterface {
-    CardapioModelRepository cardapioModelRepository;
-    ItemCardapioModelRepository itemCardapioModelRepository;
+    private final CardapioModelRepository cardapioModelRepository;
+    private final ItemCardapioModelRepository itemCardapioModelRepository;
 
     @Override
     public Cardapio buscarCardapioPorUuid(UUID uuid) {
@@ -91,6 +91,8 @@ public class CardapioAdapterRepository implements CardapioInterface {
     @Override
     public Cardapio buscarCardapioPorUUidRestaurante(UUID uuidRestaurante) {
         CardapioModel cardapioModel = cardapioModelRepository.findByUuidRestaurante(uuidRestaurante);
+
+        if (cardapioModel == null) return null;
 
         Cardapio cardapio = new Cardapio(
                 cardapioModel.getNome(),

@@ -17,8 +17,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
 
-    ItemCardapioModelRepository repository;
-    CardapioModelRepository cardapioModelRepository;
+    private final ItemCardapioModelRepository repository;
+    private final CardapioModelRepository cardapioModelRepository;
+
     @Override
     public ItemCardapio criarItemCardapio(ItemCardapio itemCardapio) {
         CardapioModel cardapioModel = cardapioModelRepository.findById(itemCardapio.getUuidCardapio()).orElse(null);

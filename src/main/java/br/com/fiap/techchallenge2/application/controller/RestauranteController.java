@@ -12,9 +12,13 @@ import br.com.fiap.techchallenge2.infra.adapter.CardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.adapter.ItemCardapioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.adapter.RestauranteAdapterRepository;
 import br.com.fiap.techchallenge2.infra.adapter.UsuarioAdapterRepository;
+import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
+import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.UsuarioModelRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,18 +32,17 @@ import static br.com.fiap.techchallenge2.application.controller.ApiPrefix.BASE;
 @RequestMapping(BASE + "/restaurante")
 public class RestauranteController {
 
-    private final RestauranteModelRepository restauranteModelRepository;
-    private final UsuarioModelRepository usuarioModelRepository;
+    private final RestauranteModelRepository restauranteRepository;
+    private final UsuarioModelRepository usuarioRepository;
+    private final CardapioModelRepository cardapioRepository;
+    private final ItemCardapioModelRepository itemCardapioRepository;
 
     @GetMapping
     public ResponseEntity<List<BuscarRestauranteOutput>> buscarTodosRestaurantes() {
-
         BuscarTodosRestaurantesUseCase useCase = new BuscarTodosRestaurantesUseCase(
-                new RestauranteAdapterRepository()
+            new RestauranteAdapterRepository(restauranteRepository, usuarioRepository)
         );
-
         List<BuscarRestauranteOutput> buscarRestauranteOutput = useCase.execute();
-
         return ResponseEntity.status(200).body(buscarRestauranteOutput);
     }
 
@@ -48,7 +51,7 @@ public class RestauranteController {
             @PathVariable UUID uuid
             ) {
         BuscarRestauranteUseCase useCase = new BuscarRestauranteUseCase(
-                new RestauranteAdapterRepository()
+                new RestauranteAdapterRepository(restauranteRepository, usuarioRepository)
         );
 
         BuscarRestauranteOutput buscarRestauranteOutput = useCase.execute(uuid);
@@ -71,7 +74,7 @@ public class RestauranteController {
         );
 
         CriarRestauranteUseCase useCase = new CriarRestauranteUseCase(
-                new RestauranteAdapterRepository(), new UsuarioAdapterRepository( usuarioModelRepository )
+                new RestauranteAdapterRepository(restauranteRepository, usuarioRepository), new UsuarioAdapterRepository(usuarioRepository)
         );
 
         CriarRestauranteOutput criarRestauranteOutput = useCase.execute(criarRestauranteInput);
@@ -97,8 +100,15 @@ public class RestauranteController {
                 restauranteRequest.donoRestaurante()
         );
 
+        if (uuid == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        if (restauranteRequest.donoRestaurante() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
         AtualizarRestauranteUseCase useCase = new AtualizarRestauranteUseCase(
-                new RestauranteAdapterRepository(), new UsuarioAdapterRepository( usuarioModelRepository )
+                new RestauranteAdapterRepository(restauranteRepository, usuarioRepository), new UsuarioAdapterRepository(usuarioRepository)
         );
 
         useCase.execute(atualizarRestauranteInput);
@@ -110,8 +120,14 @@ public class RestauranteController {
     @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deletarRestaurante(
             @PathVariable UUID uuid,
-            RestauranteRequest restauranteRequest
+            @RequestBody RestauranteRequest restauranteRequest
     ) {
+        if (uuid == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        if (restauranteRequest.donoRestaurante() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
 
         DeletarRestauranteInput deletarRestauranteInput = new DeletarRestauranteInput(
                 uuid,
@@ -119,10 +135,10 @@ public class RestauranteController {
         );
 
         DeletarRestauranteUseCase useCase = new DeletarRestauranteUseCase(
-                new RestauranteAdapterRepository(),
-                new UsuarioAdapterRepository( usuarioModelRepository ),
-                new CardapioAdapterRepository(),
-                new ItemCardapioAdapterRepository()
+                new RestauranteAdapterRepository(restauranteRepository, usuarioRepository),
+                new UsuarioAdapterRepository(usuarioRepository),
+                new CardapioAdapterRepository(cardapioRepository, itemCardapioRepository),
+                new ItemCardapioAdapterRepository(itemCardapioRepository, cardapioRepository)
         );
 
         useCase.execute(deletarRestauranteInput);

@@ -1,393 +1,652 @@
 {
-	"info": {
-		"_postman_id": "b68b8956-80bd-4317-a669-810382ac9cb1",
-		"name": "techchallenge2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22234520"
-	},
-	"item": [
-		{
-			"name": "usuario",
-			"item": [
-				{
-					"name": "listar",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/usuario",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"usuario"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "buscar",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/usuario/f09db75c-98a2-455b-be0c-bec20e48f294",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"usuario",
-								"f09db75c-98a2-455b-be0c-bec20e48f294"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "criar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\" : \"Teste da Silva\",\r\n    \"cpf\" : \"01722334555\",\r\n    \"email\" : \"fazol@gmail.com\",\r\n    \"senha\": \"123456\",\r\n    \"telefone\" : \"999999999\",\r\n    \"endereco\" : \"Rua infinito, 999\",\r\n    \"tipoUsuario\" : \"Cliente\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/usuario",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"usuario"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\" : \"Teste\",\r\n    \"telefone\" : \"999999999\",\r\n    \"endereco\" : \"Rua infinito, 999\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/usuario/f09db75c-98a2-455b-be0c-bec20e48f294",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"usuario",
-								"f09db75c-98a2-455b-be0c-bec20e48f294"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "excluir",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/usuario/c72271b6-601e-45de-b63e-9aa3febf6458",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"usuario",
-								"c72271b6-601e-45de-b63e-9aa3febf6458"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "tipo-usuario",
-			"item": [
-				{
-					"name": "listar",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/tipo-usuario",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"tipo-usuario"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "buscar",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/0dfee262-8285-4e5b-ae16-5acbfec2e8cd",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"tipo-usuario",
-								"0dfee262-8285-4e5b-ae16-5acbfec2e8cd"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "criar",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nomeTipoUsuario\":\"Cliente\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/tipo-usuario",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"tipo-usuario"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nomeTipoUsuario\" : \"Cliente\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/098b1092-4a49-40cc-8dc7-e4654bf7110a",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"tipo-usuario",
-								"098b1092-4a49-40cc-8dc7-e4654bf7110a"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "excluir",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "TipoUsuarioLogado",
-								"value": "{{TipoUsuarioLogado}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/techchallenge2/api/tipo-usuario/b7897872-2c52-43f6-af1a-bcc78558b739",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"techchallenge2",
-								"api",
-								"tipo-usuario",
-								"b7897872-2c52-43f6-af1a-bcc78558b739"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"requests": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"requests": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "TipoUsuarioLogado",
-			"value": ""
-		}
-	]
+  "info": {
+    "name": "techchallenge2",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "tipo-usuario",
+      "item": [
+        {
+          "name": "atualizar",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/b0b2bc38-112a-417c-8f33-b894b663a910",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "tipo-usuario",
+                "b0b2bc38-112a-417c-8f33-b894b663a910"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nomeTipoUsuario\" : \"Cliente Novo\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "buscar",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/99c1faf2-f881-4423-804f-b1d26f3be110",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "tipo-usuario",
+                "99c1faf2-f881-4423-804f-b1d26f3be110"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "criar",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "tipo-usuario"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nomeTipoUsuario\":\"DonoRestaurante\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "excluir",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/b0b2bc38-112a-417c-8f33-b894b663a910",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "tipo-usuario",
+                "b0b2bc38-112a-417c-8f33-b894b663a910"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "listar",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/tipo-usuario",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "tipo-usuario"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "usuario",
+      "item": [
+        {
+          "name": "atualizar",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/usuario/f09db75c-98a2-455b-be0c-bec20e48f294",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "usuario",
+                "f09db75c-98a2-455b-be0c-bec20e48f294"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\" : \"Teste\",\n    \"telefone\" : \"999999999\",\n    \"endereco\" : \"Rua infinito, 999\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "buscar",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/usuario/f09db75c-98a2-455b-be0c-bec20e48f294",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "usuario",
+                "f09db75c-98a2-455b-be0c-bec20e48f294"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "criar",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/usuario",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "usuario"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\" : \"Beltrano\",\n    \"cpf\" : \"12345678901\",\n    \"email\" : \"beltrano@gmail.com\",\n    \"senha\": \"123456\",\n    \"telefone\" : \"999998888\",\n    \"endereco\" : \"Rua infinito, 321\",\n    \"tipoUsuario\" : \"DonoRestaurante\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "excluir",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/usuario/c72271b6-601e-45de-b63e-9aa3febf6458",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "usuario",
+                "c72271b6-601e-45de-b63e-9aa3febf6458"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "listar",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/usuario",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "usuario"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "resturante",
+      "item": [
+        {
+          "name": "listar",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/restaurante",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "restaurante"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "criar",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/restaurante",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "restaurante"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\" : \"Cantinho do Bode\",\n    \"endereco\" : \"Rua infinito, 123\",\n    \"tipoCozinha\" : \"Regional\",\n    \"horarioAbertura\": \"11:00\",\n    \"horarioFechamento\" : \"16:00\",\n    \"uuidDonoRestaurante\" : \"dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "buscar",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/restaurante/fceabf3a-76b3-4f3d-9dd4-3be360f418e0",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "restaurante",
+                "fceabf3a-76b3-4f3d-9dd4-3be360f418e0"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "atualizar",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/restaurante/fceabf3a-76b3-4f3d-9dd4-3be360f418e0",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "restaurante",
+                "fceabf3a-76b3-4f3d-9dd4-3be360f418e0"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "  {\n    \"nome\": \"Cantinho do Bode Novo\",\n    \"endereco\": \"Rua infinito, 4000\",\n    \"tipoCozinha\": \"Típica\",\n    \"horarioAbertura\": \"10:00\",\n    \"horarioFechamento\": \"23:00\",\n    \"donoRestaurante\": \"dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "excluir",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "TipoUsuarioLogado",
+                "value": "{{TipoUsuarioLogado}}",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/techchallenge2/api/restaurante/fceabf3a-76b3-4f3d-9dd4-3be360f418e0",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "techchallenge2",
+                "api",
+                "restaurante",
+                "fceabf3a-76b3-4f3d-9dd4-3be360f418e0"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "  {\n    \"nome\": \"Cantinho do Bode Novo\",\n    \"endereco\": \"Rua infinito, 4000\",\n    \"tipoCozinha\": \"Típica\",\n    \"horarioAbertura\": \"10:00\",\n    \"horarioFechamento\": \"23:00\",\n    \"donoRestaurante\": \"dd12ba80-c37e-4e47-a8ef-5fe073d2e0f7\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "TipoUsuarioLogado",
+      "value": "",
+      "type": "default"
+    }
+  ]
 }

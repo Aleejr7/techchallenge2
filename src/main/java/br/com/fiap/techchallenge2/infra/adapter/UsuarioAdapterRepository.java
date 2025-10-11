@@ -83,6 +83,9 @@ public class UsuarioAdapterRepository implements UsuarioInterface {
     @Override
     public Usuario buscarUsuarioPorUuid(UUID id) {
         UsuarioModel usuarioModel = repository.findById(id).orElse(null);
+        if (usuarioModel == null) {
+            return null;
+        }
         TipoUsuarioModel tipoUsuarioModel = usuarioModel.getTipoUsuarioModel();
         TipoUsuario tipoUsuarioEntity = new TipoUsuario(tipoUsuarioModel.getId(), tipoUsuarioModel.getNome());
 
