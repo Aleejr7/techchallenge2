@@ -8,13 +8,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -48,6 +48,17 @@ public class UsuarioRepositoryTest {
         Assertions.assertEquals(listaUsuarioTipoUsuarioEncontrada,listaUsuarioModel);
     }
     @Test
+    public void deveRetornarListaVaziaQuandoNaoHouverUsuarios() {
+        List<UsuarioModel> listaUsuarios = new ArrayList<>();
+        when(repository.findAll()).thenReturn(listaUsuarios);
+
+        var listaUsuariosEncontrados = repository.findAll();
+
+        assertThat(listaUsuariosEncontrados).isNotNull();
+        assertThat(listaUsuariosEncontrados).isEqualTo(listaUsuariosEncontrados);
+        verify(repository, times(1)).findAll();
+    }
+    @Test
     public void deveBuscarUsuarioPorUuid(){
         UsuarioModel usuarioModel = criarUsuario();
         when(repository.findById(any(UUID.class))).thenReturn(Optional.of(usuarioModel));
@@ -58,6 +69,17 @@ public class UsuarioRepositoryTest {
         verify(repository,times(1)).findById(usuarioModel.getUuid());
     }
     @Test
+    public void naoDeveBuscarUsuarioPorUuidInexistente() {
+        var uuid = UUID.randomUUID();
+        when(repository.findById(any(UUID.class))).thenReturn(Optional.empty());
+
+        var usuarioNaoEncontrado = repository.findById(uuid);
+
+        assertThat(usuarioNaoEncontrado).isEmpty();
+        verify(repository, times(1)).findById(uuid);
+    }
+
+    @Test
     public void deveBuscarUsuarioPorEmail(){
         UsuarioModel usuarioModel = criarUsuario();
         when(repository.findByEmail(any(String.class))).thenReturn(usuarioModel);
@@ -66,6 +88,17 @@ public class UsuarioRepositoryTest {
 
         assertThat(usuarioModelEncontrado).isNotNull().isEqualTo(usuarioModel);
         verify(repository,times(1)).findByEmail(usuarioModel.getEmail());
+    }
+
+    @Test
+    public void naoDeveBuscarUsuarioPorEmailInexistente() {
+        var emailInexistente = "naoexiste@exemplo.com";
+        when(repository.findByEmail(any(String.class))).thenReturn(null);
+
+        var usuarioNaoEncontrado = repository.findByEmail(emailInexistente);
+
+        assertThat(usuarioNaoEncontrado).isNull();
+        verify(repository, times(1)).findByEmail(emailInexistente);
     }
     @Test
     public void deveBuscarUsuarioPorTipoUsuario(){
@@ -81,6 +114,18 @@ public class UsuarioRepositoryTest {
         Assertions.assertEquals(listaUsuarioTipoUsuarioEncontrada,listaUsuarioModel);
     }
     @Test
+    public void deveRetornarListaVaziaAoBuscarPorTipoUsuarioSemUsuarios() {
+        var uuidTipoUsuario = UUID.randomUUID();
+        List<UsuarioModel> listaUsuariosVazia = new ArrayList<>();
+        when(repository.findAllByTipoUsuarioModelId(any(UUID.class))).thenReturn(listaUsuariosVazia);
+
+        var listaEncontrada = repository.findAllByTipoUsuarioModelId(uuidTipoUsuario);
+
+        assertThat(listaEncontrada).isNotNull();
+        assertThat(listaEncontrada).isEqualTo(listaUsuariosVazia);
+        verify(repository, times(1)).findAllByTipoUsuarioModelId(uuidTipoUsuario);
+    }
+    @Test
     public void deveCriarUsuario(){
         UsuarioModel usuarioModel = criarUsuario();
         when(repository.save(any(UsuarioModel.class))).thenReturn(usuarioModel);
@@ -91,6 +136,18 @@ public class UsuarioRepositoryTest {
         verify(repository,times(1)).save(usuarioModelCriado);
     }
     @Test
+    public void deveLancarExcecaoAoCriarUsuarioInvalido() {
+        UsuarioModel usuarioInvalido = criarUsuario();
+        when(repository.save(any(UsuarioModel.class)))
+                .thenThrow(new DataIntegrityViolationException("Violação de constraint, como e-mail duplicado"));
+
+        assertThrows(DataIntegrityViolationException.class, () -> {
+            repository.save(usuarioInvalido);
+        });
+
+        verify(repository, times(1)).save(usuarioInvalido);
+    }
+    @Test
     public void deveDeletarUsuario(){
         UsuarioModel usuarioModel = criarUsuario();
         doNothing().when(repository).deleteById(any(UUID.class));
@@ -98,6 +155,19 @@ public class UsuarioRepositoryTest {
         repository.deleteById(usuarioModel.getTipoUsuarioModel().getId());
 
         verify(repository,times(1)).deleteById(usuarioModel.getTipoUsuarioModel().getId());
+    }
+
+    @Test
+    public void deveLancarExcecaoAoDeletarUsuarioInexistente() {
+        var uuidInexistente = UUID.randomUUID();
+        doThrow(new EmptyResultDataAccessException(1))
+                .when(repository).deleteById(any(UUID.class));
+
+        assertThrows(EmptyResultDataAccessException.class, () -> {
+            repository.deleteById(uuidInexistente);
+        });
+
+        verify(repository, times(1)).deleteById(uuidInexistente);
     }
     private UsuarioModel criarUsuario(){
         UUID uuid = UUID.fromString("26b43f40-c14e-447f-9fda-c5f90f8887b2");

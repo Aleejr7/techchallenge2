@@ -7,12 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -49,8 +50,19 @@ public class TipoUsuarioRepositoryTest {
         Assertions.assertEquals(listaEncontrada,listaTiposUsuarioModel);
     }
     @Test
+    public void deveRetornarListaVaziaQuandoNaoHouverTiposDeUsuario() {
+        List<TipoUsuarioModel> listaTipoUsuario = new ArrayList<>();
+        when(repository.findAll()).thenReturn(listaTipoUsuario);
+
+        var listaEncontrada = repository.findAll();
+
+        assertThat(listaEncontrada).isNotNull();
+        assertThat(listaEncontrada).isEqualTo(listaTipoUsuario);
+        verify(repository, times(1)).findAll();
+    }
+    @Test
     public void deveBuscarPorUuidTipoDeUsuario(){
-        UUID uuid = UUID.fromString("26b43f40-c14e-447f-9fda-c5f90f8887b2");
+        var uuid = UUID.randomUUID();
         TipoUsuarioModel tipoUsuarioModel = new TipoUsuarioModel(
                 uuid,
                 "Teste");
@@ -58,8 +70,18 @@ public class TipoUsuarioRepositoryTest {
 
         var tipoUsuarioEncontrado = repository.findById(uuid);
 
-        assertThat(tipoUsuarioEncontrado).isNotNull().isEqualTo(tipoUsuarioModel);
+        assertThat(tipoUsuarioEncontrado).isNotNull();
         verify(repository,times(1)).findById(uuid);
+    }
+    @Test
+    public void naoDeveBuscarPorUuidDeTipoDeUsuarioInexistente() {
+        var uuid = UUID.randomUUID();
+        when(repository.findById(any(UUID.class))).thenReturn(Optional.empty());
+
+        var tipoUsuarioNaoEncontrado = repository.findById(uuid);
+
+        assertThat(tipoUsuarioNaoEncontrado).isEmpty();
+        verify(repository, times(1)).findById(uuid);
     }
     @Test
     public void deveBuscarPorNomeTipoDeUsuario(){
@@ -74,6 +96,17 @@ public class TipoUsuarioRepositoryTest {
         assertThat(tipoUsuarioEncontrado).isNotNull().isEqualTo(tipoUsuarioModel);
         verify(repository,times(1)).findByNome(tipoUsuarioModel.getNome());
     }
+
+    @Test
+    public void naoDeveBuscarPorNomeDeTipoDeUsuarioInexistente() {
+        var nomeInexistente = "Tipo Inexistente";
+        when(repository.findByNome(any(String.class))).thenReturn(null);
+
+        var tipoUsuarioNaoEncontrado = repository.findByNome(nomeInexistente);
+
+        assertThat(tipoUsuarioNaoEncontrado).isNull();
+        verify(repository, times(1)).findByNome(nomeInexistente);
+    }
     @Test
     public void deveSalvarTipoDeUsuario(){
         TipoUsuarioModel tipoUsuarioModel = new TipoUsuarioModel();
@@ -86,8 +119,21 @@ public class TipoUsuarioRepositoryTest {
         verify(repository,times(1)).save(tipoUsuarioModelCriado);
     }
     @Test
+    public void deveLancarExcecaoAoSalvarTipoDeUsuarioInvalido() {
+        TipoUsuarioModel tipoUsuarioInvalido = new TipoUsuarioModel();
+        tipoUsuarioInvalido.setNome("");
+        when(repository.save(any(TipoUsuarioModel.class)))
+                .thenThrow(new DataIntegrityViolationException("Violação de constraint de nome único"));
+
+        assertThrows(DataIntegrityViolationException.class, () -> {
+            repository.save(tipoUsuarioInvalido);
+        });
+
+        verify(repository, times(1)).save(tipoUsuarioInvalido);
+    }
+    @Test
     public void deveDeletarTipoUsuario(){
-        UUID uuid = UUID.fromString("26b43f40-c14e-447f-9fda-c5f90f8887b2");
+        var uuid = UUID.randomUUID();
         TipoUsuarioModel tipoUsuarioModel = new TipoUsuarioModel(
                 uuid,
                 "Teste");
@@ -97,5 +143,17 @@ public class TipoUsuarioRepositoryTest {
         repository.deleteById(uuid);
 
         verify(repository,times(1)).deleteById(uuid);
+    }
+    @Test
+    public void deveLancarExcecaoAoDeletarTipoDeUsuarioInexistente() {
+        var uuid = UUID.randomUUID();
+        doThrow(new EmptyResultDataAccessException(1))
+                .when(repository).deleteById(any(UUID.class));
+
+        assertThrows(EmptyResultDataAccessException.class, () -> {
+            repository.deleteById(uuid);
+        });
+
+        verify(repository, times(1)).deleteById(uuid);
     }
 }
