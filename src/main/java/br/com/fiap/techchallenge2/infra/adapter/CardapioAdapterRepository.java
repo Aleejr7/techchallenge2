@@ -7,7 +7,6 @@ import br.com.fiap.techchallenge2.infra.model.CardapioModel;
 import br.com.fiap.techchallenge2.infra.model.ItemCardapioModel;
 import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
-import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
