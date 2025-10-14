@@ -56,10 +56,10 @@ public class BuscarTodosTipoUsuarioUseCaseTest {
         List<TipoUsuarioOutput> result = useCase.execute("Admin");
 
         assertEquals(2, result.size());
-        assertEquals(id1, result.get(0).uuid());
-        assertEquals("Admin", result.get(0).nome());
-        assertEquals(id2, result.get(1).uuid());
-        assertEquals("Cliente", result.get(1).nome());
+        assertEquals(id1, result.get(0).getId());
+        assertEquals("Admin", result.get(0).getNome());
+        assertEquals(id2, result.get(1).getId());
+        assertEquals("Cliente", result.get(1).getNome());
         verify(tipoUsuarioInterface).buscarTodosTiposUsuario();
     }
 }

@@ -44,7 +44,7 @@ public class TipoUsuarioController {
 
     @GetMapping("/{uuid}")
     public ResponseEntity<TipoUsuarioOutput> buscarTipoUsuarioPorUuid(
-            @PathVariable UUID uuid,
+            @PathVariable("uuid") UUID uuid,
             @RequestHeader ("TipoUsuarioLogado") String tipoUsuarioLogado
     ) {
         BuscarTipoUsuarioInput tipoUsuarioInput = new BuscarTipoUsuarioInput(uuid, tipoUsuarioLogado);
@@ -79,7 +79,7 @@ public class TipoUsuarioController {
 
     @PutMapping("/{uuid}")
     public ResponseEntity<TipoUsuarioOutput> alterarTipoUsuario(
-            @PathVariable UUID uuid,
+            @PathVariable("uuid") UUID uuid,
             @RequestBody AtualizarTipoUsuarioRequest requestBody,
             @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado) {
 
@@ -96,7 +96,7 @@ public class TipoUsuarioController {
 
     @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deletarTipoUsuario(
-            @PathVariable UUID uuid,
+            @PathVariable("uuid") UUID uuid,
             @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado
     ) {
 

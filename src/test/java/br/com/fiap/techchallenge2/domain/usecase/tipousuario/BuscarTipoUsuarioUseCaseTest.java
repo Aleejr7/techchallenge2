@@ -64,8 +64,8 @@ public class BuscarTipoUsuarioUseCaseTest {
         TipoUsuarioOutput output = useCase.execute(input);
 
         assertNotNull(output);
-        assertEquals(uuid, output.uuid());
-        assertEquals("Cliente", output.nome());
+        assertEquals(uuid, output.getId());
+        assertEquals("Cliente", output.getNome());
         verify(tipoUsuarioInterface).buscarTipoUsuarioPorUuid(uuid);
     }
 }

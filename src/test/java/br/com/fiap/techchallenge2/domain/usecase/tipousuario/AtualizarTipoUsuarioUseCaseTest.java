@@ -84,8 +84,8 @@ public class AtualizarTipoUsuarioUseCaseTest {
         TipoUsuarioOutput output = useCase.execute(input);
 
         assertNotNull(output);
-        assertEquals(id, output.uuid());
-        assertEquals("Supervisor", output.nome());
+        assertEquals(id, output.getId());
+        assertEquals("Supervisor", output.getNome());
         verify(tipoUsuarioInterface).atualizarTipoUsuario(any());
     }
 }
