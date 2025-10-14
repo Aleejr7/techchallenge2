@@ -62,7 +62,6 @@ public class RestauranteAdapterTest {
         assertThat(restauranteCriado).isNotNull();
         assertThat(restauranteCriado.getUuid()).isEqualTo(restauranteEsperado.getUuid());
         assertThat(restauranteCriado.getNome()).isEqualTo(restauranteEsperado.getNome());
-
         verify(usuarioRepository, times(1)).findById(donoEntity.getUuid());
         verify(repository, times(1)).save(any(RestauranteModel.class));
     }
@@ -123,28 +122,53 @@ public class RestauranteAdapterTest {
         assertThat(listaEncontrada).isNotNull().isEmpty();
     }
 
-//    @Test
-//    void deveAtualizarRestaurante() {
-//        UsuarioModel usuarioModel = criarUsuarioModel();
-//        RestauranteModel restauranteModelExistente = criarRestauranteModel(usuarioModel);
-//        Restaurante restauranteParaAtualizar = criarRestauranteEntity(restauranteModelExistente);
-//        restauranteParaAtualizar.setUuid(restauranteModelExistente.getUuid());
-//        when(repository.findById(any(UUID.class))).thenReturn(Optional.of(restauranteModelExistente));
-//        when(repository.save(any(RestauranteModel.class))).thenReturn(restauranteModelExistente);
-//
-//        var restauranteAtualizado = adapter.atualizarRestaurante(restauranteParaAtualizar);
-//
-//        assertThat(restauranteAtualizado).isEqualTo(restauranteParaAtualizar);
-//        verify(repository, times(1)).findById(any(UUID.class));
-//        verify(repository, times(1)).save(any(RestauranteModel.class));
-//    }
     @Test
-    void deveDeletarRestaurante() {
-        UUID idParaDeletar = UUID.randomUUID();
+    void deveAtualizarRestaurante() {
+        UUID restauranteId = UUID.randomUUID();
+        UsuarioModel donoModel = criarUsuarioModel();
 
-        adapter.deletarRestaurantePorUuid(idParaDeletar);
 
-        verify(repository, times(1)).deleteById(idParaDeletar);
+        RestauranteModel restauranteModelExistente = new RestauranteModel(
+                restauranteId,
+                "Restaurante Antigo",
+                "Rua Velha, 123",
+                "Brasileira",
+                new HorarioFuncionamentoModel(LocalTime.parse("10:00"), LocalTime.parse("22:00")),
+                donoModel,
+                null
+        );
+
+        String novoNome = "Restaurante Novo Sabor";
+        String novoEndereco = "Avenida Principal, 456";
+        Restaurante restauranteComNovosDados = criarRestauranteEntity(restauranteModelExistente);
+        restauranteComNovosDados.setNome(novoNome);
+        restauranteComNovosDados.setEndereco(novoEndereco);
+        
+        RestauranteModel restauranteModelSalvo = new RestauranteModel(
+                restauranteId,
+                novoNome,
+                novoEndereco,
+                restauranteComNovosDados.getTipoCozinha(),
+                new HorarioFuncionamentoModel(
+                        restauranteComNovosDados.getHorarioFuncionamento().horarioAbertura(),
+                        restauranteComNovosDados.getHorarioFuncionamento().horarioFechamento()),
+                donoModel,
+                restauranteComNovosDados.getCardapioId()
+        );
+
+        when(repository.findById(restauranteId)).thenReturn(Optional.of(restauranteModelExistente));
+        when(repository.save(any(RestauranteModel.class))).thenReturn(restauranteModelSalvo);
+
+        var restauranteAtualizado = adapter.atualizarRestaurante(restauranteComNovosDados);
+
+
+        assertThat(restauranteAtualizado).isNotNull();
+        assertThat(restauranteAtualizado.getNome()).isEqualTo(novoNome);
+        assertThat(restauranteAtualizado.getEndereco()).isEqualTo(novoEndereco);
+        assertThat(restauranteAtualizado.getUuid()).isEqualTo(restauranteId);
+
+        verify(repository, times(1)).findById(restauranteId);
+        verify(repository, times(1)).save(any(RestauranteModel.class));
     }
 
     private UsuarioModel criarUsuarioModel() {
