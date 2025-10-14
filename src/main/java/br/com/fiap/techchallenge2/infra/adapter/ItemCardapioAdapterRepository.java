@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -92,9 +91,6 @@ public class ItemCardapioAdapterRepository implements ItemCardapioInterface {
 
     @Override
     public void deletarTodosItensPorUuidCardapio(UUID uuidCardapio) {
-        List<ItemCardapioModel> itensCardapio = repository.findByCardapioModelUuid(uuidCardapio);
-        if (itensCardapio != null){
-            repository.deleteByCardapioModelUuid(uuidCardapio);
-        }
+        repository.deleteByCardapioModelUuid(uuidCardapio);
     }
 }

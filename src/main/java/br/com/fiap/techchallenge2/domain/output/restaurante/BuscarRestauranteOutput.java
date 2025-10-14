@@ -8,7 +8,8 @@ public record BuscarRestauranteOutput(
         String endereco,
         String tipoCozinha,
         String horarioAbertura,
-        String horarioFechamento
+        String horarioFechamento,
+        UUID cardapioId
 )
 {
 }

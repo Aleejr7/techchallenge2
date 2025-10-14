@@ -11,7 +11,7 @@ public class RestauranteModelTeste {
 
     @Test
     public void deveCriarRestauranteComConstrutorCompleto(){
-        var uuid = UUID.randomUUID();
+        // var uuid = UUID.randomUUID();
         var nomeRestaurante = "Casa dos sabores";
         var endereco = "Rua dos sabores";
         var tpCozinha = "Japonesa";
@@ -20,11 +20,10 @@ public class RestauranteModelTeste {
         UsuarioModel dono = new UsuarioModel();
 
         RestauranteModel restauranteModel = new RestauranteModel(
-                uuid,nomeRestaurante,endereco,tpCozinha,hora,dono
+                nomeRestaurante,endereco,tpCozinha,hora,dono
         );
 
         assertThat(restauranteModel).satisfies(r -> {
-            assertThat(r.getUuid()).isEqualTo(uuid);
             assertThat(r.getNome()).isEqualTo(nomeRestaurante);
             assertThat(r.getEndereco()).isEqualTo(endereco);
             assertThat(r.getTipoCozinha()).isEqualTo(tpCozinha);

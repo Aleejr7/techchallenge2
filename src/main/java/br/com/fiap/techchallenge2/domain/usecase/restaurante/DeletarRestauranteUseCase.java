@@ -12,6 +12,7 @@ import br.com.fiap.techchallenge2.domain.gateway.RestauranteInterface;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
 import br.com.fiap.techchallenge2.domain.input.restaurante.DeletarRestauranteInput;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;

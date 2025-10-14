@@ -9,7 +9,6 @@ import br.com.fiap.techchallenge2.infra.model.RestauranteModel;
 import br.com.fiap.techchallenge2.infra.model.UsuarioModel;
 import br.com.fiap.techchallenge2.infra.repository.RestauranteModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.UsuarioModelRepository;
-import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -87,7 +86,7 @@ public class RestauranteAdapterRepository implements RestauranteInterface {
                 tipoUsuario
         );
 
-        return new Restaurante(restauranteModel.getUuid(),
+        Restaurante restaurante = new Restaurante(restauranteModel.getUuid(),
                 restauranteModel.getNome(),
                 restauranteModel.getEndereco(),
                 restauranteModel.getTipoCozinha(),
@@ -95,6 +94,8 @@ public class RestauranteAdapterRepository implements RestauranteInterface {
                 restauranteModel.getHorarioFuncionamento().horarioFechamento().toString(),
                 usuarioEntity
         );
+        restaurante.setCardapioId(restauranteModel.getCardapioId());
+        return restaurante;
     }
 
     @Override
@@ -155,6 +156,7 @@ public class RestauranteAdapterRepository implements RestauranteInterface {
                     restauranteModel.getHorarioFuncionamento().horarioFechamento().toString(),
                     usuarioEntity
                     );
+            restauranteEntity.setCardapioId(restauranteModel.getCardapioId());
             ListaRestaurantesEntity.add(restauranteEntity);
         }
         return ListaRestaurantesEntity;
@@ -177,7 +179,8 @@ public class RestauranteAdapterRepository implements RestauranteInterface {
                 restaurante.getEndereco(),
                 restaurante.getTipoCozinha(),
                 horarioNovo,
-                restauranteModel.getDonoRestaurante()
+                restauranteModel.getDonoRestaurante(),
+                restaurante.getCardapioId()
         );
         repository.save(model);
 

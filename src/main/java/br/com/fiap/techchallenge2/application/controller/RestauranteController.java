@@ -74,7 +74,9 @@ public class RestauranteController {
         );
 
         CriarRestauranteUseCase useCase = new CriarRestauranteUseCase(
-                new RestauranteAdapterRepository(restauranteRepository, usuarioRepository), new UsuarioAdapterRepository(usuarioRepository)
+                new RestauranteAdapterRepository(restauranteRepository, usuarioRepository),
+                new UsuarioAdapterRepository(usuarioRepository),
+                new CardapioAdapterRepository(cardapioRepository, itemCardapioRepository)
         );
 
         CriarRestauranteOutput criarRestauranteOutput = useCase.execute(criarRestauranteInput);

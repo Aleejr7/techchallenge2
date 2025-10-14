@@ -46,7 +46,8 @@ public class AtualizarRestauranteUseCase
                 restauranteAtualizado.getEndereco(),
                 restauranteAtualizado.getTipoCozinha(),
                 restauranteAtualizado.getHorarioFuncionamento().horarioAbertura().toString(),
-                restauranteAtualizado.getHorarioFuncionamento().horarioFechamento().toString()
+                restauranteAtualizado.getHorarioFuncionamento().horarioFechamento().toString(),
+                restauranteAtualizado.getCardapioId()
         );
     }
 }

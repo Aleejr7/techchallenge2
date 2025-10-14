@@ -21,14 +21,14 @@ public class BuscarRestauranteUseCase
             throw new RestauranteInexistenteException( "O restaurante com o UUID: " + uuidRestaurante + " não existe." );
         }
 
-
         return new BuscarRestauranteOutput(
                 restauranteExistente.getUuid(),
                 restauranteExistente.getNome(),
                 restauranteExistente.getEndereco(),
                 restauranteExistente.getTipoCozinha(),
                 restauranteExistente.getHorarioFuncionamento().horarioAbertura().toString(),
-                restauranteExistente.getHorarioFuncionamento().horarioFechamento().toString()
+                restauranteExistente.getHorarioFuncionamento().horarioFechamento().toString(),
+                restauranteExistente.getCardapioId()
         );
     }
 }

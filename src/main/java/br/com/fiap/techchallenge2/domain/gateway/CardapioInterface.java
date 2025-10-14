@@ -1,11 +1,14 @@
 package br.com.fiap.techchallenge2.domain.gateway;
 
 import br.com.fiap.techchallenge2.domain.entity.Cardapio;
+import br.com.fiap.techchallenge2.domain.entity.Restaurante;
 
 import java.util.UUID;
 
 public interface CardapioInterface
 {
+
+    Cardapio criarCardapio(Restaurante restaurante, String nome );
 
     Cardapio buscarCardapioPorUuid( UUID uuid );
 

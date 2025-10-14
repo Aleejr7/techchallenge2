@@ -11,7 +11,8 @@ public record CriarRestauranteOutput(
         String tipoCozinha,
         String horarioAbertura,
         String horarioFechamento,
-        UsuarioOutput donoRestaurante
+        UsuarioOutput donoRestaurante,
+        UUID cardapioId
 )
 {
 }

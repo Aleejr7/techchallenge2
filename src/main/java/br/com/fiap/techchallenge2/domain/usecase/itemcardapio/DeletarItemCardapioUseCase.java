@@ -28,14 +28,11 @@ public class DeletarItemCardapioUseCase
         if ( cardapio == null ) {
             throw new CardapioInexistenteException( "O cardápio com o uuid " + itemCardapioInput.uuidCardapio() + " a ser removido o item não existe" );
         }
-
         boolean itemExisteNoCardapio = cardapio.getItensCardapio().stream()
                 .anyMatch(item -> item.getUuid( ).equals( itemCardapioInput.uuidItemCardapio() ) );
         if ( !itemExisteNoCardapio ) {
             throw new ItemCardapioInexistenteException("O item com uuid " + itemCardapioInput.uuidItemCardapio() + " não existe no cardápio " + cardapio.getNome( ) );
         }
-
-        this.cardapioInterface.removerItemDoCardapio( itemCardapioInput.uuidCardapio(), itemCardapioInput.uuidItemCardapio() );
         this.itemCardapioInterface.deletarItemCardapioPorUuid( itemCardapioInput.uuidItemCardapio() );
     }
 }

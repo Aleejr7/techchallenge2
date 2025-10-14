@@ -4,6 +4,7 @@ package br.com.fiap.techchallenge2.infra.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,6 +21,8 @@ public class CardapioModel {
 
     @OneToMany(mappedBy = "cardapioModel", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ItemCardapioModel> itensCardapio;
+
+    @Setter
     private UUID uuidRestaurante;
 
     public void setNome(String nome) {

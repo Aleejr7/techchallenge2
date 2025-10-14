@@ -22,8 +22,9 @@ public class Restaurante
     private HorarioFuncionamento horarioFuncionamento;
     @Setter
     private Usuario donoRestaurante;
+    private UUID cardapioId;
 
-    public Restaurante(UUID uuid, String nome, String endereco, String tipoCozinha, String horarioAbertura, String horarioFechamento, Usuario donoRestaurante ) {
+    public Restaurante(UUID uuid, String nome, String endereco, String tipoCozinha, String horarioAbertura, String horarioFechamento, Usuario donoRestaurante) {
         validaNome(nome);
         validaEndereco(endereco);
         validaTipoCozinha(tipoCozinha);
@@ -39,7 +40,6 @@ public class Restaurante
         );
         this.donoRestaurante = donoRestaurante;
     }
-
 
     private void validaHorarioFuncionamento( String horarioAbertura, String horarioFechamento ) {
         if ( horarioAbertura == null || horarioAbertura.isEmpty( ) ) {

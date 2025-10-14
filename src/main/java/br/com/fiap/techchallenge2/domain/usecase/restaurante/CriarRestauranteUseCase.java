@@ -1,10 +1,12 @@
 package br.com.fiap.techchallenge2.domain.usecase.restaurante;
 
+import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.entity.Restaurante;
 import br.com.fiap.techchallenge2.domain.entity.Usuario;
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.restaurante.RestauranteJaExisteException;
 import br.com.fiap.techchallenge2.domain.exception.usuario.UsuarioInexistenteException;
+import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
 import br.com.fiap.techchallenge2.domain.gateway.RestauranteInterface;
 import br.com.fiap.techchallenge2.domain.gateway.UsuarioInterface;
 import br.com.fiap.techchallenge2.domain.input.restaurante.CriarRestauranteInput;
@@ -18,6 +20,7 @@ public class CriarRestauranteUseCase
 
     private final RestauranteInterface restauranteInterface;
     private final UsuarioInterface usuarioInterface;
+    private final CardapioInterface cardapioInterface;
 
     public CriarRestauranteOutput execute ( CriarRestauranteInput restauranteInput ) {
 
@@ -43,7 +46,11 @@ public class CriarRestauranteUseCase
                 usuarioExistente
         );
 
-        Restaurante restauranteCriado = this.restauranteInterface.criarRestaurante( restaurante );
+        Restaurante restauranteCriado = restauranteInterface.criarRestaurante( restaurante );
+
+        Cardapio cardapioNovo = cardapioInterface.criarCardapio(restauranteCriado, "Cardápio padrão");
+        restauranteCriado.setCardapioId(cardapioNovo.getUuid());
+        restauranteInterface.atualizarRestaurante( restauranteCriado );
 
         return new CriarRestauranteOutput(
                 restauranteCriado.getUuid(),
@@ -60,7 +67,8 @@ public class CriarRestauranteUseCase
                         usuarioExistente.getTelefone(),
                         usuarioExistente.getEndereco(),
                         usuarioExistente.getTipoUsuario().getNome()
-                )
+                ),
+                restauranteCriado.getCardapioId()
         );
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
@@ -24,6 +25,10 @@ public class RestauranteModel {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
     private UsuarioModel donoRestaurante;
+
+    @Setter
+    @Column(name = "cardapio_id")
+    private UUID cardapioId;
 
     public RestauranteModel(String nome, String endereco, String tipoCozinha, HorarioFuncionamentoModel horarioFuncionamento, UsuarioModel donoRestaurante) {
         this.nome = nome;

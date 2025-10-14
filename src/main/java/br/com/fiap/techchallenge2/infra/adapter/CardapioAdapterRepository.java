@@ -2,6 +2,7 @@ package br.com.fiap.techchallenge2.infra.adapter;
 
 import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.entity.ItemCardapio;
+import br.com.fiap.techchallenge2.domain.entity.Restaurante;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
 import br.com.fiap.techchallenge2.infra.model.CardapioModel;
 import br.com.fiap.techchallenge2.infra.model.ItemCardapioModel;
@@ -16,12 +17,26 @@ import java.util.UUID;
 @Repository
 @RequiredArgsConstructor
 public class CardapioAdapterRepository implements CardapioInterface {
-    private final CardapioModelRepository cardapioModelRepository;
+    private final CardapioModelRepository cardapioRepository;
     private final ItemCardapioModelRepository itemCardapioModelRepository;
 
     @Override
+    public Cardapio criarCardapio(Restaurante restaurante, String nome) {
+        CardapioModel cardapioModel = new CardapioModel();
+        cardapioModel.setNome(nome);
+        cardapioModel.setUuidRestaurante(restaurante.getUuid());
+        cardapioRepository.save(cardapioModel);
+        Cardapio cardapio = new Cardapio(
+                cardapioModel.getNome(),
+                cardapioModel.getUuidRestaurante()
+        );
+        cardapio.setUuid(cardapioModel.getUuid());
+        return cardapio;
+    }
+
+    @Override
     public Cardapio buscarCardapioPorUuid(UUID uuid) {
-        CardapioModel cardapioModel = cardapioModelRepository.findById(uuid)
+        CardapioModel cardapioModel = cardapioRepository.findById(uuid)
                 .orElse(null);
 
         if (cardapioModel == null) return null;
@@ -49,7 +64,7 @@ public class CardapioAdapterRepository implements CardapioInterface {
 
     @Override
     public Cardapio adicionarItemAoCardapio(UUID uuidCardapio, UUID uuidItem) {
-        CardapioModel cardapioModel = cardapioModelRepository.findById(uuidCardapio).orElse(null);
+        CardapioModel cardapioModel = cardapioRepository.findById(uuidCardapio).orElse(null);
         ItemCardapioModel itemCardapioModel = itemCardapioModelRepository.findById(uuidItem).orElse(null);
 
         ItemCardapio itemCardapioEntity = new ItemCardapio(
@@ -64,7 +79,7 @@ public class CardapioAdapterRepository implements CardapioInterface {
         cardapioModel.getItensCardapio().add(itemCardapioModel);
         itemCardapioModel.setCardapioModel(cardapioModel);
         
-        var cardapioAtualizado = cardapioModelRepository.save(cardapioModel);
+        var cardapioAtualizado = cardapioRepository.save(cardapioModel);
         Cardapio cardapioEntity = new Cardapio(cardapioAtualizado.getNome(),cardapioAtualizado.getUuidRestaurante());
 
         cardapioEntity.setUuid(cardapioAtualizado.getUuid());
@@ -76,16 +91,16 @@ public class CardapioAdapterRepository implements CardapioInterface {
 
     @Override
     public void removerItemDoCardapio(UUID uuidCardapio, UUID uuidItem) {
-        CardapioModel cardapioModel = cardapioModelRepository.findById(uuidCardapio).orElse(null);
+        CardapioModel cardapioModel = cardapioRepository.findById(uuidCardapio).orElse(null);
         ItemCardapioModel itemCardapioModel = itemCardapioModelRepository.findById(uuidItem).orElse(null);
         itemCardapioModelRepository.deleteById(itemCardapioModel.getUuid());
     }
 
     @Override
     public Cardapio atualizarCardapio(Cardapio cardapio) {
-        CardapioModel cardapioModel = cardapioModelRepository.findById(cardapio.getUuid()).orElse(null);
+        CardapioModel cardapioModel = cardapioRepository.findById(cardapio.getUuid()).orElse(null);
         cardapioModel.setNome(cardapio.getNome());
-        cardapioModelRepository.save(cardapioModel);
+        cardapioRepository.save(cardapioModel);
 
         Cardapio cardapioEntity = new Cardapio(cardapioModel.getNome(), cardapioModel.getUuidRestaurante());
         cardapioEntity.setUuid(cardapioModel.getUuid());
@@ -94,7 +109,7 @@ public class CardapioAdapterRepository implements CardapioInterface {
 
     @Override
     public Cardapio buscarCardapioPorUUidRestaurante(UUID uuidRestaurante) {
-        CardapioModel cardapioModel = cardapioModelRepository.findByUuidRestaurante(uuidRestaurante);
+        CardapioModel cardapioModel = cardapioRepository.findByUuidRestaurante(uuidRestaurante);
 
         if (cardapioModel == null) return null;
 
@@ -120,7 +135,6 @@ public class CardapioAdapterRepository implements CardapioInterface {
 
     @Override
     public void deletarCardapioPorUuid(UUID uuid) {
-        CardapioModel cardapioModel = cardapioModelRepository.findById(uuid).orElse(null);
-        cardapioModelRepository.deleteById(uuid);
+        cardapioRepository.deleteById(uuid);
     }
 }

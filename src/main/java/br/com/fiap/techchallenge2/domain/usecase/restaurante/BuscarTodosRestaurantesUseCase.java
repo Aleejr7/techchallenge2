@@ -29,7 +29,8 @@ public class BuscarTodosRestaurantesUseCase
                         restaurante.getEndereco(),
                         restaurante.getTipoCozinha(),
                         restaurante.getHorarioFuncionamento().horarioAbertura().toString(),
-                        restaurante.getHorarioFuncionamento().horarioFechamento().toString()
+                        restaurante.getHorarioFuncionamento().horarioFechamento().toString(),
+                        restaurante.getCardapioId()
                 ))
                 .collect(Collectors.toList());
     }
