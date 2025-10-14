@@ -1,140 +1,20 @@
-# 🧾 Sistema de Cadastro de Usuários – Spring Boot
+# 🧾 Sistema de Controle de Restaurantes – Spring Boot
 
-Projeto backend para gerenciamento de usuários com dois perfis distintos: **Cliente** e **Dono de Restaurante**, utilizando Java, Spring Boot e boas práticas de arquitetura como SOLID, DTOs, herança e validação.
-
+Este projeto consolida o código-fonte do desafio Tech Challenge da Fase 2 do curso de Arquitetura e 
+Desenvolvimento Java. O desafio consiste no desenvolvimento de um sistema de gestão compartilhado para 
+um grupo de restaurantes, visando otimizar os custos operacionais e unificar a experiência do cliente. 
+A entrega será dividida em fases para garantir um desenvolvimento cuidadoso, controlado e que permita 
+melhorias contínuas ao longo do processo.
 ---
-
 ## 🚀 Tecnologias Utilizadas
 
 - Java 17+
 - Spring Boot 3.x
 - Spring Data JPA
 - MariaDB (configurável)
-- Spring Security (para codificação de senha)
 - Lombok (opcional)
 - Maven
-
----
-
-## 🧠 Visão Geral
-
-### Tipos de Usuário
-
-| Tipo              | Campo exclusivo         |
-|-------------------|--------------------------|
-| `Cliente`         | `numeroFidelidade`       |
-| `DonoRestaurante` | `nomeDoRestaurante`      |
-
-Todos os usuários herdam da superclasse `Usuario`, que possui os campos comuns:
-
-- `nome`, `email`, `username`, `senha`, `endereco`
-
----
-
-## 🚀 Endpoints
-
-### 📌 Criar Usuário
-
-**POST** `/usuarios`
-
-🔸 **Corpo da Requisição**
-
-#### Para Cliente:
-
-```json
-{
-  "nome": "João",
-  "email": "joao@email.com",
-  "username": "joao123",
-  "password": "senha123",
-  "endereco": "Rua A",
-  "tipo": "cliente",
-  "numeroFidelidade": "FID12345"
-}
-```
-
-#### Para DonoRestaurante:
-
-```json
-{
-  "nome": "Maria",
-  "email": "maria@email.com",
-  "username": "maria123",
-  "password": "senha123",
-  "endereco": "Rua B",
-  "tipo": "dono",
-  "nomeDoRestaurante": "Sabor da Serra"
-}
-```
-
-🔸 Respostas
-
-201 CREATED – Usuário criado com sucesso.
-
-409 CONFLICT – username ou campo exclusivo (numeroFidelidade, nomeDoRestaurante) já existente.
-
-400 BAD REQUEST – Tipo inválido ou campo obrigatório ausente.
-
----
-
-🔍 Buscar Usuários por Nome
-GET /usuarios?q=joao
-
-Retorna lista de usuários cujo nome contém a string q.
-
-Inclui campos exclusivos conforme o tipo (numeroFidelidade, nomeDoRestaurante).
-
----
-
-📌 Buscar por ID
-GET /usuarios/{id}
-
-Retorna um usuário pelo ID.
-
----
-
-✏️ Atualizar Usuário
-PUT /usuarios
-
-🔸 Corpo da Requisição
-
-```json
-{
-  "id": 1,
-  "nome": "João Atualizado",
-  "email": "joao@novo.com",
-  "endereco": "Rua Nova",
-  "numeroFidelidade": "FID99999" 
-}
-```
-🔸 Campo numeroFidelidade deve ser enviado apenas para clientes.
-
-🔸 Regras de Validação
-
-409 CONFLICT – Ao tentar atualizar numeroFidelidade para um valor já existente.
-
-400 BAD REQUEST – Se um cliente tentar alterar nomeDoRestaurante, ou vice-versa.
-
----
-
-🔒 Alterar Senha
-POST /change-password
-
-🔸 Corpo da Requisição
-
-```json
-{
-  "username": "joao123",
-  "password": "senhaAntiga",
-  "newPassword": "senhaNova"
-}
-```
-
-🔸 Respostas
-
-200 OK – Senha alterada com sucesso.
-
-400 BAD REQUEST – Campos inválidos ou senha atual incorreta.
+- Clean Architecture
 
 ---
 
@@ -148,4 +28,22 @@ POST /change-password
 - ✅ Tratamento de erro `409 CONFLICT` para campos únicos
 - ✅ Separação clara de responsabilidades entre `service`, `controller` e `model`
 
+## ✅ Clean Architectre
+
+A aplicação foi organizada inicialmente em três pacotes principais: application, domain e infra.
+
+O pacote **domain** reúne as camadas de regras de negócio da empresa (Entidades) e regras de negócio da aplicação (Casos de Uso) previstas na Clean Architecture.
+
+O pacote **application** representa a camada de adaptadores de interface, contemplando os controladores usados na aplicação, representados no pacote controller, e as exceções disparadas nesta camada, agrupadas no pacote exception.
+
+Por fim, o pacote **infra** representa a camada de framework e drivers, prevista na arquitetura limpa.
+
+A utilização da Clean Architecture neste projeto é um requisito fundamental para atender às exigências de qualidade de código, escalabilidade e separação de responsabilidades. Ao organizar o código em camadas distintas como Domínio, Aplicação e Infraestrutura, garante-se que o sistema seja mais fácil de manter e evoluir, o que é crucial, visto que o projeto será entregue em fases. Essa abordagem permite que as funcionalidades de cadastro de usuários, restaurantes e cardápios sejam desenvolvidas de forma desacoplada da tecnologia de banco de dados escolhida e de outros detalhes de infraestrutura, facilitando a criação de testes automatizados e garantindo a alta qualidade e organização exigidas nos fatores de avaliação.
+
+## ✅ Collection do Postman
+As collections permitem organizar essas requisições em subpastas, que podem representar diferentes funcionalidades ou fluxos de trabalho de uma aplicação.
+
+A collection foi compartilhada na plataforma do Postman na nuvem, podendo ser acessada por meio do 
+endereço a seguir:
+- http://tiny.cc/postman-fiap
 
