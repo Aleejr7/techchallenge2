@@ -84,9 +84,10 @@ CREATE TABLE `restaurante` (
   `nome` varchar(255) DEFAULT NULL,
   `tipoCozinha` varchar(255) DEFAULT NULL,
   `usuario_id` binary(16) DEFAULT NULL,
+  `cardapio_id` binary(16) DEFAULT NULL,
   PRIMARY KEY (`uuid`),
-  UNIQUE KEY `UK5n2bxu5cw8vg71uk5sepo20wo` (`usuario_id`),
-  CONSTRAINT `FKbc8qnjwp8ljjv48ebhws7w4hu` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`uuid`)
+  KEY `restaurante_usuario_uuid_fk` (`usuario_id`),
+  CONSTRAINT `restaurante_usuario_uuid_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -119,7 +120,6 @@ CREATE TABLE `tipousuario` (
 
 LOCK TABLES `tipousuario` WRITE;
 /*!40000 ALTER TABLE `tipousuario` DISABLE KEYS */;
-INSERT INTO `tipousuario` VALUES ('���\���D#�O�\�o;\�','Admin');
 /*!40000 ALTER TABLE `tipousuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,4 +163,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-11 14:44:15
+-- Dump completed on 2025-10-14 20:35:01
