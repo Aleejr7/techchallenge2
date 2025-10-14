@@ -22,7 +22,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class RestauranteAdapterTest {
@@ -77,9 +76,6 @@ public class RestauranteAdapterTest {
 //                "Casa das carnes",
 //                "Rua do arco",
 //                "BR",
-//
-//
-//
 //        );
 //        UsuarioModel usuarioModel = criarUsuarioModel();
 //        RestauranteModel restauranteModelSalvo = criarRestauranteModel(usuarioModel);
@@ -130,29 +126,31 @@ public class RestauranteAdapterTest {
         assertThat(resultado).isNull();
     }
 
-//    @Test
-//    void deveBuscarRestaurantePorNome() {
-//        RestauranteModel restauranteModel = criarRestauranteModel(criarUsuarioModel());
-//        Restaurante restauranteEsperado = criarRestauranteEntity(restauranteModel);
-//        String nome = restauranteModel.getNome();
-//        when(repository.findByNome(nome)).thenReturn(restauranteModel);
-//
-//        var restauranteEncontrado = adapter.buscarRestaurantePorNome(nome);
-//
-//        assertThat(restauranteEncontrado).isNotNull().isEqualTo(restauranteEsperado);
-//    }
+    @Test
+    void deveBuscarRestaurantePorNome() {
+        RestauranteModel restauranteModel = criarRestauranteModel(criarUsuarioModel());
+        Restaurante restauranteEsperado = criarRestauranteEntity(restauranteModel);
+        String nome = restauranteModel.getNome();
+        when(repository.findByNome(any(String.class))).thenReturn(restauranteModel);
 
-//    @Test
-//    void deveBuscarTodosRestaurantes() {
-//        RestauranteModel restauranteModel = criarRestauranteModel(criarUsuarioModel());
-//        List<RestauranteModel> listaModel = List.of(restauranteModel);
-//        List<Restaurante> listaEsperada = List.of(criarRestauranteEntity(restauranteModel));
-//        when(repository.findAll()).thenReturn(listaModel);
-//
-//        var listaEncontrada = adapter.buscarTodosRestaurantes();
-//
-//        assertThat(listaEncontrada).isEqualTo(listaEsperada);
-//    }
+        var restauranteEncontrado = adapter.buscarRestaurantePorNome(nome);
+
+        assertThat(restauranteEncontrado).isNotNull();
+        assertThat(restauranteEsperado.getNome()).isEqualTo(restauranteEncontrado.getNome());
+    }
+
+    @Test
+    void deveBuscarTodosRestaurantes() {
+        RestauranteModel restauranteModel = criarRestauranteModel(criarUsuarioModel());
+        List<RestauranteModel> listaModel = List.of(restauranteModel);
+        List<Restaurante> listaEsperada = List.of(criarRestauranteEntity(restauranteModel));
+        when(repository.findAll()).thenReturn(listaModel);
+
+        var listaEncontrada = adapter.buscarTodosRestaurantes();
+
+        assertThat(listaEncontrada.size()).isEqualTo(listaEsperada.size());
+        assertThat(listaEncontrada.get(0).getNome()).isEqualTo(listaEsperada.get(0).getNome());
+    }
 
     @Test
     void deveRetornarListaVaziaQuandoNaoHouverRestaurantes() {
@@ -190,7 +188,7 @@ public class RestauranteAdapterTest {
 
         verify(repository, times(1)).deleteById(idParaDeletar);
     }
-    
+
     private UsuarioModel criarUsuarioModel() {
         var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174005");;
         TipoUsuarioModel tipoUsuarioModel = new TipoUsuarioModel(uuid,"teste");
