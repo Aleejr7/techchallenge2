@@ -53,7 +53,6 @@ class TipoUsuarioControllerTest {
         TipoUsuarioModel tipoAdmin = new TipoUsuarioModel(UUID.randomUUID(), "Admin");
         when(tipoUsuarioRepository.findAll()).thenReturn(List.of(tipoAdmin));
 
-        // Act & Assert
         mockMvc.perform(get(ApiPrefix.BASE + "/tipo-usuario")
                         .header("TipoUsuarioLogado", "Admin"))
                 .andExpect(status().isOk())
@@ -64,12 +63,10 @@ class TipoUsuarioControllerTest {
 
     @Test
     void deveBuscarTipoUsuarioPorUuidComSucesso() throws Exception {
-        // Arrange
         UUID uuid = UUID.randomUUID();
         TipoUsuarioModel tipoAdmin = new TipoUsuarioModel(uuid, "Admin");
         when(tipoUsuarioRepository.findById(uuid)).thenReturn(Optional.of(tipoAdmin));
 
-        // Act & Assert
         mockMvc.perform(get(ApiPrefix.BASE + "/tipo-usuario/{uuid}", uuid)
                         .header("TipoUsuarioLogado", "Admin"))
                 .andExpect(status().isOk())
@@ -80,14 +77,12 @@ class TipoUsuarioControllerTest {
 
     @Test
     void deveCriarTipoUsuarioComSucesso() throws Exception {
-        // Arrange
         CriarTipoUsuarioRequest request = new CriarTipoUsuarioRequest("Comum");
         TipoUsuarioModel tipoSalvo = new TipoUsuarioModel(UUID.randomUUID(), "Comum");
 
         when(tipoUsuarioRepository.findByNome("Comum")).thenReturn(null); // Simula que o nome não existe
         when(tipoUsuarioRepository.save(any(TipoUsuarioModel.class))).thenReturn(tipoSalvo);
 
-        // Act & Assert
         mockMvc.perform(post(ApiPrefix.BASE + "/tipo-usuario")
                         .header("TipoUsuarioLogado", "Admin")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -108,7 +103,6 @@ class TipoUsuarioControllerTest {
         when(tipoUsuarioRepository.findById(uuid)).thenReturn(Optional.of(tipoExistente));
         when(tipoUsuarioRepository.save(any(TipoUsuarioModel.class))).thenReturn(tipoAtualizado);
 
-        // Act & Assert
         mockMvc.perform(put(ApiPrefix.BASE + "/tipo-usuario/{uuid}", uuid)
                         .header("TipoUsuarioLogado", "Admin")
                         .contentType(MediaType.APPLICATION_JSON)
