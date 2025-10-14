@@ -13,4 +13,5 @@ public interface UsuarioModelRepository extends JpaRepository<UsuarioModel,UUID>
     UsuarioModel findByEmail(String email);
     List<UsuarioModel> findAllByTipoUsuarioModelId(UUID id);
 
+    Object existsByTipoUsuarioId(UUID uuid);
 }
