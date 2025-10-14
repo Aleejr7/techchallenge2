@@ -1,0 +1,1648 @@
+{
+	"info": {
+		"_postman_id": "4d6d4096-795f-4aab-884e-5f4b60c32d3c",
+		"name": "TechChallenge - Fase 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5249682",
+		"_collection_link": "https://www.postman.com/fiap-techchallenge-8844/techchallenge-01-fiap/collection/e36k1zi/techchallenge-fase-2?action=share&source=collection_link&creator=5249682"
+	},
+	"item": [
+		{
+			"name": "tipo-usuario",
+			"item": [
+				{
+					"name": "listar todos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"uuidAdmin\", response.id);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeTipoUsuario\":\"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar DonoRestaurante",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"uuidDono\", response.id);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeTipoUsuario\":\"DonoRestaurante\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar Especialista",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"uuidEspecialista\", response.id);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeTipoUsuario\":\"Especialista\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar Admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/{{uuidAdmin}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"{{uuidAdmin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar DonoRestaurante",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/2a4bd61f-d13e-4670-90c1-e34d9edc61e5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"2a4bd61f-d13e-4670-90c1-e34d9edc61e5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar Especialista",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/{{uuidEspecialista}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"{{uuidEspecialista}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar Especialista",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeTipoUsuario\" : \"Chef\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/{{uuidEspecialista}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"{{uuidEspecialista}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar Chef",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/{{uuidEspecialista}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"{{uuidEspecialista}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir Chef",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/{{uuidEspecialista}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"{{uuidEspecialista}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar todos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar com mesmo nome",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeTipoUsuario\":\"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar com id inexistente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/tipo-usuario/{{uuidEspecialista}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"tipo-usuario",
+								"{{uuidEspecialista}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "listar todos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar Marilia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"uuidUsuarioAdmin\", response.uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Marilia\",\n    \"cpf\" : \"12345678900\",\n    \"email\" : \"marilia@gmail.com\",\n    \"senha\": \"654321\",\n    \"telefone\" : \"112233445\",\n    \"endereco\" : \"Rua do Além, 321\",\n    \"tipoUsuario\" : \"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar Fabiana",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"uuidUsuarioDono\", response.uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Fabiana\",\n    \"cpf\" : \"00987654321\",\n    \"email\" : \"fabiana@gmail.com\",\n    \"senha\": \"123456\",\n    \"telefone\" : \"554433221\",\n    \"endereco\" : \"Rua do Infinito, 456\",\n    \"tipoUsuario\" : \"DonoRestaurante\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar Patrícia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"uuidUsuarioTeste\", response.uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Patricia\",\n    \"cpf\" : \"88345678900\",\n    \"email\" : \"patricia@gmail.com\",\n    \"senha\": \"6655443322\",\n    \"telefone\" : \"112345678\",\n    \"endereco\" : \"Rua de Cima, 200\",\n    \"tipoUsuario\" : \"DonoRestaurante\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar Patricia",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario/{{uuidUsuarioTeste}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario",
+								"{{uuidUsuarioTeste}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar Patricia",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Patricia Moura\",\n    \"telefone\" : \"667788990\",\n    \"endereco\" : \"Rua Pataxós, 800\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario/{{uuidUsuarioTeste}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario",
+								"{{uuidUsuarioTeste}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir Patricia",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario/{{uuidUsuarioTeste}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario",
+								"{{uuidUsuarioTeste}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar todos de novo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar com mesmo email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Marilia\",\n    \"cpf\" : \"88345678900\",\n    \"email\" : \"marilia@gmail.com\",\n    \"senha\": \"6655443322\",\n    \"telefone\" : \"112345678\",\n    \"endereco\" : \"Rua de Cima, 200\",\n    \"tipoUsuario\" : \"DonoRestaurante\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar com tipo inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Iasmine\",\n    \"cpf\" : \"88345678900\",\n    \"email\" : \"iasmine@gmail.com\",\n    \"senha\": \"6655443322\",\n    \"telefone\" : \"112345678\",\n    \"endereco\" : \"Rua de Cima, 200\",\n    \"tipoUsuario\" : \"Especialista\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar id inexistente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/usuario/{{uuidUsuarioTeste}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"usuario",
+								"{{uuidUsuarioTeste}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "restaurante",
+			"item": [
+				{
+					"name": "listar todos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar Parrilha",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.collectionVariables.set(\"uuidRestaurante\", response.uuid);",
+									"pm.collectionVariables.set(\"uuidCardapio\", response.cardapioId);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Parrilha Central\",\n    \"endereco\" : \"Rua do Meio, 676\",\n    \"tipoCozinha\" : \"Contemporânea\",\n    \"horarioAbertura\": \"19:00\",\n    \"horarioFechamento\" : \"23:50\",\n    \"donoRestaurante\" : \"{{uuidUsuarioDono}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar iPhome",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.collectionVariables.set(\"uuidRestaurante\", response.uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"iPhome\",\n    \"endereco\" : \"Rua de Baixo, 578\",\n    \"tipoCozinha\" : \"Fast Food\",\n    \"horarioAbertura\": \"19:00\",\n    \"horarioFechamento\" : \"22:00\",\n    \"donoRestaurante\" : \"{{uuidUsuarioDono}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar iPhome",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante/{{uuidRestaurante}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante",
+								"{{uuidRestaurante}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar iPhome",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"nome\": \"Lanchonete iPhome\",\n    \"endereco\": \"Rua Timbira, 4000\",\n    \"tipoCozinha\": \"Lanchonete\",\n    \"horarioAbertura\": \"18:00\",\n    \"horarioFechamento\": \"23:00\",\n    \"donoRestaurante\": \"{{uuidUsuarioDono}}\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante/{{uuidRestaurante}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante",
+								"{{uuidRestaurante}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir iPhome",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"nome\": \"Parrilha do Meio\",\n    \"endereco\": \"Rua Timbira, 4000\",\n    \"tipoCozinha\": \"Contemporânea\",\n    \"horarioAbertura\": \"18:00\",\n    \"horarioFechamento\": \"23:50\",\n    \"donoRestaurante\": \"{{uuidUsuarioDono}}\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante/{{uuidRestaurante}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante",
+								"{{uuidRestaurante}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar todos de novo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioLogado}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar dono inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"iPhome\",\n    \"endereco\" : \"Rua de Baixo, 578\",\n    \"tipoCozinha\" : \"Fast Food\",\n    \"horarioAbertura\": \"19:00\",\n    \"horarioFechamento\" : \"22:00\",\n    \"donoRestaurante\" : \"d76a45e8-dff1-487e-b3d1-1731c03f6788\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar usuario não dono de restaurante",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"iPhome\",\n    \"endereco\" : \"Rua de Baixo, 578\",\n    \"tipoCozinha\" : \"Fast Food\",\n    \"horarioAbertura\": \"19:00\",\n    \"horarioFechamento\" : \"22:00\",\n    \"donoRestaurante\" : \"{{uuidUsuarioAdmin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar id inexistente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/restaurante/{{uuidRestaurante}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"restaurante",
+								"{{uuidRestaurante}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cardapio",
+			"item": [
+				{
+					"name": "buscar cardapio",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/cardapio/{{uuidCardapio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"cardapio",
+								"{{uuidCardapio}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar nome",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioDonoRestaurante}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uuid\": \"{{uuidCardapio}}\",\n  \"nome\": \"Cardápio Principal\",\n  \"restauranteId\": \"{{uuidRestaurante}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/cardapio/{{uuidCardapio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"cardapio",
+								"{{uuidCardapio}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar cardapio de novo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/cardapio/{{uuidCardapio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"cardapio",
+								"{{uuidCardapio}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "itemcardapio",
+			"item": [
+				{
+					"name": "criar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioDonoRestaurante}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Picanha Grill\",\n    \"descricao\" : \"Corte de picanha com salada tropical\",\n    \"preco\" : 120.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/image-2.jpeg\",\n    \"cardapioId\" : \"99c1faf2-f881-4423-804f-b1d26f3be110\",\n    \"tipoUsuarioLogado\" : \"DonoRestaurante\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"itemcardapio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioDonoRestaurante}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Picanha Nova Grill\",\n    \"descricao\" : \"Picanha com salada tropical\",\n    \"preco\" : 200.0,\n    \"imagemUrl\": \"image-2.jpeg\",\n    \"cardapioId\" : \"99c1faf2-f881-4423-804f-b1d26f3be110\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio/25c3503b-8ddb-4d81-b1b2-01a9ecbbbff3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"itemcardapio",
+								"25c3503b-8ddb-4d81-b1b2-01a9ecbbbff3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioDonoRestaurante}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Picanha Nova Grill\",\n    \"descricao\": \"Picanha com salada tropical\",\n    \"preco\": 200.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/wp-content/uploads/2024/10/image-2.jpeg\",\n    \"cardapioId\" : \"85a5cade-ae11-4516-aa84-d10c7bc76fa6\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio/576e499f-3614-4715-96a0-29ccf0349540",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"itemcardapio",
+								"576e499f-3614-4715-96a0-29ccf0349540"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TipoUsuarioAdmin",
+			"value": "Admin"
+		},
+		{
+			"key": "TipoUsuarioDonoRestaurante",
+			"value": "DonoRestaurante"
+		},
+		{
+			"key": "uuidAdmin",
+			"value": ""
+		},
+		{
+			"key": "uuidDono",
+			"value": ""
+		},
+		{
+			"key": "uuidEspecialista",
+			"value": ""
+		},
+		{
+			"key": "uuidUsuarioDono",
+			"value": ""
+		},
+		{
+			"key": "uuidUsuarioTeste",
+			"value": ""
+		},
+		{
+			"key": "uuidRestaurante",
+			"value": ""
+		},
+		{
+			"key": "uuidCardapio",
+			"value": ""
+		},
+		{
+			"key": "uuidUsuarioAdmin",
+			"value": ""
+		}
+	]
+}
