@@ -6,7 +6,6 @@ import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.cardapio.CardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
-import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.DeletarItemCardapioInput;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,8 +22,6 @@ import static org.mockito.Mockito.*;
 public class DeletarItemCardapioUseCaseTest {
 
     @Mock
-    private ItemCardapioInterface itemCardapioInterface;
-    @Mock
     private CardapioInterface cardapioInterface;
 
     private DeletarItemCardapioUseCase useCase;
@@ -33,7 +30,7 @@ public class DeletarItemCardapioUseCaseTest {
     @BeforeEach
     void setup() {
         openMocks = MockitoAnnotations.openMocks(this);
-        useCase = new DeletarItemCardapioUseCase(itemCardapioInterface, cardapioInterface);
+        useCase = new DeletarItemCardapioUseCase(cardapioInterface);
     }
 
     @AfterEach
@@ -51,7 +48,7 @@ public class DeletarItemCardapioUseCaseTest {
 
         assertThrows(AcessoNegadoException.class, () -> useCase.execute(input));
         verify(cardapioInterface, never()).buscarCardapioPorUuid(any());
-        verify(itemCardapioInterface, never()).deletarItemCardapioPorUuid(any());
+        verify(cardapioInterface, never()).removerItemDoCardapio(any(), any());
     }
 
     @Test
@@ -66,7 +63,7 @@ public class DeletarItemCardapioUseCaseTest {
         when(cardapioInterface.buscarCardapioPorUuid(uuidCardapio)).thenReturn(null);
 
         assertThrows(CardapioInexistenteException.class, () -> useCase.execute(input));
-        verify(itemCardapioInterface, never()).deletarItemCardapioPorUuid(any());
+        verify(cardapioInterface, never()).removerItemDoCardapio(any(), any());
     }
 
     @Test
@@ -90,7 +87,7 @@ public class DeletarItemCardapioUseCaseTest {
         when(cardapio.getNome()).thenReturn("Cardápio Principal");
 
         assertThrows(ItemCardapioInexistenteException.class, () -> useCase.execute(input));
-        verify(itemCardapioInterface, never()).deletarItemCardapioPorUuid(any());
+        verify(cardapioInterface, never()).removerItemDoCardapio(any(), any());
     }
 
     @Test
@@ -114,6 +111,5 @@ public class DeletarItemCardapioUseCaseTest {
         assertDoesNotThrow(() -> useCase.execute(input));
 
         verify(cardapioInterface).removerItemDoCardapio(uuidCardapio, uuidItemCardapio);
-        verify(itemCardapioInterface).deletarItemCardapioPorUuid(uuidItemCardapio);
     }
 }

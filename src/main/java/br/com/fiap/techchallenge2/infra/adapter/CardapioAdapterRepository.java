@@ -9,6 +9,7 @@ import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -74,11 +75,22 @@ public class CardapioAdapterRepository implements CardapioInterface {
         return cardapioEntity;
     }
 
+    @Transactional
     @Override
     public void removerItemDoCardapio(UUID uuidCardapio, UUID uuidItem) {
         CardapioModel cardapioModel = cardapioModelRepository.findById(uuidCardapio).orElse(null);
         ItemCardapioModel itemCardapioModel = itemCardapioModelRepository.findById(uuidItem).orElse(null);
-        itemCardapioModelRepository.deleteById(itemCardapioModel.getUuid());
+
+        if (cardapioModel != null && itemCardapioModel != null) {
+            // Remove o item da lista do cardápio
+            cardapioModel.getItensCardapio().remove(itemCardapioModel);
+            // Limpa a relação bidirecional
+            itemCardapioModel.setCardapioModel(null);
+            // Salva o cardápio atualizado
+            cardapioModelRepository.save(cardapioModel);
+            // Deleta o item
+            itemCardapioModelRepository.delete(itemCardapioModel);
+        }
     }
 
     @Override

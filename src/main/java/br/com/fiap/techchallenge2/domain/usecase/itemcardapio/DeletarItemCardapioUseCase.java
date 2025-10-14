@@ -4,9 +4,7 @@ import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.cardapio.CardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioInexistenteException;
-import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioJaExisteException;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
-import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.DeletarItemCardapioInput;
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 public class DeletarItemCardapioUseCase
 {
 
-    private final ItemCardapioInterface itemCardapioInterface;
     private final CardapioInterface cardapioInterface;
 
     public void execute ( DeletarItemCardapioInput itemCardapioInput ) {
@@ -36,6 +33,5 @@ public class DeletarItemCardapioUseCase
         }
 
         this.cardapioInterface.removerItemDoCardapio( itemCardapioInput.uuidCardapio(), itemCardapioInput.uuidItemCardapio() );
-        this.itemCardapioInterface.deletarItemCardapioPorUuid( itemCardapioInput.uuidItemCardapio() );
     }
 }
