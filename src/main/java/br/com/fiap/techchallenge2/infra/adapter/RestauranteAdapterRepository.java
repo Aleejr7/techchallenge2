@@ -185,8 +185,8 @@ public class RestauranteAdapterRepository implements RestauranteInterface {
         repository.save(model);
 
         TipoUsuario tipoUsuario = new TipoUsuario(
-                restauranteModel.getDonoRestaurante().getUuid(),
-                restauranteModel.getDonoRestaurante().getNome()
+                restauranteModel.getDonoRestaurante().getTipoUsuarioModel().getId(),
+                restauranteModel.getDonoRestaurante().getTipoUsuarioModel().getNome()
         );
 
         Usuario usuarioEntity = new Usuario(

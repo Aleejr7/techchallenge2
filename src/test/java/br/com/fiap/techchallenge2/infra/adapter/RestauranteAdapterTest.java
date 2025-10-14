@@ -46,64 +46,26 @@ public class RestauranteAdapterTest {
         openMocks.close();
     }
 
-    //@Test
-//    void deveCriarRestaurante() {
-//        var uuid = UUID.randomUUID();
-//        var uuidUsuario = UUID.randomUUID();
-//        TipoUsuarioModel tipoUsuarioModel = new TipoUsuarioModel(uuid,"teste");
-//        UsuarioModel usuarioModel = new UsuarioModel(uuidUsuario,
-//                "nome",
-//                "21321312345",
-//                "v@gmail.com",
-//                "senhaaaa",
-//                "12345678910",
-//                "endereco",
-//                tipoUsuarioModel
-//        );
-//        Usuario usuarioEntity = new Usuario(
-//                usuarioModel.getUuid(),
-//                usuarioModel.getNome(),
-//                usuarioModel.getCpf(),
-//                usuarioModel.getEmail(),
-//                usuarioModel.getSenha(),
-//                usuarioModel.getTelefone(),
-//                usuarioModel.getEndereco(),
-//                new TipoUsuario(usuarioModel.getTipoUsuarioModel().getId(),usuarioModel.getTipoUsuarioModel().getNome())
-//        );
-//        var uuidRestaurante = UUID.randomUUID();
-//        RestauranteModel restauranteModel = new RestauranteModel(
-//                uuidRestaurante,
-//                "Casa das carnes",
-//                "Rua do arco",
-//                "BR",
-//        );
-//        UsuarioModel usuarioModel = criarUsuarioModel();
-//        RestauranteModel restauranteModelSalvo = criarRestauranteModel(usuarioModel);
-//
-//        Usuario donoRestaurante = criarUsuarioEntity(usuarioModel);
-//        Restaurante restauranteInput = new Restaurante(
-//                restauranteModelSalvo.getUuid(),
-//                restauranteModelSalvo.getNome(),
-//                restauranteModelSalvo.getEndereco(),
-//                restauranteModelSalvo.getTipoCozinha(),
-//                restauranteModelSalvo.getHorarioFuncionamento().horarioAbertura().toString(),
-//                restauranteModelSalvo.getHorarioFuncionamento().horarioFechamento().toString(),
-//                donoRestaurante
-//        );
-//
-//        Restaurante restauranteEsperado = criarRestauranteEntity(restauranteModelSalvo);
-//
-//        when(usuarioRepository.findById(any(UUID.class))).thenReturn(Optional.of(usuarioModel));
-//        when(repository.save(any(RestauranteModel.class))).thenReturn(restauranteModelSalvo);
-//
-//        var restauranteCriado = adapter.criarRestaurante(restauranteInput);
-//
-//
-//        assertThat(restauranteCriado).isNotNull();
-//        assertThat(restauranteCriado).isEqualTo(restauranteEsperado);
-//        verify(usuarioRepository, times(1)).findById(any(UUID.class));
-//        verify(repository, times(1)).save(any(RestauranteModel.class));
-//    }
+    @Test
+    public void deveCriarRestaurante() {
+        UsuarioModel donoModel = criarUsuarioModel();
+        Usuario donoEntity = criarUsuarioEntity(donoModel);
+
+        RestauranteModel restauranteModelSalvo = criarRestauranteModel(donoModel);
+        Restaurante restauranteEsperado = criarRestauranteEntity(restauranteModelSalvo);
+
+        when(usuarioRepository.findById(any(UUID.class))).thenReturn(Optional.of(donoModel));
+        when(repository.save(any(RestauranteModel.class))).thenReturn(restauranteModelSalvo);
+
+        var restauranteCriado = adapter.criarRestaurante(restauranteEsperado);
+
+        assertThat(restauranteCriado).isNotNull();
+        assertThat(restauranteCriado.getUuid()).isEqualTo(restauranteEsperado.getUuid());
+        assertThat(restauranteCriado.getNome()).isEqualTo(restauranteEsperado.getNome());
+
+        verify(usuarioRepository, times(1)).findById(donoEntity.getUuid());
+        verify(repository, times(1)).save(any(RestauranteModel.class));
+    }
 
     @Test
     void deveBuscarRestaurantePorUuid() {
@@ -161,25 +123,21 @@ public class RestauranteAdapterTest {
         assertThat(listaEncontrada).isNotNull().isEmpty();
     }
 
-    //@Test
+//    @Test
 //    void deveAtualizarRestaurante() {
 //        UsuarioModel usuarioModel = criarUsuarioModel();
 //        RestauranteModel restauranteModelExistente = criarRestauranteModel(usuarioModel);
 //        Restaurante restauranteParaAtualizar = criarRestauranteEntity(restauranteModelExistente);
-//        RestauranteModel restauranteModelSalvo = restauranteModelExistente;
-//
-//
+//        restauranteParaAtualizar.setUuid(restauranteModelExistente.getUuid());
 //        when(repository.findById(any(UUID.class))).thenReturn(Optional.of(restauranteModelExistente));
-//        when(repository.save(any(RestauranteModel.class))).thenReturn(restauranteModelSalvo);
+//        when(repository.save(any(RestauranteModel.class))).thenReturn(restauranteModelExistente);
 //
 //        var restauranteAtualizado = adapter.atualizarRestaurante(restauranteParaAtualizar);
 //
-//        assertThat(restauranteAtualizado).isNotNull().isEqualTo(restauranteParaAtualizar);
+//        assertThat(restauranteAtualizado).isEqualTo(restauranteParaAtualizar);
 //        verify(repository, times(1)).findById(any(UUID.class));
 //        verify(repository, times(1)).save(any(RestauranteModel.class));
 //    }
-
-
     @Test
     void deveDeletarRestaurante() {
         UUID idParaDeletar = UUID.randomUUID();
