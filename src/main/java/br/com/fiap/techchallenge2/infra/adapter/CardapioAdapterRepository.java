@@ -82,13 +82,9 @@ public class CardapioAdapterRepository implements CardapioInterface {
         ItemCardapioModel itemCardapioModel = itemCardapioModelRepository.findById(uuidItem).orElse(null);
 
         if (cardapioModel != null && itemCardapioModel != null) {
-            // Remove o item da lista do cardápio
             cardapioModel.getItensCardapio().remove(itemCardapioModel);
-            // Limpa a relação bidirecional
             itemCardapioModel.setCardapioModel(null);
-            // Salva o cardápio atualizado
             cardapioModelRepository.save(cardapioModel);
-            // Deleta o item
             itemCardapioModelRepository.delete(itemCardapioModel);
         }
     }
