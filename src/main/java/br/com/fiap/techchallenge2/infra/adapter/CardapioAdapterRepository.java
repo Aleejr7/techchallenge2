@@ -99,7 +99,7 @@ public class CardapioAdapterRepository implements CardapioInterface {
         if (cardapioModel != null && itemCardapioModel != null) {
             cardapioModel.getItensCardapio().remove(itemCardapioModel);
             itemCardapioModel.setCardapioModel(null);
-            cardapioModelRepository.save(cardapioModel);
+            cardapioRepository.save(cardapioModel);
             itemCardapioModelRepository.delete(itemCardapioModel);
         }
     }
