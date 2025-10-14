@@ -3,8 +3,8 @@
 		"_postman_id": "4d6d4096-795f-4aab-884e-5f4b60c32d3c",
 		"name": "TechChallenge - Fase 2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "5249682",
-		"_collection_link": "https://www.postman.com/fiap-techchallenge-8844/techchallenge-01-fiap/collection/e36k1zi/techchallenge-fase-2?action=share&source=collection_link&creator=5249682"
+		"_exporter_id": "47239958",
+		"_collection_link": "https://www.postman.com/fiap-techchallenge-8844/workspace/techchallenge-01-fiap/collection/47239958-4d6d4096-795f-4aab-884e-5f4b60c32d3c?action=share&source=collection_link&creator=47239958"
 	},
 	"item": [
 		{
@@ -1457,7 +1457,7 @@
 			"name": "itemcardapio",
 			"item": [
 				{
-					"name": "criar",
+					"name": "criar Picanha",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1467,13 +1467,12 @@
 							{
 								"key": "TipoUsuarioLogado",
 								"value": "{{TipoUsuarioDonoRestaurante}}",
-								"type": "default",
-								"disabled": true
+								"type": "default"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\" : \"Picanha Grill\",\n    \"descricao\" : \"Corte de picanha com salada tropical\",\n    \"preco\" : 120.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/image-2.jpeg\",\n    \"cardapioId\" : \"99c1faf2-f881-4423-804f-b1d26f3be110\",\n    \"tipoUsuarioLogado\" : \"DonoRestaurante\"\n}",
+							"raw": "{\n    \"nome\" : \"Picanha Grill\",\n    \"descricao\" : \"Corte de picanha com salada tropical\",\n    \"preco\" : 120.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/image-2.jpeg\",\n    \"cardapioId\" : \"{{uuidCardapio}}\",\n    \"tipoUsuarioLogado\" : \"{{TipoUsuarioDonoRestaurante}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1497,7 +1496,124 @@
 					"response": []
 				},
 				{
-					"name": "atualizar",
+					"name": "criar Carne de Sol",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioDonoRestaurante}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Carne de Sol\",\n    \"descricao\" : \"Carne de sol de filé ao molho de manteiga\",\n    \"preco\" : 148.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/carne-de-sol.jpeg\",\n    \"cardapioId\" : \"{{uuidCardapio}}\",\n    \"tipoUsuarioLogado\" : \"{{TipoUsuarioDonoRestaurante}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"itemcardapio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar Salada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.collectionVariables.set(\"uuidSalada\", response.uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioDonoRestaurante}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Salada Tropical\",\n    \"descricao\" : \"Saladinha básica\",\n    \"preco\" : 35.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/salada.jpeg\",\n    \"cardapioId\" : \"{{uuidCardapio}}\",\n    \"tipoUsuarioLogado\" : \"{{TipoUsuarioDonoRestaurante}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"itemcardapio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar cardapio",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/cardapio/{{uuidCardapio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"cardapio",
+								"{{uuidCardapio}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar Salada",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1512,7 +1628,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\" : \"Picanha Nova Grill\",\n    \"descricao\" : \"Picanha com salada tropical\",\n    \"preco\" : 200.0,\n    \"imagemUrl\": \"image-2.jpeg\",\n    \"cardapioId\" : \"99c1faf2-f881-4423-804f-b1d26f3be110\"\n}",
+							"raw": "{\n    \"nome\" : \"Salada Sertaneja\",\n    \"descricao\" : \"Antiga Salada tropical\",\n    \"preco\" : 31.0,\n    \"imagemUrl\": \"image-2.jpeg\",\n    \"cardapioId\" : \"{{uuidCardapio}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1520,7 +1636,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio/25c3503b-8ddb-4d81-b1b2-01a9ecbbbff3",
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio/{{uuidSalada}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1530,14 +1646,14 @@
 								"techchallenge2",
 								"api",
 								"itemcardapio",
-								"25c3503b-8ddb-4d81-b1b2-01a9ecbbbff3"
+								"{{uuidSalada}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "excluir",
+					"name": "excluir Salada",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1552,7 +1668,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Picanha Nova Grill\",\n    \"descricao\": \"Picanha com salada tropical\",\n    \"preco\": 200.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/wp-content/uploads/2024/10/image-2.jpeg\",\n    \"cardapioId\" : \"85a5cade-ae11-4516-aa84-d10c7bc76fa6\"\n}",
+							"raw": "{\n    \"nome\": \"Salada Sertaneja\",\n    \"descricao\": \"Antiga Salada tropical\",\n    \"preco\": 31.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/salada.jpeg\",\n    \"cardapioId\" : \"{{uuidCardapio}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1560,7 +1676,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio/576e499f-3614-4715-96a0-29ccf0349540",
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio/{{uuidSalada}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1570,7 +1686,188 @@
 								"techchallenge2",
 								"api",
 								"itemcardapio",
-								"576e499f-3614-4715-96a0-29ccf0349540"
+								"{{uuidSalada}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar cardapio de novo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/cardapio/{{uuidCardapio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"cardapio",
+								"{{uuidCardapio}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar item com cardapio inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioDonoRestaurante}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Salada Tropical\",\n    \"descricao\" : \"Saladinha básica\",\n    \"preco\" : 35.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/salada.jpeg\",\n    \"cardapioId\" : \"5bf14940-b1ca-468d-9619-a4787d758601\",\n    \"tipoUsuarioLogado\" : \"{{uuidUsuarioAdmin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"itemcardapio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar item sem ser dono do restaurante",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioAdmin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Salada Tropical\",\n    \"descricao\" : \"Saladinha básica\",\n    \"preco\" : 35.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/salada.jpeg\",\n    \"cardapioId\" : \"{{uuidCardapio}}\",\n    \"tipoUsuarioLogado\" : \"{{TipoUsuarioAdmin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"itemcardapio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar item com nome repetido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "TipoUsuarioLogado",
+								"value": "{{TipoUsuarioDonoRestaurante}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Picanha Grill\",\n    \"descricao\" : \"Saladinha básica com picanha\",\n    \"preco\" : 89.0,\n    \"imagemUrl\": \"https://blog.mercantilatacado.com.br/salada.jpeg\",\n    \"cardapioId\" : \"{{uuidCardapio}}\",\n    \"tipoUsuarioLogado\" : \"{{TipoUsuarioDonoRestaurante}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/techchallenge2/api/itemcardapio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"techchallenge2",
+								"api",
+								"itemcardapio"
 							]
 						}
 					},
@@ -1642,6 +1939,10 @@
 		},
 		{
 			"key": "uuidUsuarioAdmin",
+			"value": ""
+		},
+		{
+			"key": "uuidSalada",
 			"value": ""
 		}
 	]

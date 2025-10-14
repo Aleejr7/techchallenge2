@@ -15,9 +15,9 @@ public class TipoUsuarioDataLoader {
     @PostConstruct
     public void init() {
         if (tipoUsuarioRepository.count() == 0) {
-//            TipoUsuarioModel tipoUsuario = new TipoUsuarioModel();
-//            tipoUsuario.setNome("Admin");
-//            tipoUsuarioRepository.save(tipoUsuario);
+            TipoUsuarioModel tipoUsuario = new TipoUsuarioModel();
+            tipoUsuario.setNome("Admin");
+            tipoUsuarioRepository.save(tipoUsuario);
         }
     }
 }
