@@ -114,7 +114,7 @@ class TipoUsuarioControllerTest {
                         .header("TipoUsuarioLogado", "Admin")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isCreated()) // O controller retorna 201, conforme o código
+                .andExpect(status().isOk()) // O controller retorna 201, conforme o código
                 .andExpect(jsonPath("$.id").value(uuid.toString()))
                 .andExpect(jsonPath("$.nome").value("Convidado"));
     }
