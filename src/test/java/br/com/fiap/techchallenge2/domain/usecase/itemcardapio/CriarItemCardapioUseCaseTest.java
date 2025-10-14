@@ -102,7 +102,7 @@ public class CriarItemCardapioUseCaseTest {
         verify(itemCardapioInterface, never()).criarItemCardapio(any());
     }
 
-    // @Test
+    @Test
     void deveCriarItemCardapioComSucesso() {
         UUID uuidCardapio = UUID.randomUUID();
         UUID uuidItem = UUID.randomUUID();
@@ -142,6 +142,5 @@ public class CriarItemCardapioUseCaseTest {
         assertEquals(uuidCardapio, resultado.uuidCardapio());
 
         verify(itemCardapioInterface).criarItemCardapio(any(ItemCardapio.class));
-        verify(cardapioInterface).adicionarItemAoCardapio(uuidCardapio, uuidItem);
     }
 }

@@ -90,7 +90,7 @@ public class ItemCardapioController {
             @RequestBody ItemCardapioRequest itemCardapioRequest) {
 
         if (itemCardapioRequest.cardapioId() == null) {
-            ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
         DeletarItemCardapioInput deletarItemCardapioInput = new DeletarItemCardapioInput(
@@ -100,7 +100,6 @@ public class ItemCardapioController {
         );
 
         DeletarItemCardapioUseCase useCase = new DeletarItemCardapioUseCase(
-                new ItemCardapioAdapterRepository(itemCardapioRepository, cardapioRepository),
                 new CardapioAdapterRepository(cardapioRepository, itemCardapioRepository)
         );
 

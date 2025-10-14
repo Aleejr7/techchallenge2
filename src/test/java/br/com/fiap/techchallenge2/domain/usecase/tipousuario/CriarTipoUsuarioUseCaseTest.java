@@ -62,8 +62,8 @@ public class CriarTipoUsuarioUseCaseTest {
         TipoUsuarioOutput output = useCase.execute(input);
 
         assertNotNull(output);
-        assertEquals("Cliente", output.nome());
-        assertNotNull(output.uuid());
+        assertEquals("Cliente", output.getNome());
+        assertNotNull(output.getId());
         verify(tipoUsuarioInterface).criarTipoUsuario(any());
     }
 }

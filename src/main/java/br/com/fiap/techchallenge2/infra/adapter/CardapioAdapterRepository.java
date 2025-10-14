@@ -10,6 +10,7 @@ import br.com.fiap.techchallenge2.infra.repository.CardapioModelRepository;
 import br.com.fiap.techchallenge2.infra.repository.ItemCardapioModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -89,11 +90,18 @@ public class CardapioAdapterRepository implements CardapioInterface {
         return cardapioEntity;
     }
 
+    @Transactional
     @Override
     public void removerItemDoCardapio(UUID uuidCardapio, UUID uuidItem) {
         CardapioModel cardapioModel = cardapioRepository.findById(uuidCardapio).orElse(null);
         ItemCardapioModel itemCardapioModel = itemCardapioModelRepository.findById(uuidItem).orElse(null);
-        itemCardapioModelRepository.deleteById(itemCardapioModel.getUuid());
+
+        if (cardapioModel != null && itemCardapioModel != null) {
+            cardapioModel.getItensCardapio().remove(itemCardapioModel);
+            itemCardapioModel.setCardapioModel(null);
+            cardapioModelRepository.save(cardapioModel);
+            itemCardapioModelRepository.delete(itemCardapioModel);
+        }
     }
 
     @Override
