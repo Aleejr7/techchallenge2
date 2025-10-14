@@ -4,7 +4,7 @@ import br.com.fiap.techchallenge2.domain.entity.Cardapio;
 import br.com.fiap.techchallenge2.domain.entity.ItemCardapio;
 import br.com.fiap.techchallenge2.domain.exception.AcessoNegadoException;
 import br.com.fiap.techchallenge2.domain.exception.cardapio.CardapioInexistenteException;
-import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioJaExisteException;
+import br.com.fiap.techchallenge2.domain.exception.itemcardapio.ItemCardapioInexistenteException;
 import br.com.fiap.techchallenge2.domain.gateway.CardapioInterface;
 import br.com.fiap.techchallenge2.domain.gateway.ItemCardapioInterface;
 import br.com.fiap.techchallenge2.domain.input.itemcardapio.DeletarItemCardapioInput;
@@ -69,7 +69,7 @@ public class DeletarItemCardapioUseCaseTest {
         verify(itemCardapioInterface, never()).deletarItemCardapioPorUuid(any());
     }
 
-    // @Test
+    @Test
     void deveLancarExcecaoQuandoItemNaoExisteNoCardapio() {
         UUID uuidCardapio = UUID.randomUUID();
         UUID uuidItemCardapio = UUID.randomUUID();
@@ -89,7 +89,7 @@ public class DeletarItemCardapioUseCaseTest {
         when(itemExistente.getUuid()).thenReturn(uuidItemExistente);
         when(cardapio.getNome()).thenReturn("Cardápio Principal");
 
-        assertThrows(ItemCardapioJaExisteException.class, () -> useCase.execute(input));
+        assertThrows(ItemCardapioInexistenteException.class, () -> useCase.execute(input));
         verify(itemCardapioInterface, never()).deletarItemCardapioPorUuid(any());
     }
 
