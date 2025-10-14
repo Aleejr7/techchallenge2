@@ -35,7 +35,7 @@ public class ItemCardapioController {
     public ResponseEntity<ItemCardapioOutput> criarItemCardapio(
             @RequestBody ItemCardapioRequest itemCardapioRequest,
             @RequestHeader("TipoUsuarioLogado") String tipoUsuarioLogado
-            ) {
+    ) {
         CriarItemCardapioInput criarItemCardapioInput = new CriarItemCardapioInput(
                 itemCardapioRequest.nome(),
                 itemCardapioRequest.descricao(),
