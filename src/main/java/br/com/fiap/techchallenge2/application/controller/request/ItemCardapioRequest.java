@@ -7,7 +7,6 @@ public record ItemCardapioRequest(
         String nome,
         String descricao,
         Double preco,
-        String imageUrl,
         String disponibilidadePedido,
         String imagemUrl,
         UUID cardapioId

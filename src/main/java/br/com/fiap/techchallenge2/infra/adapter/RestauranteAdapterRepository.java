@@ -38,6 +38,8 @@ public class RestauranteAdapterRepository implements RestauranteInterface {
         );
         repository.save(restauranteModel);
 
+        // Código para criar um cardápio novo e vincular ao restaurante criado
+
         TipoUsuario tipoUsuario = new TipoUsuario(
                 restauranteModel.getDonoRestaurante().getUuid(),
                 restauranteModel.getDonoRestaurante().getNome());

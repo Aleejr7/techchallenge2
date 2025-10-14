@@ -13,6 +13,7 @@ import br.com.fiap.techchallenge2.infra.adapter.UsuarioAdapterRepository;
 import br.com.fiap.techchallenge2.infra.repository.TipoUsuarioRepository;
 import br.com.fiap.techchallenge2.infra.repository.UsuarioModelRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,7 +74,7 @@ public class TipoUsuarioController {
 
         TipoUsuarioOutput tipoUsuarioOutput = useCase.execute( tipoUsuarioInput );
 
-        return ResponseEntity.status( 201 ).body( tipoUsuarioOutput );
+        return ResponseEntity.status(HttpStatus.CREATED).body( tipoUsuarioOutput );
     }
 
 
@@ -91,7 +92,7 @@ public class TipoUsuarioController {
 
         TipoUsuarioOutput tipoUsuarioOutput = useCase.execute(tipoUsuarioInput);
 
-        return ResponseEntity.status(201).body( tipoUsuarioOutput );
+        return ResponseEntity.status(HttpStatus.OK).body( tipoUsuarioOutput );
     }
 
     @DeleteMapping("/{uuid}")
