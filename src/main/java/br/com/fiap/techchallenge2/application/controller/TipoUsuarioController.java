@@ -56,7 +56,7 @@ public class TipoUsuarioController {
 
         TipoUsuarioOutput tipoUsuarioOutput = useCase.execute(tipoUsuarioInput);
 
-        return ResponseEntity.status( 200 ).body(tipoUsuarioOutput);
+        return ResponseEntity.status( HttpStatus.OK ).body(tipoUsuarioOutput);
 
     }
 
@@ -110,7 +110,7 @@ public class TipoUsuarioController {
 
         useCase.execute(tipoUsuarioInput);
 
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
     }
 }
